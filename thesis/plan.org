@@ -1,0 +1,123 @@
+Modelowanie systemów sygnalizacji świetlnej. Schemat pracy magisterskiej
+* Wstęp
+/Napisałem, co w tej chwili znajdzie się moim zdaniem we wstępie,
+ ale i tak będę go rzeczywiście pisał dopiero na samym końcu./
+** Modelowanie formalne
+Z jednej strony chciałbym tu powiedzieć ogólnie o zaletach
+stosowania metod formalnych przy tworzeniu oprogramowania.
+Z drugiej -- odnieść się bardziej konkretnie do tego, co
+będę chciał przedstawić w pracy czyli formalnego języka modelowania
+
+** Systemy sygnalizacji świetlnej
+Już dawno wyszły poza proste sygnalizatory czerwony<->zielony, stają
+się coraz bardziej złożonymi systemami (ITS skrajnym przykładem). Są 
+także systemami, od których zależy bezpieczeństwo (życie i zdrowie!) ludzi. 
+Te dwa czynniki sprawiają, że warto modelować je formalnie,
+aby osiągnąć gwarancję funkcjonowania zgodnego ze specyfikacją.
+
+** Zawartość pracy
+Opis zawartości pracy.
+
+* Systemy sygnalizacji
+Rozdział ma przedstawiać podstawowe koncepcje dot. sygnalizacji świetlnej;
+oparty będzie głównie na dokumentach FHWA (http://www.fhwa.dot.gov/).
+ 
+ Nie będę tu jeszcze wprowadzać elementów specyficznych dla mnie, moich założen czy uproszczeń.
+ Niemniej niektóre terminy będę
+ od razu definiował w wygodny dla mnie sposób. Np. już tutaj pokażę
+ kompozycjonalność opisu skrzyżowań (definiujemy małe elementy, po czym stopniowo
+ składamy je w coraz większe).
+
+** Ogólny przegląd systemów sygnalizacji świetlnej
+Nie chcę się zagłębiać w użytkowe walory konkretnych systemów,
+czynniki wpływające na wybór takiego czy innego. Muszę jednak
+ogólnie scharakteryzować stosowane rozwiązania i jakoś je usystematyzować,
+żeby dalsze rozważania nie były zawieszone w próżni.
+
+Sygnalizacja
+  1. stałoczasowa vs. wzbudzana (w pełni wzbudzana/częściowo wzbudzana)
+  2. koordynowana vs. niezależna
+** Szczegółowe informacje o systemach, które będą modelowane
+*** Pojęcia używane do podstawowego opisu systemów sygnalizacji
+  1) kierunek (ruch)
+  2) faza
+*** Sygnalizacja stałoczasowa
+*** Sygnalizacja wzbudzana
+  1) O detektorach 
+     - tryby prac:
+        + /presence mode/ vs. /pulse mode/
+        + pamięć vs. brak pamięci
+  2) Podstawowy model sygnalizacji wzbudzanej dla jednego kierunku ruchu
+     - interwały składające się na ruch
+        + w szczególności podział zielonego na wstępny, wolny i rozszerzalny
+     - koniecznie diagramy: zmiany stanów, wzbudzenia a czas
+     - opis parametrów:
+        + minimalny czas zieleni (initial green)
+        + maksymalny odstęp (gap time), wydłużenie czasu (extension time)
+        + maksymalny zielony (zwrócić uwagę, że to cecha fazy!)
+        + interwały stałe
+  3) Składanie ruchów w fazy
+     - o zależnościach między kierunkami
+  4) Składanie fazy w cykle
+     - jeden pierścień (single ring)
+     - dwa pierścienie (dual ring)
+  6) Dodatkowe rozszerzenia, które uwzględnię w modelach
+     - np. priorytet dla autobusów lub dynamiczne zmiany niektórych z parametrów
+
+* Automaty czasowe i UPPAAL
+** Automaty czasowe
+    - podstawowa definicja i przykłady
+    - krótka informacja o weryfikacji tychże
+   (tj. o abstrakcjach, które pozwalają na weryfikację własności temporalnych)
+
+** UPPAAL
+    - podstawowe informacje o narzędziu
+      + jak wygląda modelowanie automatów czasowych
+      + jakie są możliwości weryfikacyjne
+    - gdzie był stosowany (w szczególności wspomnieć o sukcesach w przemyśle)
+    - rozszerzenia modelarskie i stosowne przykłady
+
+** Uzasadnienie wyboru formalizmu i narzędzia
+   Parę słów o tym, dlaczego automaty czasowe i UPPAAL są dobrą
+   podstawą dla języka modelowania systemów sygnalizacji.
+
+* Język
+Najważniejszy rozdział w pracy.
+   * o przydatności formalnego języka modelarskiego
+   * pożądane cechy języka opisu modeli
+     - aparat pojęciowy stosowany przez ludzi zajmujących się sygnalizacją
+     - precyzyjna semantyka
+     - weryfikowalność
+       + osiągamy ją poprzez powiązanie prezentowanego języka z formalizmem weryfikacyjnym
+   * sam język
+     - poszczególne warstwy
+       + opis pojedynczego ruchu
+       + opis fazy
+       + opis cyklu
+     - nieformalny semantyki
+       + odwołujemy się do konkretnych systemów opisanych w poprzednim rozdziale
+	 i pokazujemy, jak wygląda ich opis w moim języku
+   * dyskusja zakresu (jakie systemy można zamodelować)
+     i rozszerzalności (jakie systemy można by zamodelować)
+   * modele
+     - podział na komponenty, opis ich odpowiedzialności i komunikacji między nimi
+       (wyżej poziomowe spojrzenie na moje modele; ważne, bo same automaty czasem _wydają się_ dosyć skomplikowane)
+     - automaty wchodzące w skład poszczególnych komponentów
+     - dyskusja decyzji projektowych
+     - przykłady, przykłady
+
+* Eksperymenty (weryfikacja)
+  * weryfikacja jakościowa
+    - cechy ekstensjonalne (dla każdego modelu sygnalizacji świetlnej)
+      + bezpieczeństwo (brak kolizji)
+      + żywotność (każde żądanie zostanie zrealizowane)
+	- żywotność z ograniczeniem czasowym (każde żądanie zostanie zrealizowane nie później niż ...)
+    - cechy intensjonalne (specyficzne dla moich modeli)
+      + komponenty poprawnie współpracują, wartości "prywatnych" zmiennych są poprawne
+  * weryfikacja jakościowa
+    - maksymalny czas oczekiwania na realizację żądania
+  * weryfikacja a zasoby (czyli być może także o tym, czego się nie udało zweryfikować i co z tym zrobić) 
+
+* Podsumowanie
+
+# LocalWords:  FHWA UPPAAL
