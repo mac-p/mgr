@@ -34,6 +34,9 @@ czynniki wpływające na wybór takiego czy innego. Muszę jednak
 ogólnie scharakteryzować stosowane rozwiązania i jakoś je usystematyzować,
 żeby dalsze rozważania nie były zawieszone w próżni.
 
+Cele instalowania sygnalizacji
+http://ops.fhwa.dot.gov/publications/fhwahop08024/chapter1.htm#1.1 (w szczególności 1.1.1)
+
 Sygnalizacja
   1. stałoczasowa vs. wzbudzana (w pełni wzbudzana/częściowo wzbudzana)
   2. koordynowana vs. niezależna
@@ -41,12 +44,33 @@ Sygnalizacja
 *** Pojęcia używane do podstawowego opisu systemów sygnalizacji
   1) kierunek (ruch)
   2) faza
+Definicje 
+  1) Interwał -- odcinek czasu, w którym wskazanie danego sygnalizatora nie zmienia się
+     (np. typowymi interwałami sygnalizatora dla pieszych: są czerwony, zielony, migający zielone)
+     * TODO: jak nazwiemy fragmenty interwałów (zielony, czerwony)
+  2) Kierunek
+  3) Faza -- część cyklu sygnalizacji przeznaczona dla grupy ruchów, które mogą jednocześnie
+     korzystać ze skrzyżowania. Może składać się z:
+     - jednego lub więcej ruchu samochodowego
+     - jednego lub więcej ruchu pieszego
+     - kombinacji pewnej liczby ruchów samochodowych i pieszych
+  4) Cykl
 *** Sygnalizacja stałoczasowa
+  1) Interwały składające się na sygnalizację dla jednego ruchu
+     * czerwony
+     * czerwony + żółty
+     * zielony
+     * żółty
+     * czerwony czyszczenie
 *** Sygnalizacja wzbudzana
-  1) O detektorach 
-     - tryby prac:
-        + /presence mode/ vs. /pulse mode/
-        + pamięć vs. brak pamięci
+  1) O detektorach http://ops.fhwa.dot.gov/publications/fhwahop08024/chapter4.htm#4.7
+     - cele (4.7.1):
+       + czy włączyć zielone
+       + na jak długo włączyć zielone
+       + poboczne: np. czy jest potrzeba czyszczenia
+     - tryby prac (4.7.2):
+       + /presence mode/ vs. /pulse mode/
+       + pamięć vs. brak pamięci
   2) Podstawowy model sygnalizacji wzbudzanej dla jednego kierunku ruchu
      - interwały składające się na ruch
         + w szczególności podział zielonego na wstępny, wolny i rozszerzalny
@@ -57,7 +81,8 @@ Sygnalizacja
         + maksymalny zielony (zwrócić uwagę, że to cecha fazy!)
         + interwały stałe
   3) Składanie ruchów w fazy
-     - o zależnościach między kierunkami
+     - hold
+     - late call
   4) Składanie fazy w cykle
      - jeden pierścień (single ring)
      - dwa pierścienie (dual ring)
