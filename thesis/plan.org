@@ -122,6 +122,8 @@ Najważniejszy rozdział w pracy.
      - nieformalny semantyki
        + odwołujemy się do konkretnych systemów opisanych w poprzednim rozdziale
 	 i pokazujemy, jak wygląda ich opis w moim języku
+   * dodatkowe założenia
+     - o ruchu pojazdów 
    * dyskusja zakresu (jakie systemy można zamodelować)
      i rozszerzalności (jakie systemy można by zamodelować)
    * modele
