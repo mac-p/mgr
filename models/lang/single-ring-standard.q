@@ -48,6 +48,7 @@ Det12.Actuated --> L12.Green
 
 /*
 late:false\/false
+16\/16 --> 66s
 20\/20 --> 204s
 24\/24 --> 569s
 */
