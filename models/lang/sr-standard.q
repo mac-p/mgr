@@ -3,7 +3,7 @@
 /*
 
 */
-A[] (MvC0.RedWaiting imply MvC0.wait_t < 30)
+A[] (MvC0.RedWaiting imply MvC0.wait_t < 20)
 
 /*
 
@@ -33,12 +33,17 @@ sup: demand[1]
 /*
 
 */
-A<> (MvC1.RedNoDemand)
+A[] (rest imply !PC1.timer_set)
 
 /*
 
 */
-A[] ((MvC11.InitialGreen || MvC11.ExtGreen || MvC11.GappedOut) imply L11.Green) &&\
+A<> (MvC11.RedNoDemand)
+
+/*
+
+*/
+A[] ((MvC11.InitialGreen || MvC11.ExtGreen || MvC11.GappedOut || MvC11.Rest) imply L11.Green) &&\
       ((MvC11.RedClear || MvC11.RedNoDemand || MvC11.RedWaiting) imply L11.Red) && \
       (MvC11.RedAmber imply L11.RedAmber) &&\
       (MvC11.Amber imply L11.Amber)
@@ -46,7 +51,7 @@ A[] ((MvC11.InitialGreen || MvC11.ExtGreen || MvC11.GappedOut) imply L11.Green) 
 /*
 48\/48 -> 65s
 */
-A[] ((MvC0.InitialGreen || MvC0.ExtGreen || MvC0.GappedOut) imply L0.Green) &&\
+A[] ((MvC0.InitialGreen || MvC0.ExtGreen || MvC0.GappedOut || MvC0.Rest) imply L0.Green) &&\
       ((MvC0.RedClear || MvC0.RedNoDemand || MvC0.RedWaiting) imply L0.Red) && \
       (MvC0.RedAmber imply L0.RedAmber) &&\
       (MvC0.Amber imply L0.Amber)
@@ -57,6 +62,21 @@ A[] ((MvC0.InitialGreen || MvC0.ExtGreen || MvC0.GappedOut) imply L0.Green) &&\
 Det12.Actuated --> L12.Green
 
 /*
+
+*/
+(Det11.Actuated && (MvC11.RedNoDemand || MvC11.RedClear || MvC11.Amber)) --> (L11.Green && MvC11.wait_t < 60)
+
+/*
+
+*/
+inf{L0.Amber}: L0.green_t
+
+/*
+
+*/
+!service[1] --> L11.Green
+
+/*
 late:false\/false
 16\/16 --> 40s
 20\/20 --> 99s
@@ -65,9 +85,7 @@ late:false\/false
 Det11.Actuated --> L11.Green
 
 /*
-24\/24 --> 37s
-32\/32 --> 39s
-48\/49 --> 99s
+
 */
 !service[0] --> L0.Green
 
@@ -81,7 +99,7 @@ Det0.Actuated --> L0.Green
 /*
 
 */
-(Det0.Actuated && (MvC0.RedNoDemand || MvC0.RedClear || MvC0.Amber)) --> (L0.Green && MvC0.wait_t < 58)
+(Det0.Actuated && (MvC0.RedNoDemand || MvC0.RedClear || MvC0.Amber)) --> (L0.Green && MvC0.wait_t < 26)
 
 /*
 late: false\/false
