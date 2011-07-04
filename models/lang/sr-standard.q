@@ -33,6 +33,11 @@ sup: demand[1]
 /*
 
 */
+A[] (rest imply (!demand[0] && !demand[1]))
+
+/*
+
+*/
 A[] (rest imply !PC1.timer_set)
 
 /*
@@ -65,6 +70,11 @@ Det12.Actuated --> L12.Green
 
 */
 (Det11.Actuated && (MvC11.RedNoDemand || MvC11.RedClear || MvC11.Amber)) --> (L11.Green && MvC11.wait_t < 60)
+
+/*
+
+*/
+A[] (L0.Amber imply L0.green_t >= 7)
 
 /*
 
