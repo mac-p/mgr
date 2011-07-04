@@ -36,7 +36,7 @@ sup: demand[1]
 A<> (MvC1.RedNoDemand)
 
 /*
-
+Overapproximation works!
 */
 A[] ((MvC11.InitialGreen || MvC11.ExtGreen || MvC11.GappedOut) imply L11.Green) &&\
       ((MvC11.RedClear || MvC11.RedNoDemand || MvC11.RedWaiting) imply L11.Red) && \
@@ -49,6 +49,8 @@ HOLD: true
 LATE: false
 MAX: 16
 66,5s
+
+Overapproximation works!
 */
 A[] ((MvC0.InitialGreen || MvC0.ExtGreen || MvC0.GappedOut) imply L0.Green) &&\
       ((MvC0.RedClear || MvC0.RedNoDemand || MvC0.RedWaiting) imply L0.Red) && \
@@ -102,8 +104,8 @@ MAX: 16
 /*
 HOLD: true
 LATE: false
-MAX: 16
-463s
-
+-------------------
+MAX: 16 -->463s
+MAX: 12 -->397s
 */
 A[] not deadlock
