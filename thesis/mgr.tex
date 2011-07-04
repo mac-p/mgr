@@ -32,7 +32,6 @@
 
 % Moje makra
 \newtheorem{defi}{Definicja}[section]
-\newcommand{\ang}[1]{(ang.~\emph{#1})}
 
 \begin{document}
 \maketitle
@@ -49,101 +48,28 @@ streszczenie
 \chapter{Sygnalizacja świetlna}
 \label{c:sygnalizacja}
 
-Niniejszy rozdział zawiera opis systemów sygnalizacji świetlnej, które
-będą modelowane blabla. Jest on oparty na raportach przygotowanych na
-zlecenie amerykańskiej agencji \emph{Federal Highway Administration}
-\cite{timing} \cite{handbook}.
+Niniejszy rozdział zawiera opis 
 
 \section{Przegląd współczesnych systemów sygnalizacji}
-\label{s:przeglad}
-
-Sygnalizacją świetlną nazywamy to i to
-Celem instalacji sygnalizacji na skrzyżowaniu jest to czy tamto.
- jej elementy to to i tamto.
-
- Systemy jakie się stosuje są takie i siakie.
-
+\label{s:przegląd}
 
 \section{Szczegóły funkcjonowania wybranych systemów}
-\label{s:szczegoly}
+\label{s:szczegóły}
 
 \subsection{Podstawowe pojęcia}
 \label{ss:pojecia}
 
-\begin{description}
-  \item[interwał] -- odcinek czasu, w którym wskazanie danego
-  sygnalizatora nie zmienia się
-  \item[faza] -- część cyklu sygnalizacji przeznaczona dla grupy
-  ruchów, które mogą jednocześnie korzystać ze skrzyżowania; może
-  składać się z:
-  \begin{itemize}
-    \item jednego lub więcej ruchu pojazdów
-    \item jednego lub więcej ruchu pieszych
-    \item kombinacji pewnej liczby ruchów samochodowych i pieszych
-  \end{itemize}
-  \item[cykl] -- ustalony ciąg faz
-
-  
-\end{description}
 \subsection{Sygnalizacja stałoczasowa}
 \subsection{Sygnalizacja wzbudzana}
 
-\subsubsection{Detekcja ruchu}
-\label{ss:detekcja}
+Niezbędnym elementem
 
-\subsubsection{Opis i parametry systemu}
-\label{sec:opis-parametry}
-Wykrycie pojazdu przez czujnik powoduje zgłoszenie żądania i włączenie
-sygnału zielonego. Sygnał ten jest przedłużany, o ile wykrywane są
-następne pojazdy. Jego koniec następuje, jeśli pomiędzy
-nadjeżdzającymi pojazdami jest luka o dostatecznie dużej długości
-\ang{\mbox{gap-out}} bądź został osiągnięty maksymalny czas sygnału zielonego
-dla danego kierunku \ang{\mbox{max-out}}. Druga opcja brana jest pod uwagę
-wyłącznie wtedy, gdy wcześniej otrzymano zgłoszenie dla kolidującego
-kierunku ruchu.
-
-W celu formalizacji powyższego opisu wprowadzamy następujące definicje:%
-\begin{description}
-  \item[minimalny zielony] \ang{minimal green} -- najkrótszy
-  \item[maksymalny zielony] \ang{maximal green} -- najdłuższy czas,
-  przez który dany ruch może otrzymywać zielony sygnał w obecności
-  zgłoszenia przeciwnego
-  \item[wydłużenie] \ang{passage time} -- czas, o który wydłużany jest
-  sygnał zielony po wzbudzeniu czujnika; brak wzbudzenia czujnika
-  przez ten czas powoduje wyłączenie sygnału zielonego
-\end{description}
-
-\subsubsection{Schemat funkcjonowania podstawowego systemu sygnalizacji wzbudzanej dla pojazdów}
-\label{ss:wzbudzana-schemat}
-
-Podstawowy system pełni wzbudzanej sygnalizacji dla pojazdów oparty
-jest na następujących założeniach:
-\begin{enumerate}
-  \item sygnał zielony dla danego ruchu włączany jest wyłącznie w
-  wyniku realizacji żądania
-  \item czujniki umieszczone są na linii zatrzymania się pojazdów i
-  pracują w trybie pulsacyjnym z pamięcią; 
-  \item wartości parametrów minimalny i maksymalny zielony oraz
-  wydłużenie są stałe
-  \item długości interwałów czerwono-żółtego, żółtego i czerwonego
-  odstępu są stałe
-\end{enumerate}
-W celu realizacji powyższych założeń dzielimy interwał zielony na dwie
-części \emph{początkową} oraz \emph{rozszerzalną}
 
 \begin{thebibliography}{99}
 \addcontentsline{toc}{chapter}{Bibliografia}
 
-% http://ops.fhwa.dot.gov/publications/fhwahop06006/form_dot_1700.htm
-\bibitem[FHWA06]{handbook} Robert L. Gordon, Warren Tighe,
-\textit{Traffic Control Systems Handbook}, Federal Highway
-Administration, 2006.
-
-% http://ops.fhwa.dot.gov/publications/fhwahop08024/doc_page.htm
-\bibitem[FHWA08]{timing} Peter Koonce i in., \textit{Traffic Signal
-  Timing Manual}, Federal Highway Administration, 2008.
-
-
+\bibitem[Bea65]{beaman} Juliusz Beaman, \textit{Morbidity of the Jolly
+    function}, Mathematica Absurdica, 117 (1965) 338--9.
 
 \bibitem[Blar16]{eb1} Elizjusz Blarbarucki, \textit{O pewnych
     aspektach pewnych aspektów}, Astrolog Polski, Zeszyt 16, Warszawa
