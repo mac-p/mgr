@@ -107,7 +107,7 @@ my  $table = Text::Table->new("NO\n--",
 			      "STATES EXPLORED    \n------------",
 			      "VIRTUAL\n-------",
 			      "RESIDENT\n--------");
-for my $i (sort keys %props) {
+for my $i (sort { $a <=> $b } keys %props) {
     $table->add($i, 
 		$props{$i}{name},
 		$props{$i}{success},
