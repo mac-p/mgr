@@ -40,9 +40,9 @@ int[0, MAX_MVMTS_PER_PHASE] demand[PH_NUMBER];
 
 
 /*Additional parameters*/
-const bool late[MVMT_NUMBER] = {false, false, false, false};//, false, false};
-const bool hold[MVMT_NUMBER] = {false, false, false, false};//, true, true};
-const int min[MVMT_NUMBER] = {8, 8, 8, 8};//, 8, 8};
+const bool late[MVMT_NUMBER] = {false, false, false, false};
+const bool hold[MVMT_NUMBER] = {true, true, true, true};
+const int min[MVMT_NUMBER] = {8, 8, 8, 8};
 
 bool held[MVMT_NUMBER] = {false, false, false, false};//, false, false};
 bool service[MVMT_NUMBER] = {true, true, true, true}; 
@@ -135,7 +135,7 @@ bool opp_demand(const ph id) {
 ph cur = 0;</declaration><location id="id79" x="312" y="-64"><committed/></location><location id="id80" x="144" y="-64" color="#00ff00"><name x="134" y="-94">Active</name></location><location id="id81" x="8" y="-64"><committed/></location><location id="id82" x="312" y="192" color="#ff0000"><name x="280" y="208">RedRest</name></location><init ref="id82"/><transition><source ref="id81"/><target ref="id79"/><label kind="guard" x="96" y="-160">!demand[cur]</label><nail x="64" y="-144"/><nail x="240" y="-144"/></transition><transition><source ref="id79"/><target ref="id82"/><label kind="guard" x="320" y="48">!any_demand()</label><label kind="assignment" x="320" y="64">cur = 0</label></transition><transition><source ref="id79"/><target ref="id81"/><label kind="guard" x="56" y="-24">any_demand()</label><label kind="assignment" x="56" y="-8">cur = (cur + 1) % PH_NUMBER</label><nail x="272" y="16"/><nail x="48" y="16"/></transition><transition><source ref="id80"/><target ref="id79"/><label kind="synchronisation" x="160" y="-80">finished[cur]?</label></transition><transition><source ref="id81"/><target ref="id80"/><label kind="guard" x="40" y="-96">demand[cur]</label><label kind="synchronisation" x="40" y="-80">start[cur]!</label></transition><transition><source ref="id82"/><target ref="id81"/><label kind="synchronisation" x="-32" y="88">opp?</label><nail x="8" y="192"/></transition></template><system>const int RED_AMBER = 1; 
 const int INIT_GREEN = 7; 
 const int AMBER = 3; 
-const int RED_CLEAR = 5; 
+const int RED_CLEAR = 3; 
 const int GAP = 2;
 
 const int PED_GREEN = 10;
