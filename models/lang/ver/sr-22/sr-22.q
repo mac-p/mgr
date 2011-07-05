@@ -33,4 +33,54 @@ Det00.Actuated --> L00.Green
 /*
 Liveness for 00 (fol. no service)
 */
-!service[0] --> L00.Green
+!service[M00] --> L00.Green
+
+/*
+Safety (phase level)
+*/
+A[] ((RC.Active && RC.cur == 0) imply (PC1.Inactive || PC1.InactiveGotCall || PC1. InactiveWaiting))
+
+/*
+Safety (phase level)
+*/
+A[] ((RC.Active && RC.cur == 1) imply (PC0.Inactive || PC0.InactiveGotCall || PC0. InactiveWaiting))
+
+/*
+Initial green length
+*/
+A[] (L00.Amber imply L00.green_t >= INIT_GREEN)
+
+/*
+Light11 conforms to Ctrl11 (green)
+*/
+A[] ((MvC11.InitialGreen || MvC11.ExtGreen || MvC11.GappedOut || MvC11.Rest) imply L11.Green)
+
+/*
+Light11 conforms to Ctrl11 (red)
+*/
+A[] ((MvC11.RedClear || MvC11.RedNoDemand || MvC11.RedWaiting) imply L11.Red)
+
+/*
+Light11 conforms to Ctrl11 (red+amber)
+*/
+A[] (MvC11.RedAmber imply L11.RedAmber)
+
+/*
+Light11 conforms to Ctrl11 (amber)
+*/
+A[] (MvC11.Amber imply L11.Amber)
+
+/*
+Liveness for 11 (fol. actuation)
+*/
+Det11.Actuated --> L11.Green
+
+/*
+Initial green length
+*/
+A[] (L11.Amber imply L11.green_t >= INIT_GREEN)
+
+/*
+Liveness for 11 (fol. no service)
+*/
+!service[M11] --> L11.Green
