@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "Copying $1.xml to $2.xml"
+cp "$1.xml" "$2.xml"
+echo "Copying $1.q to $2.q"
+cp "$1.q" "$2.q"
