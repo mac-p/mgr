@@ -1,0 +1,47 @@
+Verifying model from sr-22/sr-22-symmetric-max18-rr-nohold-nolateC.ver/sr-22-symmetric-max18-rr-nohold-nolate.xml for properties from sr-22/sr-22-symmetric-max18-rr-nohold-nolateC.ver/sr-22.q.
+Verification started at Tue Jul  5 16:27:16 2011.
+
+Options for the verification:
+  Generating no trace
+  Search order is breadth first
+  Using conservative space optimisation
+  Seed is 1309876036
+  State space representation uses difference bound matrices
+
+
+NO NAME                                   SUCCESS TIME    REALTIME     STATES STORED STATES EXPLORED     VIRTUAL RESIDENT
+-- ----                                   ------  ----    --------     ------------  ------------        ------- --------
+ 0 No deadlock.                           YES     3:09.92 1000000191   131657        460478              79612   66m     
+                                                                                                                         
+ 1 Light00 conforms to Ctrl00 (green)     YES     0:18.44 1000000019    47294        165686              41968   27m     
+                                                                                                                         
+10 Light11 conforms to Ctrl11 (green)     YES     0:18.44 1000000019    47294        165686              41964   27m     
+                                                                                                                         
+11 Light11 conforms to Ctrl11 (red)       YES     0:18.44 1000000018    47294        165686              42088   27m     
+                                                                                                                         
+12 Light11 conforms to Ctrl11 (red+amber) YES     0:18.44 1000000019    47294        165686              42088   27m     
+                                                                                                                         
+13 Light11 conforms to Ctrl11 (amber)     YES     0:18.44 1000000018    47294        165686              42084   27m     
+                                                                                                                         
+14 Liveness for 11 (fol. actuation)       YES     6:11.43 1000000374   131621        460457              191m    186m    
+                                                                                                                         
+15 Liveness for 11 (fol. no service)      YES     7:45.05 1000000467   131779        460465              137m    133m    
+                                                                                                                         
+16 Initial green length                   YES     0:20.44 1000000021    49187        169739              42092   28m     
+                                                                                                                         
+ 2 Light00 conforms to Ctrl00 (red)       YES     0:18.43 1000000019    47294        165686              42084   27m     
+                                                                                                                         
+ 3 Light00 conforms to Ctrl00 (red+amber) YES     0:18.43 1000000018    47294        165686              42084   27m     
+                                                                                                                         
+ 4 Light00 conforms to Ctrl00 (amber)     YES     0:17.82 1000000021    47294        165686              41956   27m     
+                                                                                                                         
+ 5 Liveness for 00 (fol. actuation)       YES     6:42.26 1000000412   131631        460456              149m    135m    
+                                                                                                                         
+ 6 Liveness for 00 (fol. no service)      YES     8:20.80 1000000505   131779        460465              137m    133m    
+                                                                                                                         
+ 7 Safety (phase level)                   YES     0:18.44 1000000018    47294        165686              41960   27m     
+                                                                                                                         
+ 8 Safety (phase level)                   YES     0:18.44 1000000019    47294        165686              41956   27m     
+                                                                                                                         
+ 9 Initial green length                   YES     0:20.44 1000000021    49123        169200              42092   28m     
+                                                                                                                         
