@@ -42,7 +42,7 @@ $model_file = "$dirname/$mname";
 $props_file = "$dirname/$pname";
 
 
-open(RESULTS, ">$dirname/RESULTS") or die "Can't create results file.\n";
+open(RESULTS, ">$dirname/RESULTS-$model") or die "Can't create results file.\n";
 
 my $now = localtime;
 print RESULTS "Verifying model from $model_file for properties from $props_file.\n";
