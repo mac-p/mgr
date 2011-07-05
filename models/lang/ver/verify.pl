@@ -3,6 +3,7 @@ use strict;
 use Switch;
 
 use Text::Table;
+use File::Basename;
 
 if (@ARGV < 2) { 
     die 'Not enough arguments!'  
@@ -11,10 +12,19 @@ if (@ARGV < 2) {
 my $model_file = shift @ARGV;
 my $props_file = shift @ARGV;
 
-my $model = $model_file;
-$model =~ s/\.xml$//;
-my $dirname = "$model.ver";
+die "Model should be an XML file.\n" unless $model_file =~ m/\.xml$/;
+die "Queries should be a Q file.\n" unless $props_file =~ m/\.q$/;
 
+my ($mname, $mpath, $msuf) = fileparse($model_file);
+my ($pname, $ppath, $psuf) = fileparse($props_file);
+
+my $model = $mname;
+$model  =~ s/\.xml//;
+
+my $options = "@ARGV";
+$options =~ s/[- ]//g;
+
+my $dirname = "$mpath$model$options.ver";
 
 if (-e $dirname) {
    print STDERR "$dirname exists. Shall I remove it? ";
@@ -26,11 +36,17 @@ if (-e $dirname) {
    }
  }
 
- mkdir $dirname or die 'Cannot create tmp dir!';
+mkdir $dirname or die "Cannot create tmp dir: $dirname!";
+system ("cp", "$model_file", "$props_file", "$dirname");
+$model_file = "$dirname/$mname";
+$props_file = "$dirname/$pname";
+
+
+open(RESULTS, ">$dirname/RESULTS") or die "Can't create results file.\n";
 
 my $now = localtime;
-print "Verifying model from $model_file for properties from $props_file.\n";
-print "Verification started at $now.\n\n";
+print RESULTS "Verifying model from $model_file for properties from $props_file.\n";
+print RESULTS "Verification started at $now.\n\n";
 print STDERR "Verifying model from $model_file for properties from $props_file.\n";
 
 
@@ -40,7 +56,7 @@ my $mode = $NORM;
 
 my $propnum = 0;
 my $newprop = 1;
-open(PROPS, "<$props_file");
+open(PROPS, "<$props_file") or die "Cannot open $props_file";
 my $fh;
 my %props = ();
 while(<PROPS>) {
@@ -55,14 +71,19 @@ while(<PROPS>) {
 		   $props{$propnum}{name} = $line;
 	       } elsif ($line !~ m/^$/) {
 		   if ($newprop) {
-		       open ($fh, '>>', "$dirname/$propnum.q");
+		       open ($fh, '>>', "$dirname/$propnum.q") or die "Cannot open $propnum.q";
 		       $newprop = 0;
 		 }
 		   print $fh $line;
 		   if ($line !~ m/\\$/) {
 		       $now = localtime;
 		       print STDERR "Verifying: $propnum.$props{$propnum}{name} (started at $now)\n";
-		       system("./run-ver.sh $model $propnum @ARGV") == 0 or die "Err:$?\n";
+		       system("./run-ver.sh",
+			      "$model_file",
+			      "$dirname/$propnum.q",
+			      "$dirname/$propnum.ver",
+			      "$dirname/$propnum.stats",
+			      @ARGV) == 0 or die "Err:$?\n";
 		       $now = localtime;
 		       process_ver_result($propnum);
 		       process_ver_stats($propnum);
@@ -100,20 +121,20 @@ for my $i (sort keys %props) {
     $table->add(' ');
 }
 print_ver_options();
-print $table;
+print RESULTS $table;
 
 sub print_ver_options {
-   open (FILE, "<", "$dirname/0.ver") or die "Cannot open $dirname/0.ver";
+   open (FILE, "<", "$dirname/0.ver") or die "Cannot open 0.ver";
    while(<FILE>) {
        my $line = $_;
        if ($line !~ m/^$/) {
-	   print $line;
+	   print RESULTS $line;
        } else {
 	   last;
      }
    }
    close FILE;
-   print "\n\n";
+   print RESULTS "\n\n";
 }
 
 sub process_ver_stats($) {
@@ -137,7 +158,7 @@ sub process_ver_stats($) {
 	$props{$num}{realtime} = '--';
     }
     close FILE;
-		      }
+}
 
 sub process_ver_result($) {
   my ($num) = @_;
