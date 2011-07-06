@@ -24,7 +24,9 @@ $model  =~ s/\.xml//;
 my $options = "@ARGV";
 $options =~ s/[- ]//g;
 
-my $dirname = "$mpath$model$options.ver";
+my $hostname = `hostname`;
+chomp $hostname;
+my $dirname = "$mpath$model$options-$hostname.ver";
 
 if (-e $dirname) {
    print STDERR "$dirname exists. Shall I remove it? ";
@@ -142,10 +144,11 @@ sub process_ver_stats($) {
     open (FILE, "<", "$dirname/$num.stats") or die "Cannot open $dirname/$num.stats";
     if (`wc -l $dirname/$num.stats` =~ m/^2/) {
 	my $top = <FILE>;
+	$top =~ s/^\s+//;
 	my @topres = split /\s+/, $top;
-	$props{$num}{virtmem} = $topres[5];
-	$props{$num}{resmem} = $topres[6];
-	$props{$num}{time} = $topres[11];
+	$props{$num}{virtmem} = $topres[4];
+	$props{$num}{resmem} = $topres[5];
+	$props{$num}{time} = $topres[10];
     } else {
 	$props{$num}{virtmem} = '--';
 	$props{$num}{resmem} = '--';
