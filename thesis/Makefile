@@ -16,4 +16,4 @@ $(PDF_IMG): %.pdf: %.svg
 mgr.pdf: mgr.tex $(PDF_IMG)
 
 clean:
-	rm -f *.{aux,log,nav,out,snm,toc} $(PDF_IMG)
+	rm -f *.{aux,log,nav,out,snm,toc,pdf} $(PDF_IMG)

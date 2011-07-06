@@ -2,6 +2,9 @@
 
 \usepackage{polski}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\usepackage{subfig} % Subfigures
 
 \author{Maciej Pazurkiewicz}
 \nralbumu{248267}
@@ -54,37 +57,117 @@ będą modelowane blabla. Jest on oparty na raportach przygotowanych na
 zlecenie amerykańskiej agencji \emph{Federal Highway Administration}
 \cite{timing} \cite{handbook}.
 
-\section{Przegląd współczesnych systemów sygnalizacji}
-\label{s:przeglad}
+\section{Wprowadzenie}
+\label{s:sygn-wprowadzenie}
 
-Sygnalizacją świetlną nazywamy to i to
-Celem instalacji sygnalizacji na skrzyżowaniu jest to czy tamto.
- jej elementy to to i tamto.
+Sygnalizacją świetlną nazywamy zestaw urządzeń przekazujących
+komunikaty, służące do segregacji czasowej kolidujących potoków
+ruchu. Stosuje się ją najpowszechniej na skrzyżowaniach i przejściach
+dla pieszych, lecz wykorzystywana jest także w miejscach takich jak
+przejazdy kolejowe, drogi o ruchu wahadłowym lub drogi o pasach o
+zmiennym kierunku ruchu.
 
- Systemy jakie się stosuje są takie i siakie.
+Poprawnie zaprojektowana sygnalizacja świetlna powinna zmniejszać
+prawdopodobieństwo wypadków i kolizji oraz zapewniać odpowiedni poziom
+dostępności dla pieszych i pojazdów nadjeżdżających z kierunków
+podporządkowanych, jednocześnie zachowując jak największą wydajność
+skrzyżowania (tj. maksymalizować jego przepustowość i minimalizować
+czas oczekiwania na sygnał zielony).  Zapewnienie równowagi pomiędzy
+bezpieczeństwem a wydajnością należy do kluczowych elementów projektu
+sygnalizacji.
 
+\subsection{Elementy systemu sygnalizacji świetlnej}
+\label{ss:elementy}
+Najprostszy system sygnalizacji składa się z sygnalizatora oraz
+kontrolera, czyli układu logicznego decydującego o wyświetlanym
+sygnale. Współczesne systemy są często o wiele bardziej skomplikowane
+i mogą zawierać komponenty takie jak:
+\begin{description}
+  \item[czujniki] -- urządzenia, które zbierają informację o aktualnym
+  zapotrzebowaniu na prawo przejazdu bądź przejścia różnych
+  uczestników ruchu, np. pętle indukcyjne w jezdni dla pojazdów bądź
+  przyciski dla pieszych;
+  \item[kontroler lokalny] -- urządzenie zarządzające pracą grupy
+  ściśle powiązanych sygnalizatorów, np. sterujących ruchem na jednym
+  skrzyżowaniu;
+  \item[kontroler główny] -- urządzenie zarządzające pracą grupy
+  kontrolerów lokalnych; może być odpowiedzialny np. za synchronizację
+  sygnalizacji na ciągu skrzyżowań.
+\end{description}
 
-\section{Szczegóły funkcjonowania wybranych systemów}
+\subsection{Tryby pracy}
+\label{ss:tryby}
+Sygnalizacja świetlna na skrzyżowaniach pracuje przeważnie w trybie
+stałoczasowym, wzbudzanym lub kombinacji obydwu.
+
+\paragraph{Sygnalizacja stałoczasowa}
+W trybie stałoczasowym każdy z sygnałów dla każdego potoku ma z góry
+określoną długość.
+
+\paragraph{Sygnalizacja wzbudzana}
+W trybie wzbudzanym kontroler korzysta z informacji dostarczanych
+przez czujniki, dzięki czemu może dostosować parametry pracy
+sygnalizacji do aktualnych warunków ruchu. W zależności od tego czy
+czujniki są zainstalowane dla wszystkich potoków czy tylko dla
+niektórych mówimy o sygnalizacji \emph{w pełni wzbudzanej}
+\ang{fully-actuated } lub \emph{częściowo wzbudzanej}
+\ang{semi-actuated}.
+
+W systemach w pełni wzbudzanych sygnalizacja dla każdego z potoków
+jest uzależniona od danych dostarczonych przez czujnik. W
+szczególności oznacza to, że w danym cyklu sygnał zielony otrzymują
+tylko te fazy, na które jest zapotrzebowanie. Co więcej długość
+sygnału zielonego może być uzależniona od liczby oczekujących pojazdów.
+
+W systemach częściowo wzbudzanych detekcja ruchu dotyczy tylko
+niektórych potoków ruchu, np. pieszych bądź pojazdów nadjeżdżających z
+drogi podrzędnej. Prawo przejazdu jest domyślnie przyznawane
+kierunkowi głównemu; pozostałe zaś mogą je otrzymać w wyniku
+zapotrzebowania zgłoszonego przez czujnik.
+
+\section{Szczegółowy opis funkcjonowania wybranych systemów}
 \label{s:szczegoly}
 
 \subsection{Podstawowe pojęcia}
-\label{ss:pojecia}
+ \label{ss:pojecia}
 
 \begin{description}
   \item[interwał] -- odcinek czasu, w którym wskazanie danego
-  sygnalizatora nie zmienia się
-  \item[faza] -- część cyklu sygnalizacji przeznaczona dla grupy
-  ruchów, które mogą jednocześnie korzystać ze skrzyżowania; może
-  składać się z:
+  sygnalizatora nie zmienia się;
+  \item[potok ruchu] -- pojazdy bądź piesi, których ruch kontrolowany
+  jest przez jeden sygnalizator;
+  \item[faza] -- grupa potoków ruchu, które mogą jednocześnie
+  korzystać ze skrzyżowania; może składać się z:
   \begin{itemize}
-    \item jednego lub więcej ruchu pojazdów
-    \item jednego lub więcej ruchu pieszych
-    \item kombinacji pewnej liczby ruchów samochodowych i pieszych
+    \item jednego lub więcej potoku pojazdów,
+    \item jednego lub więcej potoku pieszych,
+    \item kombinacji pewnej liczby potoków samochodowych i pieszych;
   \end{itemize}
+  \begin{figure}[h]
+    \centering
+    \subfloat[Faza wyłącznie dla pojazdów]{
+      \includegraphics[width=0.27\textwidth]{img/signals-phase-example-1}
+    }
+    \hfill
+    \subfloat[Faza dla pojazdów oraz pieszych]{
+      \includegraphics[width=0.27\textwidth]{img/signals-phase-example-2}
+    }
+    \hfill
+    \subfloat[Faza wyłącznie dla pieszych \ang{pedestrian scramble, X~crossing}]{
+      \includegraphics[width=0.27\textwidth]{img/signals-phase-example-3}
+    }
+    \caption{Przykładowe fazy}
+  \end{figure}
   \item[cykl] -- ustalony ciąg faz
-
-  
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/signals-cycle-example}
+    \caption{Przykładowy cykl}
+  \end{figure}
 \end{description}
+
+
+
 \subsection{Sygnalizacja stałoczasowa}
 \subsection{Sygnalizacja wzbudzana}
 
@@ -96,11 +179,11 @@ Celem instalacji sygnalizacji na skrzyżowaniu jest to czy tamto.
 Wykrycie pojazdu przez czujnik powoduje zgłoszenie żądania i włączenie
 sygnału zielonego. Sygnał ten jest przedłużany, o ile wykrywane są
 następne pojazdy. Jego koniec następuje, jeśli pomiędzy
-nadjeżdzającymi pojazdami jest luka o dostatecznie dużej długości
-\ang{\mbox{gap-out}} bądź został osiągnięty maksymalny czas sygnału zielonego
-dla danego kierunku \ang{\mbox{max-out}}. Druga opcja brana jest pod uwagę
-wyłącznie wtedy, gdy wcześniej otrzymano zgłoszenie dla kolidującego
-kierunku ruchu.
+nadjeżdżającymi pojazdami jest luka o dostatecznie dużej długości
+\ang{\mbox{gap-out}} bądź został osiągnięty maksymalny czas sygnału
+zielonego dla danego kierunku \ang{\mbox{max-out}}. Druga opcja brana
+jest pod uwagę wyłącznie wtedy, gdy wcześniej otrzymano zgłoszenie dla
+kolidującego kierunku ruchu.
 
 W celu formalizacji powyższego opisu wprowadzamy następujące definicje:%
 \begin{description}
@@ -143,11 +226,6 @@ Administration, 2006.
 \bibitem[FHWA08]{timing} Peter Koonce i in., \textit{Traffic Signal
   Timing Manual}, Federal Highway Administration, 2008.
 
-
-
-\bibitem[Blar16]{eb1} Elizjusz Blarbarucki, \textit{O pewnych
-    aspektach pewnych aspektów}, Astrolog Polski, Zeszyt 16, Warszawa
-  1916.
 \end{thebibliography}
 
 \end{document}
@@ -156,4 +234,5 @@ Administration, 2006.
 %%% mode: latex
 %%% TeX-master: t
 %%% coding: utf-8
+%%% eval: (auto-fill-mode 1)
 %%% End:

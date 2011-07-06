@@ -1,37 +1,38 @@
 Modelowanie systemów sygnalizacji świetlnej. Schemat pracy magisterskiej
 * Wstęp
-/Napisałem, co w tej chwili znajdzie się moim zdaniem we wstępie,
- ale i tak będę go rzeczywiście pisał dopiero na samym końcu./
+/Napisałem, co w tej chwili znajdzie się moim zdaniem we wstępie, ale
+ i tak będę go rzeczywiście pisał dopiero na samym końcu./
 ** Modelowanie formalne
-Z jednej strony chciałbym tu powiedzieć ogólnie o zaletach
-stosowania metod formalnych przy tworzeniu oprogramowania.
-Z drugiej -- odnieść się bardziej konkretnie do tego, co
-będę chciał przedstawić w pracy czyli formalnego języka modelowania
+Z jednej strony chciałbym tu powiedzieć ogólnie o zaletach stosowania
+metod formalnych przy tworzeniu oprogramowania.  Z drugiej -- odnieść
+się bardziej konkretnie do tego, co będę chciał przedstawić w pracy
+czyli formalnego języka modelowania
 
 ** Systemy sygnalizacji świetlnej
 Już dawno wyszły poza proste sygnalizatory czerwony<->zielony, stają
-się coraz bardziej złożonymi systemami (ITS skrajnym przykładem). Są 
-także systemami, od których zależy bezpieczeństwo (życie i zdrowie!) ludzi. 
-Te dwa czynniki sprawiają, że warto modelować je formalnie,
+się coraz bardziej złożonymi systemami (ITS skrajnym przykładem). Są
+także systemami, od których zależy bezpieczeństwo (życie i zdrowie!)
+ludzi.  Te dwa czynniki sprawiają, że warto modelować je formalnie,
 aby osiągnąć gwarancję funkcjonowania zgodnego ze specyfikacją.
 
 ** Zawartość pracy
 Opis zawartości pracy.
 
 * Systemy sygnalizacji
-Rozdział ma przedstawiać podstawowe koncepcje dot. sygnalizacji świetlnej;
-oparty będzie głównie na dokumentach FHWA (http://www.fhwa.dot.gov/).
+Rozdział ma przedstawiać podstawowe koncepcje dot. sygnalizacji
+świetlnej; oparty będzie głównie na dokumentach FHWA
+(http://www.fhwa.dot.gov/).
  
- Nie będę tu jeszcze wprowadzać elementów specyficznych dla mnie, moich założen czy uproszczeń.
- Niemniej niektóre terminy będę
- od razu definiował w wygodny dla mnie sposób. Np. już tutaj pokażę
- kompozycjonalność opisu skrzyżowań (definiujemy małe elementy, po czym stopniowo
- składamy je w coraz większe).
+ Nie będę tu jeszcze wprowadzać elementów specyficznych dla mnie,
+ moich założen czy uproszczeń.  Niemniej niektóre terminy będę od razu
+ definiował w wygodny dla mnie sposób. Np. już tutaj pokażę
+ kompozycjonalność opisu skrzyżowań (definiujemy małe elementy, po
+ czym stopniowo składamy je w coraz większe).
 
 ** Ogólny przegląd systemów sygnalizacji świetlnej
 Nie chcę się zagłębiać w użytkowe walory konkretnych systemów,
-czynniki wpływające na wybór takiego czy innego. Muszę jednak
-ogólnie scharakteryzować stosowane rozwiązania i jakoś je usystematyzować,
+czynniki wpływające na wybór takiego czy innego. Muszę jednak ogólnie
+scharakteryzować stosowane rozwiązania i jakoś je usystematyzować,
 żeby dalsze rozważania nie były zawieszone w próżni.
 
 Cele instalowania sygnalizacji
@@ -42,8 +43,6 @@ Sygnalizacja
   2. koordynowana vs. niezależna
 ** Szczegółowe informacje o systemach, które będą modelowane
 *** Pojęcia używane do podstawowego opisu systemów sygnalizacji
-  1) kierunek (ruch)
-  2) faza
 Definicje 
   1) Interwał -- odcinek czasu, w którym wskazanie danego sygnalizatora nie zmienia się
      (np. typowymi interwałami sygnalizatora dla pieszych: są czerwony, zielony, migający zielone)
@@ -73,11 +72,13 @@ Definicje
        + pamięć vs. brak pamięci
   2) Podstawowy model sygnalizacji wzbudzanej dla jednego kierunku ruchu
      - interwały składające się na ruch
-        + w szczególności podział zielonego na wstępny, wolny i rozszerzalny
+        + w szczególności podział zielonego na wstępny, wolny i
+          rozszerzalny
      - koniecznie diagramy: zmiany stanów, wzbudzenia a czas
      - opis parametrów:
         + minimalny czas zieleni (initial green)
-        + maksymalny odstęp (gap time), wydłużenie czasu (extension time)
+        + maksymalny odstęp (gap time), wydłużenie czasu (extension
+          time)
         + maksymalny zielony (zwrócić uwagę, że to cecha fazy!)
         + interwały stałe
   3) Składanie ruchów w fazy
@@ -85,9 +86,11 @@ Definicje
      - late call
   4) Składanie fazy w cykle
      - jeden pierścień (single ring)
-     - dwa pierścienie (dual ring)
+     - rest, soft recall
+     - +dwa pierścienie (dual ring)+
   6) Dodatkowe rozszerzenia, które uwzględnię w modelach
-     - np. priorytet dla autobusów lub dynamiczne zmiany niektórych z parametrów
+     - np. priorytet dla autobusów lub dynamiczne zmiany niektórych z
+       parametrów
 
 * Automaty czasowe i UPPAAL
 ** Automaty czasowe
@@ -123,7 +126,8 @@ Najważniejszy rozdział w pracy.
        + odwołujemy się do konkretnych systemów opisanych w poprzednim rozdziale
 	 i pokazujemy, jak wygląda ich opis w moim języku
    * dodatkowe założenia
-     - o ruchu pojazdów 
+     - o ruchu pojazdów
+     - o Zenonie z Elei
    * dyskusja zakresu (jakie systemy można zamodelować)
      i rozszerzalności (jakie systemy można by zamodelować)
    * modele
@@ -131,20 +135,34 @@ Najważniejszy rozdział w pracy.
        (wyżej poziomowe spojrzenie na moje modele; ważne, bo same automaty czasem _wydają się_ dosyć skomplikowane)
      - automaty wchodzące w skład poszczególnych komponentów
      - dyskusja decyzji projektowych
+       + "wygląd" modelu jako kompromis między ogólnymi zasadami
+         dobrego projektu a weryfikowalnością
+	 * można pokazać przeploty committed locations
      - przykłady, przykłady
+       1) zwężenie jezdni (1+1)
+	  - ew. z przejściem dla pieszych
+	  - wszystkie własności powinny się tu ładnie weryfikować
 
 * Eksperymenty (weryfikacja)
   * weryfikacja jakościowa
     - cechy ekstensjonalne (dla każdego modelu sygnalizacji świetlnej)
       + bezpieczeństwo (brak kolizji)
       + żywotność (każde żądanie zostanie zrealizowane)
-	- żywotność z ograniczeniem czasowym (każde żądanie zostanie zrealizowane nie później niż ...)
+	- żywotność z ograniczeniem czasowym (każde żądanie zostanie
+          zrealizowane nie później niż ...)
     - cechy intensjonalne (specyficzne dla moich modeli)
-      + komponenty poprawnie współpracują, wartości "prywatnych" zmiennych są poprawne
+      + komponenty poprawnie współpracują, wartości "prywatnych"
+        zmiennych są poprawne
   * weryfikacja jakościowa
     - maksymalny czas oczekiwania na realizację żądania
-  * weryfikacja a zasoby (czyli być może także o tym, czego się nie udało zweryfikować i co z tym zrobić) 
-
+    - początkowa zieleń
+  * weryfikacja a zasoby (czyli być może także o tym, czego się nie
+    udało zweryfikować i co z tym zrobić)
+  * myśli
+    + Weryfikacja własności ogólnych własności bezpieczeństwa jest
+      prosta. Wystarczy przybliżenie z góry i kilka sekund.
+    + Weryfikacja 'not deadlock' mówi bardzo dużo o systemie. Jak
+      sformalizować to przemyślenie?
 * Podsumowanie
 
 # LocalWords:  FHWA UPPAAL
