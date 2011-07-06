@@ -3,12 +3,7 @@
 /*
 
 */
-A[] (MvC0.RedWaiting imply MvC0.wait_t < 20)
-
-/*
-
-*/
-sup{MvC0.RedWaiting}: MvC0.wait_t
+A[] (MvC0.RedWaiting imply MvC0.wait_t < 50)
 
 /*
 
@@ -97,7 +92,7 @@ Det11.Actuated --> L11.Green
 /*
 
 */
-!service[0] --> L0.Green
+!service[M00] --> L00.Green
 
 /*
 24\/24 --> 27,4
@@ -109,7 +104,7 @@ Det0.Actuated --> L0.Green
 /*
 
 */
-(Det0.Actuated && (MvC0.RedNoDemand || MvC0.RedClear || MvC0.Amber)) --> (L0.Green && MvC0.wait_t < 26)
+(Det00.Actuated && (MvC00.RedNoDemand || MvC00.RedClear || MvC00.Amber)) --> (L00.Green && MvC00.wait_t < 46)
 
 /*
 late: false\/false

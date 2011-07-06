@@ -36,9 +36,14 @@ Liveness for 00 (fol. no service)
 !service[M00] --> L00.Green
 
 /*
-Initial green length
+Initial green length (as safety prop)
 */
 A[] (L00.Amber imply L00.green_t >= INIT_GREEN)
+
+/*
+
+*/
+E<> (L00.Amber && L00.green_t < INIT_GREEN)
 
 /*
 Safety at phase level 0
@@ -69,6 +74,21 @@ A[] ((RC.Active && RC.cur == 2) imply (PC0.Inactive || PC0.InactiveGotCall || PC
 Safety at phase level 2
 */
 A[] ((RC.Active && RC.cur == 2) imply (PC1.Inactive || PC1.InactiveGotCall || PC1. InactiveWaiting))
+
+/*
+Safety at light level 0
+*/
+A[] ((L00.Green || L01.Green) imply L10.Red && L11.Red && L20.Red)
+
+/*
+
+*/
+A[] ((L10.Green || L11.Green) imply L00.Red && L01.Red && L20.Red)
+
+/*
+
+*/
+A[] (L20.Green imply L00.Red && L01.Red && L10.Red && L11.Red)
 
 /*
 Light11 conforms to Ctrl11 (green)

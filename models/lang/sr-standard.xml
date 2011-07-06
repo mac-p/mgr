@@ -41,7 +41,7 @@ int[0, MAX_MVMTS_PER_PHASE] demand[PH_NUMBER];
 
 /*Additional parameters*/
 const bool late[MVMT_NUMBER] = {false, false, false, false};//, false, false};
-const bool hold[MVMT_NUMBER] = {false, false, false, false};//, true, true};
+const bool hold[MVMT_NUMBER] = {true, true, true, true};//, true, true};
 const int min[MVMT_NUMBER] = {8, 8, 8, 8};//, 8, 8};
 
 bool held[MVMT_NUMBER] = {false, false, false, false}; //SHOULD BE: false x MVMT_NUMBER
