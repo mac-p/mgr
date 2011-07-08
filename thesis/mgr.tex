@@ -5,6 +5,8 @@
 \usepackage{graphicx}
 
 \usepackage{subfig} % Subfigures
+\usepackage{color}
+\usepackage{ntheorem}
 
 \author{Maciej Pazurkiewicz}
 \nralbumu{248267}
@@ -33,21 +35,34 @@
 % Słowa kluczowe:
 \keywords{}
 
+%--------------------------------------------------------------------------
 % Moje makra
-\newtheorem{defi}{Definicja}[section]
+%--------------------------------------------------------------------------
 \newcommand{\ang}[1]{(ang.~\emph{#1})}
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
+
+\newcommand{\upp}{\textsc{Uppaal}}
+
+%Math mode
+\newcommand{\pair}[2]{\langle #1, #2 \rangle}
+
+\theoremstyle{plain}
+\theoremsymbol{\ensuremath{\clubsuit}}
+\theoremseparator{.}
+\theoremprework{\bigskip\begin{samepage}}
+\theorempostwork{\bigskip\end{samepage}}
+\newtheorem{definition}{Definicja}
+
 
 \begin{document}
 \maketitle
 
-\begin{abstract}
-streszczenie
+\begin{abstract} streszczenie
 \end{abstract}
 
 \tableofcontents
 
-\chapter*{Wprowadzenie}
-\addcontentsline{toc}{chapter}{Wprowadzenie}
+\chapter*{Wprowadzenie} \addcontentsline{toc}{chapter}{Wprowadzenie}
 
 \chapter{Sygnalizacja świetlna}
 \label{c:sygnalizacja}
@@ -84,47 +99,43 @@ bezpieczeństwem a wydajnością należy do kluczowych elementów projektu
 sygnalizacji.
 
 \subsection{Elementy systemu sygnalizacji świetlnej}
-\label{ss:elementy}
-Najprostszy system sygnalizacji składa się z sygnalizatora oraz
-kontrolera, czyli układu logicznego decydującego o wyświetlanym
-sygnale. Współczesne systemy są często o wiele bardziej skomplikowane
-i mogą zawierać komponenty takie jak:
+\label{ss:elementy} Najprostszy system sygnalizacji składa się z
+sygnalizatora oraz kontrolera, czyli układu logicznego decydującego o
+wyświetlanym sygnale. Współczesne systemy są często o wiele bardziej
+skomplikowane i mogą zawierać komponenty takie jak:
 \begin{description}
   \item[czujniki] -- urządzenia, które zbierają informację o aktualnym
-  zapotrzebowaniu na prawo przejazdu bądź przejścia różnych
-  uczestników ruchu, np. pętle indukcyjne w jezdni dla pojazdów bądź
-  przyciski dla pieszych;
+zapotrzebowaniu na prawo przejazdu bądź przejścia różnych uczestników
+ruchu, np. pętle indukcyjne w jezdni dla pojazdów bądź przyciski dla
+pieszych;
   \item[kontroler lokalny] -- urządzenie zarządzające pracą grupy
-  ściśle powiązanych sygnalizatorów, np. sterujących ruchem na jednym
-  skrzyżowaniu;
+ściśle powiązanych sygnalizatorów, np. sterujących ruchem na jednym
+skrzyżowaniu;
   \item[kontroler główny] -- urządzenie zarządzające pracą grupy
-  kontrolerów lokalnych; może być odpowiedzialny np. za synchronizację
-  sygnalizacji na ciągu skrzyżowań.
+kontrolerów lokalnych; może być odpowiedzialny np. za synchronizację
+sygnalizacji na ciągu skrzyżowań.
 \end{description}
 
 \subsection{Tryby pracy}
-\label{ss:tryby}
-Sygnalizacja świetlna na skrzyżowaniach pracuje przeważnie w trybie
-stałoczasowym, wzbudzanym lub kombinacji obydwu.
+\label{ss:tryby} Sygnalizacja świetlna na skrzyżowaniach pracuje
+przeważnie w trybie stałoczasowym, wzbudzanym lub kombinacji obydwu.
 
-\paragraph{Sygnalizacja stałoczasowa}
-W trybie stałoczasowym każdy z sygnałów dla każdego potoku ma z góry
-określoną długość.
+\paragraph{Sygnalizacja stałoczasowa} W trybie stałoczasowym każdy z
+sygnałów dla każdego potoku ma z góry określoną długość.
 
-\paragraph{Sygnalizacja wzbudzana}
-W trybie wzbudzanym kontroler korzysta z informacji dostarczanych
-przez czujniki, dzięki czemu może dostosować parametry pracy
-sygnalizacji do aktualnych warunków ruchu. W zależności od tego czy
-czujniki są zainstalowane dla wszystkich potoków czy tylko dla
-niektórych mówimy o sygnalizacji \emph{w pełni wzbudzanej}
-\ang{fully-actuated} lub \emph{częściowo wzbudzanej}
-\ang{semi-actuated}.
+\paragraph{Sygnalizacja wzbudzana} W trybie wzbudzanym kontroler
+korzysta z informacji dostarczanych przez czujniki, dzięki czemu może
+dostosować parametry pracy sygnalizacji do aktualnych warunków
+ruchu. W zależności od tego czy czujniki są zainstalowane dla
+wszystkich potoków czy tylko dla niektórych mówimy o sygnalizacji
+\emph{w pełni wzbudzanej} \ang{fully-actuated} lub \emph{częściowo
+wzbudzanej} \ang{semi-actuated}.
 
-W systemach w pełni wzbudzanych sygnalizacja dla każdego z potoków
-jest uzależniona od danych dostarczonych przez czujnik. W
+W systemach w pełni wzbudzanych sygnalizacja dla każdego z uczestników
+ruchu uzależniona jest od danych dostarczonych przez czujnik. W
 szczególności oznacza to, że w danym cyklu sygnał zielony otrzymują
-tylko te fazy, na które jest zapotrzebowanie. Co więcej jego długość może być
-uzależniona od liczby oczekujących pojazdów.
+tylko te fazy, na które jest zapotrzebowanie. Także czas trwania
+poszczególnych sygnałów może być uzależniony od danych z czujnika.
 
 W systemach częściowo wzbudzanych detekcja ruchu dotyczy tylko
 niektórych potoków ruchu, np. pieszych bądź pojazdów nadjeżdżających z
@@ -138,39 +149,37 @@ zapotrzebowania zgłoszonego przez czujnik.
 Niniejszy podrozdział zawiera szczegółową charakterystykę
 funkcjonowania sygnalizacji wzbudzanej. Najpierw definiowane są
 podstawowe pojęcia potrzebne do precyzyjnej jej specyfikacji,
-następnie zaś przedstawiony jest hierarchiczny opis systemu: od omówienia
-pracy pojedynczego sygnalizatora po omówienie pracy całości
+następnie zaś przedstawiony jest hierarchiczny opis systemu: od
+omówienia pracy pojedynczego sygnalizatora po omówienie pracy całości
 sygnalizacji na skrzyżowaniu.
 
 \subsection{Podstawowe pojęcia}
 \label{ss:pojecia}
 
-\subsubsection{Definicje}
-\label{ss:definicje}
-Podstawowe pojęcia związane z systemami sygnalizacji świetlnej:
+\todo{Poprawić, bo jest brzydkie} Podstawowe pojęcia związane z
+systemami sygnalizacji świetlnej:
 \begin{description}
   \item[interwał] -- odcinek czasu, w którym wskazanie danego
-  sygnalizatora nie zmienia się; w zależności od tego wskazania mówimy
-  o \emph{interwale zielonym}, \emph{interwale żółtym} itp.
+sygnalizatora nie zmienia się; w zależności od tego wskazania mówimy o
+\emph{interwale zielonym}, \emph{interwale żółtym} itp.
   \item[potok ruchu] -- pojazdy bądź piesi, których ruch kontrolowany
-  jest przez jeden sygnalizator;
-  \item[faza] -- grupa potoków ruchu, którym sygnalizacja zezwala na jednoczesne
-  korzystanie ze skrzyżowania;
+jest przez jeden sygnalizator;
+  \item[faza] -- grupa potoków ruchu, którym sygnalizacja zezwala na
+jednoczesne korzystanie ze skrzyżowania;
   \item[cykl] -- ustalony ciąg faz
 \end{description}
 
-\subsubsection{Stany sygnalizatora}
 Sygnalizator dla pojazdów może znajdować się w jednym z pięciu stanów:
 \begin{description}
   \item[czerwony] -- oznacza zakaz wjazdu na skrzyżowanie
   \item[czerwono-żółty] -- oznacza zakaz wjazdu i informuje o tym, że
-  wkrótce pojawi się sygnał zielony
+wkrótce pojawi się sygnał zielony
   \item[zielony] -- oznacza zezwolenie na wjazd
-  \item[żółty]  -- oznacza zakaz wjazdu i informuje o tym, że wkrótce
-  pojawi się sygnał czerwony
+  \item[żółty] -- oznacza zakaz wjazdu i informuje o tym, że wkrótce
+pojawi się sygnał czerwony
   \item[czerwony-czyszczący] -- oznacza zakaz wjazdu; pozwala ostatnim
-  pojazdom na opuszczenie skrzyżowania przed włączeniem sygnału
-  zielonego dla potoku kolizyjnego
+pojazdom na opuszczenie skrzyżowania przed włączeniem sygnału
+zielonego dla potoku kolizyjnego
 \end{description}
 
 Sygnalizator dla pieszych nie ma stanu czerwono-żółtego, a zamiast
@@ -185,15 +194,15 @@ potok jest aktywny nazywamy aktywną. W danym momencie aktywna może być
 co najwyżej jedna faza.
 
 \subsection{Detekcja ruchu}
-\label{ss:detekcja}
-Mając na celu opis systemów wzbudzanych, rozszerzamy zestaw
-definicji z \ref{ss:definicje} o następujące pojęcia:
+\label{ss:detekcja} Mając na celu opis systemów wzbudzanych,
+rozszerzamy zestaw definicji z \ref{ss:definicje} o następujące
+pojęcia:
 \begin{description}
   \item[zgłoszenie] -- informacja o zapotrzebowaniu na uruchomienie
-  bądź przedłużenie sygnału zielonego przekazywana odpowiedniemu
-  kontrolerowi przez czujnik
-  \item[zgłoszenie przeciwne] -- zgłoszenie pochodzące od
-  nieaktywnego potoku
+bądź przedłużenie sygnału zielonego przekazywana odpowiedniemu
+kontrolerowi przez czujnik
+  \item[zgłoszenie przeciwne] -- zgłoszenie pochodzące od nieaktywnego
+potoku
 \end{description}
 
 \paragraph{Czujniki dla pojazdów} Czujniki wykrywające pojazdy
@@ -206,39 +215,41 @@ pojawienia się pojazdu w strefie detekcji aż do jej
 opuszczenia. Zgłoszenie ma zatem postać sygnału punktowego w przypadku
 trybu pulsacyjnego oraz ciągłego dla trybu obecności.
 
-\paragraph{Czujniki dla pieszych} Pieszy informuje o 
+\paragraph{Czujniki dla pieszych} \todo{Poprawić}
 
-\subsection{Schemat funkcjonowania sygnalizacji dla pojedynczego potoku}
+\subsection{Opis funkcjonowania sygnalizacji na poziomie pojedynczego
+potoku}
 \label{ss:schemat}
 
-\paragraph{Cele} Bazowy schemat działania
-sygnalizacji wzbudzanej powinien spełniać trzy podstawowe warunki:
+\paragraph{Cele} Bazowy schemat działania sygnalizacji wzbudzanej
+powinien spełniać trzy podstawowe warunki:
 \begin{enumerate}
   \item sygnał zielony jest przyznawany tylko, gdy wcześniej wykryto
-  oczekujące nań pojazdy;
+oczekujące nań pojazdy;
   \item długość sygnału zielonego powinna być uzależniona od natężenia
-  ruchu w danym potoku;
-  \item długość oczekiwania na sygnał zielony powinna być z góry ograniczona.
+ruchu w danym potoku;
+  \item długość oczekiwania na sygnał zielony powinna być z góry
+ograniczona.
 \end{enumerate}
 
-\paragraph{Opis działania} W celu realizacji powyższych założeń, interwał
-zielony dzielimy na dwie części: \emph{początkową} oraz
+\paragraph{Schemat działania} W celu realizacji powyższych założeń,
+interwał zielony dzielimy na dwie części: \emph{początkową} oraz
 \emph{rozszerzalną}. Długość części początkowej jest stała i określana
 przez parametr \emph{minimalny zielony}. Powinien on wynosić co
 najmniej tyle, aby pozwalać na bezpieczne opuszczenie skrzyżowania
 wszystkim pojazdom znajdującym się między czujnikiem a linią
 zatrzymania.
 
-Długość części rozszerzalnej zależy od natężenia ruchu. W
-momencie otrzymania zgłoszenia sygnał zielony przedłużany jest o tyle,
-aby przejeżdżający pojazd mógł bezpiecznie opuścić skrzyżowanie (o
-długości tego czasu tym decyduje inny parametr -- \emph{wydłużenie}). Gdy w tym
-czasie kontroler nie otrzyma kolejnego zgłoszenia (tj. wykryta została
-luka pomiędzy nadjeżdżającymi pojazdami), sygnał zielony zostaje
-przerwany (patrz rys. \ref{img:gap-out}).
+Długość części rozszerzalnej zależy od natężenia ruchu. W momencie
+otrzymania zgłoszenia sygnał zielony przedłużany jest o tyle, aby
+przejeżdżający pojazd mógł bezpiecznie opuścić skrzyżowanie (o
+długości tego czasu tym decyduje inny parametr --
+\emph{wydłużenie}). Gdy w tym czasie kontroler nie otrzyma kolejnego
+zgłoszenia (tj. wykryta została luka pomiędzy nadjeżdżającymi
+pojazdami), sygnał zielony zostaje przerwany (patrz
+rys. \ref{img:gap-out}).
 
-\begin{figure}[ht]
-  \centering
+\begin{figure}[ht] \centering
   \includegraphics[width=0.7\textwidth]{img/signals-gap-out}
   \caption{Zakończenie sygnału zielonego przez wykrycie luki.}
 \label{img:gap-out}
@@ -247,16 +258,15 @@ przerwany (patrz rys. \ref{img:gap-out}).
 Duże natężenie ruchu w danym potoku mogłoby powodować brak luk między
 pojazdami i -- co za tym idzie~-- zbyt duże opóźnienia w obsłudze
 pozostałych potoków. Aby ograniczyć z góry czas oczekiwania, określa
-się maksymalny czas, przez który potok może otrzymywać sygnał zielony
-w obecności zgłoszenia przeciwnego (patrz
+się maksymalny czas, w którym potok może otrzymywać sygnał zielony w
+obecności zgłoszenia przeciwnego (patrz
 rys. \ref{img:max-out}). Należy podkreślić, że w razie braku
 zgłoszenia przeciwnego sygnał zielony będzie nadawany tak długo aż nie
 nastąpi wykrycie luki.
-\begin{figure}[ht]
-  \centering
+\begin{figure}[ht] \centering
   \includegraphics[width=0.7\textwidth]{img/signals-max-out}
   \caption{Zakończenie sygnału zielonego przez wykorzystanie
-    maksymalnego czasu.}
+maksymalnego czasu.}
 \label{img:max-out}
 \end{figure}
 
@@ -266,7 +276,8 @@ zapotrzebowania. Jednak jako, że ilościowa ocena poziomu
 zapotrzebowania w przypadku ruchu pieszych jest trudna technicznie,
 przyjmujemy stałą długość interwału zielonego.
 
-\subsection{Opis funkcjonowania sygnalizacji dla pojedynczej fazy}
+\subsection{Opis funkcjonowania sygnalizacji na poziomie pojedynczej
+fazy}
 
 Podstawowym elementem opisu fazy jest stwierdzenie, które potoki
 wchodzą w jej skład. Faza może obejmować:
@@ -275,46 +286,53 @@ wchodzą w jej skład. Faza może obejmować:
   \item jeden lub więcej potoków pieszych,
   \item kombinację pewnej liczby potoków pojazdów i pieszych.
 \end{itemize}
-\begin{figure}[h]
-  \centering
-  \subfloat[Faza wyłącznie dla pojazdów]{
+\begin{figure}[h] \centering \subfloat[Faza wyłącznie dla pojazdów]{
     \includegraphics[width=0.27\textwidth]{img/signals-phase-example-1}
-  }
-  \hfill
-  \subfloat[Faza dla pojazdów oraz pieszych]{
+} \hfill \subfloat[Faza dla pojazdów oraz pieszych]{
     \includegraphics[width=0.27\textwidth]{img/signals-phase-example-2}
-  }
-  \hfill
-  \subfloat[Faza wyłącznie dla pieszych \ang{pedestrian scramble, X~crossing}]{
+} \hfill \subfloat[Faza wyłącznie dla pieszych \ang{pedestrian
+scramble, X~crossing}]{
     \includegraphics[width=0.27\textwidth]{img/signals-phase-example-3}
-  }
+}
   \caption{Przykładowe fazy}
 \end{figure}
 
-Fazy składające się z wielu potoków dopuszczają większą liczbę
-możliwych scenariuszy, a więc ich opis może być bardziej złożony.
-Należy zdecydować w jaki sposób obsługiwać \emph{zgłoszenia późne}
-tj. zgłoszenia od potoków nieaktywnych, które otrzymano już po tym,
-gdy faza stała się aktywna. Po pierwsze można uznać, że zostaną
-obsłużone dopiero w następnym cyklu sygnalizacji (w takim wypadku
-traktowane są tak samo jak zgłoszenia przeciwne). Drugą możliwoscią
-jest obsługiwanie takich zgłoszeń w bieżącym cyklu, o ile pozwala nie
-spowoduje to przekroczenia maksymalnej długości sygnału zielonego.
+Zauważmy, że choć już w opisie na poziomie potoku zaszła konieczność
+zdefiniowania czasu maksymalnego, to powinien być on uważany za
+właściwość fazy. Ustalenie różnych czasów maksymalnych dla różnych
+potoków obniżałoby jedynie wydajność skrzyżowania w nieuzasadniony
+sposób.
 
-Innym elementem projektu wielopotokowej fazy jest ustalenie zachowania
-się systemu w przypadku, gdy w jednym z aktywnych potoków wykryta
-została luka, w innym zaś mamy do czynienia z ciągłym
-zapotrzebowaniem. Możemy nie podejmować żadnego specjalnego działania
-tj. wyłączyć sygnał zielony dla potoku, w którym czujnik wykrył lukę.
-Można w takim przypadku zastosować procedurę \emph{podtrzymania
-  sygnału} \ang{hold}. Polega ona na wydłużeniu sygnału aż do momentu,
-w którym zakończą się sygnały zielone dla pozostałych potoków.
+Dla faz jednopotokowych nie ma potrzeby podejmowania na tym etapie
+żadnych dodatkowych decyzji projektowych, gdyż opis funkcjonowania
+takiej fazy jest tożsamy z opisem funkcjonowania jej jedynego
+potoku. Charakterystyka faz składających się z wielu potoków może być
+bardziej złożona, jako że dopuszczają one większą liczbę możliwych
+scenariuszy. Dotyczą one sytuacji, w których okres aktywności jednego
+z potoków mógłby być różny od okresu aktywności fazy.
 
-\subsection{Opis funkcjonowania sygnalizacji dla cyklu}
-Opis cyklu zawiera przede wszystkim informację o kolejności
-wchodzących w jego skład faz.
-\begin{figure}[h]
-  \centering
+\paragraph{Zgłoszenia późne} Zgłoszeniami późnymi nazywany zgłoszenia
+od zgłoszenia od potoków nieaktywnych, które otrzymano już po tym, gdy
+faza stała się aktywna. Po pierwsze można uznać, że zostaną obsłużone
+dopiero w następnym cyklu sygnalizacji (w takim wypadku traktowane są
+tak samo jak zgłoszenia przeciwne). Drugą możliwoscią jest
+obsługiwanie takich zgłoszeń w bieżącym cyklu, o ile nie spowoduje to
+przekroczenia maksymalnej długości sygnału zielonego.
+
+\paragraph{Podtrzymanie} Innym elementem projektu wielopotokowej fazy
+jest ustalenie zachowania się systemu w przypadku, gdy w jednym z
+aktywnych potoków wykryta została luka, w innym zaś mamy do czynienia
+z ciągłym zapotrzebowaniem. Możemy nie podejmować żadnego specjalnego
+działania tj. wyłączyć sygnał zielony dla potoku, w którym czujnik
+wykrył lukę.  Można w takim przypadku zastosować procedurę
+\emph{podtrzymania sygnału} \ang{hold}. Polega ona na wydłużeniu
+sygnału aż do momentu, w którym zakończą się sygnały zielone dla
+pozostałych potoków \todo{rysunek}
+
+\subsection{Opis funkcjonowania sygnalizacji dla cyklu} Opis cyklu
+zawiera przede wszystkim informację o kolejności wchodzących w jego
+skład faz.
+\begin{figure}[h] \centering
   \includegraphics[width=0.7\textwidth]{img/signals-cycle-example}
   \caption{Przykładowy cykl}
 \end{figure}
@@ -327,34 +345,149 @@ pierwsze wszystkie sygnalizatory mogą wyświetlać sygnał czerwony
 aktywna w przypadku braku jakiegokolwiek zapotrzebowania.
 
 \subsection{Podsumowanie}
-\begin{table}[ht]
-  \centering
-  \caption{Parametry definiowane przez poszczególne warstwy opisu systemu sygnalizacji}
-  \begin{tabular}{|r|p{8cm}|}
-    \hline
-    Potok ruchu & długości interwałów
+
+W rozdziale zaprezentowany został kompozycjonalny sposób opisu
+systemów sygnalizacji wzbudzanej. Na początku zdefiniowano zachowanie
+się sygnalizacji dla pojedynczego potoku, następnie potoki zostały
+złożone w fazy, a fazy -- w cykl. Na każdym etapach dokładamy
+informacje specyfikujące sposób owego złożenia.
+Tabela \label{tab:signal-layer-params} podsumowuje parametry zawarte w
+poszczególnych warstwach opisu.
+
+\todo{Zrobić, żeby było ładnie}
+\begin{table}[ht] \centering
+  \begin{tabular}{|r|p{8cm}|} \hline Potok ruchu & parametry
+określające długości interwałów
     \begin{itemize}
       \item interwały przejściowe
       \item parametry decydujące o długości interwału zielonego
-    \end{itemize} \\\hline
-    Faza & potoki składające się na fazę  \\
-    & czas maksymalny \\
-    & obsługa późnych zgłoszeń \\
-    & podtrzymywanie sygnału zielonego \\\hline
-    Cykl & fazy wchodzące w skład cyklu i ich kolejność \\
-    & faza obsługiwana w przypadku braku zgłoszeń \\\hline
+      \begin{itemize}
+        \item minimalny zielony
+        \item maksymalny zielony
+        \item wydłużenie
+      \end{itemize}
+    \end{itemize} \\\hline Faza & potoki składające się na fazę \\ &
+czas maksymalny \\ & obsługa późnych zgłoszeń \\ & podtrzymywanie
+sygnału zielonego \\\hline Cykl & fazy wchodzące w skład cyklu i ich
+kolejność \\ & zachowanie w stanie spoczynku\\\hline
   \end{tabular}
+  \caption{Parametry definiowane przez poszczególne warstwy opisu
+systemu sygnalizacji.}  \ref{tab:signal-layer-params}
 \end{table}
 
 \chapter{Automaty czasowe}
-\label{c:ta}
+\label{c:ta} Automaty czasowe są teoretycznym narzędziem
+umożliwiającym modelowanie i weryfikację systemów czasu
+rzeczywistego. Po zdefiniowaniu ich przez Alura i Dilla nie tylko
+stały się popularnym obszarem badań teoretyków, lecz były także
+stosowane w praktycznych problemach weryfikacyjnych.
 
-W niniejszym rozdziale przedstawiono automaty czasowe czyli formalizm
-służący do modelowania
+\section{Automaty czasowe} Wersja formalizmu automatów czasowych
+przedstawiona w niniejszym rozdziale pochodzi od Henzingera i
+in.\cite{henz-94}. Jej teoretyczna siła wyrazu jest identyczna z siłą
+wyrazu automatów w wersji Alura i Dilla, natomiast jest ona
+wygodniejsza do praktycznego modelowania systemów.
 
-\section{Automaty czasowe}
+Automat czasowy jest zwykłym automatem skończonym rozszerzonym o
+zestaw zmiennych rzeczywistych nazywanych zegarami.  Stanem takie
+automatu będziemy nazywali parę opisującą wierzchołek (tj. stan
+odpowiedniego automatu skończonego), w którym znajduje się automat,
+oraz wartościowanie zegarów. W stanie początkowym wartości wszystkich
+zegarów są wyzerowane, natomiast w czasie jego działania wszystkie
+zwiększają swoją wartość w tym samym tempie. Przyrost wartości zegarów
+modeluje upływ czasu.
+
+Aby móc modelować systemy o pożądanych własnościach, możemy nakładać
+pewne dodatkowe warunki na tranzycje oraz wierzchołki, a także
+wykonywać pewne operacje na zegarach. Każdej tranzycji możemy
+przypisać wyrażenie opisujące wartościowanie zegarów, przy którym jej
+wykonanie jest dozwolone. Analogiczne ograniczenia dla wierzchołków
+nazywane są \emph{niezmiennikami}. Poprawne są tylko te stany automatu
+czasowego, w których wartościowanie zegarów spełnia niezmiennik danego
+wierzchołka.
+
+
+\subsection{Formalna definicja} Przyjmijmy, że mamy skończony zbiór
+$\mathcal{C}$ zmiennych rzeczywistych (zegarów) oraz skończony alfabet
+$\Sigma$ (akcji).
+
+\begin{definition}[Ograniczenie zegarowe] Ograniczeniem zegarowym
+nazywamy koniunkcję formuł o postaci $x \sim n$ bądź $x - y \sim n$,
+gdzie $x, y \in \mathcal{C}$, $n \in \mathbf{N}$, natomiast $\sim$
+jest jedną spośród relacji $=, \le, \leq, \ge, \geq$.
+\end{definition}
+Zbiór ograniczeń zegarowych nad $\mathcal{C}$ będziemy oznaczali przez
+$\mathcal{B}(\mathcal{C})$.
+
+\begin{definition}[Automat czasowy] Automat czasowy jest $\mathcal{A}$
+jest krotką $\langle N, l_0, E, I\rangle$, gdzie
+  \begin{itemize}
+    \item $N$ jest skończonym zbiorem wierzchołków,
+    \item $l_0$ jest wierzchołkiem początkowym,
+    \item $E \subseteq N \times \mathcal{B}(\mathcal{C}) \times \Sigma
+    \times 2^{\mathcal{C}} \times N$ jest zbiorem krawędzi
+    \item $I: N \mapsto \mathcal{B}(\mathcal{C})$ jest funkcją
+    przypisującą wierzchołkom ich niezmienniki
+  \end{itemize}
+\end{definition}
+Zamiast $\langle l, g, a, r, l' \rangle \in E$ będziemy pisali $l
+\stackrel{g, a, r}{\longrightarrow} l'$. Zapis taki oznacza tranzycję
+$a$ prowadzącą z wierzchołka $l$ do wierzchołka $l'$, którą można
+wykonać przy wartościowaniu zegarów spełniającym ograniczenie $g$ i
+przypisującą $0$ wszystkim zegarom z $r$.
+
+
+Tak zdefiniowany automat czasowy rozumiemy jako
+system przejść, w którym można wykonywać dwa rodzaje tranzycji:
+\begin{description}
+  \item[opóźnienie] polega na zwiększeniu wartości wszystkich zegarów
+  o pewną liczbę rzeczywistą; intuicyjnie, jest to przebywanie przez
+  jakiś czas w wierzchołku
+  \item[wykonanie akcji] polega na przejściu do innego wierzchołka
+  zgodnie z wybraną tranzycją; wykonanie akcji nie jest związane z
+  upływem czasu (zmiana wartościowania zegarów może wynikać jedynie ze
+  zresetowania niektórych z nich)
+\end{description}
+Formalnie ujmuje to poniższa definicja.
+\begin{definition}[Semantyka operacyjna automatu czasowego] Semantyką
+  automatu czasowego jest system przejść, którego stany są parami
+$\langle l, u \rangle$ a przejścia spełniają następujące reguły:
+  \begin{itemize}
+    \item $\pair{l}{u} \stackrel{d}{\longrightarrow} \pair{l}{u+d}$
+    jeśli $u \vdash I(l)$ oraz $(u+d) \vdash I(l)$ dla pewnego $d \in
+    \mathbf{R}^{+}$
+    \item $\pair{l}{u} \stackrel{a}{\longrightarrow} \pair{l'}{u'}$,
+    jeśli $l \stackrel{g, a, r}{\longrightarrow} l', u \vdash g, u' =
+    [r \mapsto 0]u$ oraz $u' \in I(l')$
+  \end{itemize}
+\end{definition}
+
+\subsection{Problemy weryfikacyjne}
 
 \section{UPPAAL}
+
+\upp jest zestawem narzędzi pozwalającym na modelowanie systemów czasu
+rzeczywistego przy pomocy automatów czasowych, ich symulację a także
+weryfikację ich własności. Rozwijają go wspólnie Uniwersytet w Uppsali
+oraz Uniwersytet w Aalborg. Pierwsza wersja narzędzia powstała w roku
+1995 \cite{UPPAAL95}.
+
+coś o GUI, o symulacji
+
+\subsection{Modelowanie}
+
+sieci automatów
+wierzchołki pilne
+wierzchołki konieczne
+synchronizacja jeden do wielu
+zmienne całkowitoliczbowe +tablice+funkcje
+
+\subsection{Weryfikacja}
+
+
+
+\chapter{Język modelowania}
+
 
 \begin{thebibliography}{99}
 \addcontentsline{toc}{chapter}{Bibliografia}
