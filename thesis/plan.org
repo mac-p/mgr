@@ -166,3 +166,12 @@ Najważniejszy rozdział w pracy.
 * Podsumowanie
 
 # LocalWords:  FHWA UPPAAL
+
+
+Luźne myśli:
+
+Mamy podstawowe pojęcia dla wszystkich (potok, faza, cykl, interwał).
+Rozszerzamy je o zgłoszenie, zgłoszenie przeciwne
+
+Opowiadamy o detekcji
+
