@@ -140,11 +140,11 @@ const int AMBER = 3;
 const int RED_CLEAR = 3; 
 const int GAP = 2;
 
-const int PED_GREEN = 10;
-const int FLASHING = 5;
+const int PED_GREEN = 5;
+const int FLASHING = 2;
 const int PED_CLEAR = 3;
 
-const int MAX = 16;
+const int MAX = 13;
 
 /*Process templates instantiations*/
 
