@@ -170,7 +170,7 @@ sub process_ver_result($) {
     my $line = $_;
     use Switch;
     switch($line) {
-	case m/satisfied/ {$props{$num}{success} = ($line =~ m/NOT/) ? 'NO' : 'YES';}
+	case m/satisfied/ {$props{$num}{success} = ($line =~ m/NOT/) ? ($line =~ m/MAY/ ? 'DK' : 'NO') : 'YES';}
 	case m/stored/ {$line =~ m/(\d+)/; $props{$num}{stored} = $1};
 	case m/explored/ {$line =~ m/(\d+)/; $props{$num}{explored} = $1};
     }
