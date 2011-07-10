@@ -474,6 +474,65 @@ $\langle l, u \rangle$ a przejścia spełniają następujące reguły:
 
 \subsection{Problemy weryfikacyjne}
 
+Liczba stanów tak zdefiniowanego automatu jest nieprzeliczalna, co
+sprawia, że wydaje się, że nie są odpowiednim modelem dla zadań
+weryfikacyjnych. Rozwiązanie tego problemu zaproponowali już Alur i
+Dill\todo{cite}, zauważając, że pewnych własności można dowodzić,
+opierając się na skończonej abstrakcji automatu.
+
+Wprowadzona przez nich abstrakcja nazywa się \emph{równoważnością
+  regionów}. Opiera się na spostrzeżeniu, że dwa stany automatu są
+równoważne, gdy:
+\begin{enumerate}
+  \item wartości zegarów zgadzają się co do części całkowitej,
+  \item zachowany jest porządek na częściach ułamkowych zegarów.
+\end{enumerate}
+Intuicyjnie, pierwsza własność odpowiada za sprawdzenie czy spełnione
+jest dane ograniczenie zegarowe; natomiast dzięki drugiej wiadomo,
+wartość którego zegara przekroczy jako pierwsza kolejną liczbę
+naturalną \cite{am:decision}. Po utożsamieniu ze sobą stanów, w
+których wartości zegarów są większe niż odpowiednie maksymalne stałe z
+ograniczeń, zyskujemy skończoną abstrakcję dla wartościowań zegarów
+(rys. \ref{img:regions}).
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.4\textwidth]{img/ta-regions}
+  \caption{Regiony dla automatu o dwóch zegarach (każdy punkt
+    przecięcia, odcinek, półprosta oraz ograniczony nimi fragment
+    płaszczyzny reprezentują oddzielny region).}
+  \label{img:regions}
+\end{figure}
+
+Opierając się na równoważności regionów, można skonstruować
+\emph{automat regionów}, w którym stany są parami $\pair{l}{r}$, gdzie
+$l$ jest wierzchołkiem wyjściowego automatu, zaś $r$ pewnym
+regionem. Jest to automat skończony, zatem można dla niego efektywnie
+rozstrzygać np. problem osiągalności wierzchołka bądź pustości języka.
+
+Chociaż równoważność regionów jest bardzo wygodnym pojęciem w
+teoretycznych badaniach własności automatów czasowych, nie stosuje się
+go w rzeczywistych problemach weryfikacyjnych. Rozmiar automatu
+regionów jest bowiem wykładniczy ze względu na liczbę zegarów oraz
+górne ograniczenia ich wartości.
+
+Bardziej zgrubnej abstrakcji automatu czasowego dokonuje się przy
+pomocy \emph{stref} \cite{henz-94}. Strefą nazywamy maksymalny zbiór
+wartościowań zegarów spełniających koniunkcję ograniczeń zegarowych.
+Rysunek \ref{img:zones} przedstawia automat czasowy i odpowiadający mu
+automat stref.
+
+\begin{figure}[ht]
+  \centering
+  \subfloat[Przykładowy automat czasowy.] {
+    \includegraphics[width=0.3\textwidth]{img/ta-zones-example-1}
+  } \hspace{1cm}
+  \subfloat[Odpowiadający mu automat stref.] {
+    \includegraphics[width=0.4\textwidth]{img/ta-zones}
+  }
+  \caption{Strefy.}
+  \label{img:zones}
+\end{figure}
+
 \section{UPPAAL}
 
 \upp\ jest zestawem narzędzi pozwalającym na modelowanie systemów czasu
@@ -586,8 +645,8 @@ następujących postaci \cite{by-lncs04}:
 gdzie $\varphi$ i $\psi$ są własnościami stanu tj. predykatami
 dotyczącymi wierzchołków oraz zmiennych liczbowych i zegarów.
 
-Semantykę powyższych formuł oparta jest na rozwinięciu kolejnych
-przejść w potencjalnie nieskończone drzewo. Litery \texttt{A} i
+Semantykę powyższych formuł określamy, rozwijając kolejne
+przejścia w potencjalnie nieskończone drzewo. Litery \texttt{A} i
 \texttt{E} w formułach wprowadzają kwantyfikację po ścieżkach:
 \texttt{A} oznacza, że dana własność ma być spełniona dla wszystkich
 ścieżek, zaś \texttt{E} -- dla co najmniej jednej. Symbole
