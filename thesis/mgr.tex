@@ -4,9 +4,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 
+
 \usepackage{subfig} % Subfigures
 \usepackage{color}
 \usepackage{ntheorem}
+\usepackage[pdfpagelabels, draft, implicit=false]{hyperref}
 
 \author{Maciej Pazurkiewicz}
 \nralbumu{248267}
@@ -27,18 +29,20 @@
 11.3 Informatyka\\ 
 }
 
-%Klasyfikacja tematyczna wedlug AMS (matematyka) lub ACM (informatyka)
+%Klasyfikacja tematyczna według AMS (matematyka) lub ACM (informatyka)
 \klasyfikacja{D. Software\\
   D.2. Software engineering\\
   D.2.4. Software/Program verification}
 
 % Słowa kluczowe:
-\keywords{}
+\keywords{sygnalizacja świetlna, systemy czasu rzeczywistego, automaty
+czasowe, Uppaal}
 
 %--------------------------------------------------------------------------
 % Moje makra
 %--------------------------------------------------------------------------
 \newcommand{\ang}[1]{(ang.~\emph{#1})}
+\newcommand{\imgr}[1]{rys.~\ref{#1}}
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
 
 \newcommand{\upp}{\textsc{Uppaal}}
@@ -57,7 +61,8 @@
 \begin{document}
 \maketitle
 
-\begin{abstract} streszczenie
+\begin{abstract}
+  \todo{Napisać streszczenie.}
 \end{abstract}
 
 \tableofcontents
@@ -74,10 +79,9 @@ natomiast podrozdział \ref{s:sygn-szczegoly} szczegółowo omawia
 funkcjonowanie sygnalizacji wzbudzanej, będącej bazowym modelem
 przedstawianego języka.
 
-Informacje o systemach sygnalizacji zawarte w niniejszym rozdziale
-oparte są na raportach przygotowanych na zlecenie amerykańskiej
-agencji \emph{Federal Highway Administration} \cite{timing}
-\cite{handbook}.
+Niniejszy rozdział jest oparty na raportach przygotowanych na zlecenie
+amerykańskiej agencji \emph{Federal Highway Administration}
+\cite{fhwa:handbook06} \cite{fhwa:timing08}.
 
 \section{Wprowadzenie}
 \label{s:sygn-wprowadzenie}
@@ -92,11 +96,11 @@ zmiennym kierunku ruchu.
 Poprawnie zaprojektowana sygnalizacja świetlna powinna zmniejszać
 prawdopodobieństwo wypadków i kolizji oraz zapewniać odpowiedni poziom
 dostępności dla pieszych i pojazdów nadjeżdżających z kierunków
-podporządkowanych, jednocześnie zachowując jak największą wydajność
-skrzyżowania (tj. maksymalizować jego przepustowość i minimalizować
-czas oczekiwania na sygnał zielony).  Zapewnienie równowagi pomiędzy
-bezpieczeństwem a wydajnością należy do kluczowych elementów projektu
-sygnalizacji.
+podporządkowanych. Jednocześnie powinna zachowywać jak najwyższą
+wydajność skrzyżowania rozumianą jako wysoką przepustowość, krótki
+czas oczekiwania na sygnał zielony oraz małą liczbę
+zatrzymań. Zapewnienie równowagi pomiędzy bezpieczeństwem a wydajnością
+należy do kluczowych elementów projektu sygnalizacji.
 
 \subsection{Elementy systemu sygnalizacji świetlnej}
 \label{ss:elementy} Najprostszy system sygnalizacji składa się z
@@ -105,31 +109,35 @@ wyświetlanym sygnale. Współczesne systemy są często o wiele bardziej
 skomplikowane i mogą zawierać komponenty takie jak:
 \begin{description}
   \item[czujniki] -- urządzenia, które zbierają informację o aktualnym
-zapotrzebowaniu na prawo przejazdu bądź przejścia różnych uczestników
-ruchu, np. pętle indukcyjne w jezdni dla pojazdów bądź przyciski dla
-pieszych;
+  zapotrzebowaniu różnych uczestników ruchu na prawo przejazdu bądź
+  przejścia; są to np. pętle indukcyjne w jezdni bądź
+  przyciski dla pieszych;
   \item[kontroler lokalny] -- urządzenie zarządzające pracą grupy
-ściśle powiązanych sygnalizatorów, np. sterujących ruchem na jednym
-skrzyżowaniu;
+  ściśle powiązanych sygnalizatorów, np. sterujących ruchem na jednym
+  skrzyżowaniu;
   \item[kontroler główny] -- urządzenie zarządzające pracą grupy
-kontrolerów lokalnych; może być odpowiedzialny np. za synchronizację
-sygnalizacji na ciągu skrzyżowań.
+  kontrolerów lokalnych; może być odpowiedzialny np. za synchronizację
+  sygnalizacji na ciągu skrzyżowań.
 \end{description}
 
 \subsection{Tryby pracy}
 \label{ss:tryby} Sygnalizacja świetlna na skrzyżowaniach pracuje
 przeważnie w trybie stałoczasowym, wzbudzanym lub kombinacji obydwu.
 
-\paragraph{Sygnalizacja stałoczasowa} W trybie stałoczasowym każdy z
-sygnałów dla każdego potoku ma z góry określoną długość.
+\paragraph{Sygnalizacja stałoczasowa} W systemach stałoczasowych każdy
+z potoków ruchu obsługiwany jest zgodnie ze zdefiniowanym
+harmonogramem, w którym określona jest długość każdego z wyświetlanych
+sygnałów. Akomodacja może polegać co najwyżej na zmianie harmonogramu
+w zależności od pory dnia.
 
-\paragraph{Sygnalizacja wzbudzana} W trybie wzbudzanym kontroler
-korzysta z informacji dostarczanych przez czujniki, dzięki czemu może
-dostosować parametry pracy sygnalizacji do aktualnych warunków
-ruchu. W zależności od tego czy czujniki są zainstalowane dla
-wszystkich potoków czy tylko dla niektórych mówimy o sygnalizacji
-\emph{w pełni wzbudzanej} \ang{fully-actuated} lub \emph{częściowo
-wzbudzanej} \ang{semi-actuated}.
+\paragraph{Sygnalizacja wzbudzana}
+W trybie wzbudzanym kontroler korzysta z informacji dostarczanych
+przez czujniki, dzięki czemu może dostosować parametry pracy
+sygnalizacji do aktualnych warunków ruchu. W zależności od tego czy
+czujniki są zainstalowane dla wszystkich potoków czy tylko dla
+niektórych mówimy o sygnalizacji \emph{w pełni wzbudzanej}
+\ang{fully-actuated} lub \emph{częściowo wzbudzanej}
+\ang{semi-actuated}.
 
 W systemach w pełni wzbudzanych sygnalizacja dla każdego z uczestników
 ruchu uzależniona jest od danych dostarczonych przez czujnik. W
@@ -148,7 +156,7 @@ zapotrzebowania zgłoszonego przez czujnik.
 
 Niniejszy podrozdział zawiera szczegółową charakterystykę
 funkcjonowania sygnalizacji wzbudzanej. Najpierw definiowane są
-podstawowe pojęcia potrzebne do precyzyjnej jej specyfikacji,
+podstawowe pojęcia potrzebne do precyzyjnej jego specyfikacji,
 następnie zaś przedstawiony jest hierarchiczny opis systemu: od
 omówienia pracy pojedynczego sygnalizatora po omówienie pracy całości
 sygnalizacji na skrzyżowaniu.
@@ -156,46 +164,48 @@ sygnalizacji na skrzyżowaniu.
 \subsection{Podstawowe pojęcia}
 \label{ss:pojecia}
 
-\todo{Poprawić, bo jest brzydkie} Podstawowe pojęcia związane z
-systemami sygnalizacji świetlnej:
+Poniżej znajdują się pojęcia, których zdefiniowanie pozwoli na
+uporządkowanie i zhierarchizowanie opisu systemu sygnalizacji
+świetlnej.
 \begin{description}
   \item[interwał] -- odcinek czasu, w którym wskazanie danego
-sygnalizatora nie zmienia się; w zależności od tego wskazania mówimy o
-\emph{interwale zielonym}, \emph{interwale żółtym} itp.
+  sygnalizatora nie zmienia się; w zależności od tego wskazania mówimy o
+  \emph{interwale zielonym}, \emph{interwale żółtym} itp.
   \item[potok ruchu] -- pojazdy bądź piesi, których ruch kontrolowany
-jest przez jeden sygnalizator;
+  jest przez jeden sygnalizator\footnote{Zauważmy, że pojazdy jadące
+    przez skrzyżowanie prosto oraz skręcające mogą stanowić jeden,
+    dwa, a nawet trzy oddzielne potoki w zależności od architektury
+    skrzyżowania oraz samego systemu sygnalizacji.};
   \item[faza] -- grupa potoków ruchu, którym sygnalizacja zezwala na
-jednoczesne korzystanie ze skrzyżowania;
-  \item[cykl] -- ustalony ciąg faz
+  jednoczesne korzystanie ze skrzyżowania;
+  \item[cykl] -- ustalony ciąg faz.
 \end{description}
 
-Sygnalizator dla pojazdów może znajdować się w jednym z pięciu stanów:
-\begin{description}
-  \item[czerwony] -- oznacza zakaz wjazdu na skrzyżowanie
-  \item[czerwono-żółty] -- oznacza zakaz wjazdu i informuje o tym, że
-wkrótce pojawi się sygnał zielony
-  \item[zielony] -- oznacza zezwolenie na wjazd
-  \item[żółty] -- oznacza zakaz wjazdu i informuje o tym, że wkrótce
-pojawi się sygnał czerwony
-  \item[czerwony-czyszczący] -- oznacza zakaz wjazdu; pozwala ostatnim
-pojazdom na opuszczenie skrzyżowania przed włączeniem sygnału
-zielonego dla potoku kolizyjnego
-\end{description}
+Sygnalizator dla pojazdów wyświetla jeden z następujących sygnałów:
+czerwony, czerwono-żółty, zielony lub żółty. W sygnalizacji dla
+pieszych opuszcza się sygnał czerwono-żółty, a żółty zastępuje się
+migającym zielonym. Opis systemu sprowadza się do pokazania sposobu
+wyznaczania długości interwałów odpowiadających tym sygnałom. Należy
+tu uczynić dodatkową uwagę dotyczącą interwału czerwonego. Choć w
+zasadzie jego długość dla danego sygnalizatora wyznaczana jest przez
+długość cyklu pracy pozostałych, to w celu zapewnienia bezpieczeństwa
+ruchu wyznacza się minimalny odcinek czasu pomiędzy zakończeniem
+sygnału żółtego dla danego potoku a rozpoczęciem sygnału
+czerwono-żółtego dla potoku kolidującego. Nazywa się go okresem
+oczyszczenia \ang{clearance time, all-red time} i wyróżnia jako
+dodatkowy interwał.
 
-Sygnalizator dla pieszych nie ma stanu czerwono-żółtego, a zamiast
-żółtego ma \emph{migający zielony}. Stany czerwono-żółty,
-żółty. migający zielony oraz czerwony-czyszczący nazywamy
-\emph{przejściowymi.}
-
-Potoki, których sygnalizatory są w sygnale zielonym lub jednym z
-przejściowym nazywamy \emph{aktywnymi}, pozostałe zaś
+Sygnały czerwono-żółty, żółty, migający zielony oraz
+czerwony-czyszczący nazywamy \emph{przejściowymi}. Potoki, których
+sygnalizatory wyświetlają sygnał zielony lub jeden z przejściowych,
+nazywamy \emph{aktywnymi}, pozostałe zaś
 \emph{nieaktywnymi}. Analogicznie, fazę, której przynajmniej jeden
 potok jest aktywny nazywamy aktywną. W danym momencie aktywna może być
 co najwyżej jedna faza.
 
 \subsection{Detekcja ruchu}
 \label{ss:detekcja} Mając na celu opis systemów wzbudzanych,
-rozszerzamy zestaw definicji z \ref{ss:definicje} o następujące
+rozszerzamy zestaw definicji z \ref{ss:pojecia} o następujące
 pojęcia:
 \begin{description}
   \item[zgłoszenie] -- informacja o zapotrzebowaniu na uruchomienie
@@ -206,7 +216,7 @@ potoku
 \end{description}
 
 \paragraph{Czujniki dla pojazdów} Czujniki wykrywające pojazdy
-charakteryzowane mogą pracować w jednym z dwóch trybów:
+mogą pracować w jednym z dwóch trybów:
 \emph{pulsacyjnym} bądź \emph{obecności}.  W trybie pulsacyjnym
 \ang{pulse mode} czujnik jest wzbudzany tylko w momencie pojawienia
 się pojazdu w zasięgu jego działania.  Natomiast w trybie obecności
@@ -245,8 +255,8 @@ otrzymania zgłoszenia sygnał zielony przedłużany jest o tyle, aby
 przejeżdżający pojazd mógł bezpiecznie opuścić skrzyżowanie (o
 długości tego czasu tym decyduje inny parametr --
 \emph{wydłużenie}). Gdy w tym czasie kontroler nie otrzyma kolejnego
-zgłoszenia (tj. wykryta została luka pomiędzy nadjeżdżającymi
-pojazdami), sygnał zielony zostaje przerwany (patrz
+zgłoszenia tj. wykryta zostanie luka pomiędzy nadjeżdżającymi
+pojazdami, sygnał zielony zostaje przerwany (patrz
 rys. \ref{img:gap-out}).
 
 \begin{figure}[ht] \centering
@@ -281,11 +291,13 @@ fazy}
 
 Podstawowym elementem opisu fazy jest stwierdzenie, które potoki
 wchodzą w jej skład. Faza może obejmować:
+\begin{samepage}
 \begin{itemize}
   \item jeden lub więcej potoków pojazdów,
   \item jeden lub więcej potoków pieszych,
   \item kombinację pewnej liczby potoków pojazdów i pieszych.
 \end{itemize}
+\end{samepage}
 \begin{figure}[h] \centering \subfloat[Faza wyłącznie dla pojazdów]{
     \includegraphics[width=0.27\textwidth]{img/signals-phase-example-1}
 } \hfill \subfloat[Faza dla pojazdów oraz pieszych]{
@@ -315,38 +327,38 @@ z potoków mógłby być różny od okresu aktywności fazy.
 od zgłoszenia od potoków nieaktywnych, które otrzymano już po tym, gdy
 faza stała się aktywna. Po pierwsze można uznać, że zostaną obsłużone
 dopiero w następnym cyklu sygnalizacji (w takim wypadku traktowane są
-tak samo jak zgłoszenia przeciwne). Drugą możliwoscią jest
+tak samo jak zgłoszenia przeciwne). Drugą możliwością jest
 obsługiwanie takich zgłoszeń w bieżącym cyklu, o ile nie spowoduje to
 przekroczenia maksymalnej długości sygnału zielonego.
 \begin{figure}[ht]
   \centering
   \subfloat[Opcja podtrzymania wyłączona]{
     \includegraphics[width=0.8\textwidth]{img/signals-hold-1}
-  }\\\vspace{1cm}
+    \label{img:signals-hold-off}
+  }\\\vspace{0.5cm}
   \subfloat[Opcja podtrzymania włączona]{
     \includegraphics[width=0.8\textwidth]{img/signals-hold-2}
+    \label{img:signals-hold-on}
   }
   \caption{Opcja podtrzymania sygnału dla fazy dwupotokowej.}
-  \label{img:signals-hold}
 \end{figure}
 \paragraph{Podtrzymanie} Innym elementem projektu wielopotokowej fazy
 jest ustalenie zachowania się systemu w przypadku, gdy w jednym z
 aktywnych potoków wykryta została luka, w innym zaś mamy do czynienia
 z ciągłym zapotrzebowaniem. Możemy nie podejmować żadnego specjalnego
 działania tj. wyłączyć sygnał zielony dla potoku, w którym czujnik
-wykrył lukę.  Można w takim przypadku zastosować procedurę
-\emph{podtrzymania sygnału} \ang{hold}. Polega ona na wydłużeniu
-sygnału aż do momentu, w którym zakończą się sygnały zielone dla
-pozostałych potoków (rys. \ref{img:signals-hold}).
+wykrył lukę (rys. \ref{img:signals-hold-off}).  Można w takim przypadku
+zastosować procedurę \emph{podtrzymania sygnału} \ang{hold}. Polega
+ona na wydłużeniu sygnału aż do momentu, w którym zakończą się sygnały
+zielone dla pozostałych potoków (rys. \ref{img:signals-hold-on}).
 
 \subsection{Opis funkcjonowania sygnalizacji dla cyklu} Opis cyklu
 zawiera przede wszystkim informację o kolejności wchodzących w jego
 skład faz.
-\begin{figure}[h] \centering
+\begin{figure}[ht] \centering
   \includegraphics[width=0.7\textwidth]{img/signals-cycle-example}
   \caption{Przykładowy cykl}
 \end{figure}
-
 Jedyną dodatkową decyzją pozostającą do podjęcia na tym etapie jest
 zachowanie się sygnalizacji w przypadku braku zgłoszeń tj. w
 \emph{stanie spoczynku} \ang{rest}. Stosowane są dwa rozwiązania. Po
@@ -361,51 +373,71 @@ systemów sygnalizacji wzbudzanej. Na początku zdefiniowano zachowanie
 się sygnalizacji dla pojedynczego potoku, następnie potoki zostały
 złożone w fazy, a fazy -- w cykl. Na każdym etapach dokładamy
 informacje specyfikujące sposób owego złożenia.
-Tabela \label{tab:signal-layer-params} podsumowuje parametry zawarte w
-poszczególnych warstwach opisu.
 
-\todo{Zrobić, żeby było ładnie}
-\begin{table}[ht] \centering
-  \begin{tabular}{|r|p{8cm}|} \hline Potok ruchu & parametry
-określające długości interwałów
+Poniższe zestawienie podsumowuje parametry zawarte w poszczególnych
+warstwach opisu.
+\begin{enumerate}
+  \item \textbf{Potok ruchu} 
+  \begin{itemize}
+    \item długości interwałów przejściowych
     \begin{itemize}
-      \item interwały przejściowe
-      \item parametry decydujące o długości interwału zielonego
-      \begin{itemize}
-        \item minimalny zielony
-        \item maksymalny zielony
-        \item wydłużenie
-      \end{itemize}
-    \end{itemize} \\\hline Faza & potoki składające się na fazę \\ &
-czas maksymalny \\ & obsługa późnych zgłoszeń \\ & podtrzymywanie
-sygnału zielonego \\\hline Cykl & fazy wchodzące w skład cyklu i ich
-kolejność \\ & zachowanie w stanie spoczynku\\\hline
-  \end{tabular}
-  \caption{Parametry definiowane przez poszczególne warstwy opisu
-systemu sygnalizacji.}  \ref{tab:signal-layer-params}
-\end{table}
+      \item czerwono-żółty
+      \item żółty
+      \item okres czyszczenia
+    \end{itemize}
+    \item parametry decydujące o długości interwału zielonego
+    \begin{itemize}
+      \item minimalny zielony
+      \item maksymalny zielony
+      \item wydłużenie
+    \end{itemize}
+  \end{itemize}
+  \item \textbf{Faza}
+  \begin{itemize}
+    \item potoki składające się na fazę
+    \item czas maksymalny
+    \item obsługa późnych zgłoszeń
+    \item podtrzymanie sygnału zielonego
+  \end{itemize}
+  \item \textbf{Cykl}
+  \begin{itemize}
+    \item fazy wchodzące w skład cyklu i ich kolejność
+    \item zachowanie w stanie spoczynku
+  \end{itemize}
+\end{enumerate}
 
 \chapter{Automaty czasowe}
-\label{c:ta} Automaty czasowe są teoretycznym narzędziem
-umożliwiającym modelowanie i weryfikację systemów czasu
-rzeczywistego. Po zdefiniowaniu ich przez Alura i Dilla nie tylko
-stały się popularnym obszarem badań teoretyków, lecz były także
-stosowane w praktycznych problemach weryfikacyjnych.
+\label{c:ta}
+Automaty czasowe są teoretycznym narzędziem umożliwiającym modelowanie
+i weryfikację systemów czasu rzeczywistego. Po zdefiniowaniu ich przez
+Alura i Dilla \cite{alur-dill} nie tylko stały się popularnym obszarem
+badań teoretyków, lecz były także stosowane w praktycznych problemach
+weryfikacyjnych.
 
-\section{Automaty czasowe} Wersja formalizmu automatów czasowych
-przedstawiona w niniejszym rozdziale pochodzi od Henzingera i
-in.\cite{henz-94}. Jej teoretyczna siła wyrazu jest identyczna z siłą
-wyrazu automatów w wersji Alura i Dilla, natomiast jest ona
-wygodniejsza do praktycznego modelowania systemów.
+Podrozdział \ref{ta-theory} wprowadza definicję automatów czasowych
+oraz zawiera najważniejsze informacje z teorii z nimi związanej;
+natomiast \ref{uppaal} opisuje \upp-a -- zastosowane w pracy narzędzie
+do weryfikacji systemów modelowanych przy pomocy automatów czasowych. 
+
+\section{Automaty czasowe}
+\label{ta-theory}
+
+Wersja formalizmu automatów czasowych przedstawiona w niniejszym
+rozdziale pochodzi od Henzingera i in.\cite{henz-94}. Jej teoretyczna
+siła wyrazu jest identyczna z siłą wyrazu automatów w wersji Alura i
+Dilla, natomiast jest ona wygodniejsza do praktycznego modelowania
+systemów.
 
 Automat czasowy jest zwykłym automatem skończonym rozszerzonym o
-zestaw zmiennych rzeczywistych nazywanych zegarami.  Stanem takie
-automatu będziemy nazywali parę opisującą wierzchołek (tj. stan
-odpowiedniego automatu skończonego), w którym znajduje się automat,
-oraz wartościowanie zegarów. W stanie początkowym wartości wszystkich
-zegarów są wyzerowane, natomiast w czasie jego działania wszystkie
-zwiększają swoją wartość w tym samym tempie. Przyrost wartości zegarów
-modeluje upływ czasu.
+zestaw zmiennych rzeczywistych nazywanych zegarami. Stanem takie
+automatu będziemy nazywali parę składającą się z:
+\begin{itemize}
+  \item wierzchołka (tj. stanu odpowiedniego automatu skończonego),
+  \item wartościowania zegarów.
+\end{itemize}
+W stanie początkowym wartości wszystkich zegarów są wyzerowane,
+natomiast w czasie jego działania wszystkie zwiększają swoją wartość w
+tym samym tempie. Przyrost wartości zegarów modeluje upływ czasu.
 
 Aby móc modelować systemy o pożądanych własnościach, możemy nakładać
 pewne dodatkowe warunki na tranzycje oraz wierzchołki, a także
@@ -446,7 +478,6 @@ $a$ prowadzącą z wierzchołka $l$ do wierzchołka $l'$, którą można
 wykonać przy wartościowaniu zegarów spełniającym ograniczenie $g$ i
 przypisującą $0$ wszystkim zegarom z $r$.
 
-
 Tak zdefiniowany automat czasowy rozumiemy jako
 system przejść, w którym można wykonywać dwa rodzaje tranzycji:
 \begin{description}
@@ -477,20 +508,22 @@ $\langle l, u \rangle$ a przejścia spełniają następujące reguły:
 Liczba stanów tak zdefiniowanego automatu jest nieprzeliczalna, co
 sprawia, że wydaje się, że nie są odpowiednim modelem dla zadań
 weryfikacyjnych. Rozwiązanie tego problemu zaproponowali już Alur i
-Dill\todo{cite}, zauważając, że pewnych własności można dowodzić,
+Dill\cite{alur-dill}, zauważając, że pewnych własności można dowodzić,
 opierając się na skończonej abstrakcji automatu.
 
 Wprowadzona przez nich abstrakcja nazywa się \emph{równoważnością
   regionów}. Opiera się na spostrzeżeniu, że dwa stany automatu są
 równoważne, gdy:
+\begin{samepage}
 \begin{enumerate}
   \item wartości zegarów zgadzają się co do części całkowitej,
   \item zachowany jest porządek na częściach ułamkowych zegarów.
 \end{enumerate}
+\end{samepage}
 Intuicyjnie, pierwsza własność odpowiada za sprawdzenie czy spełnione
 jest dane ograniczenie zegarowe; natomiast dzięki drugiej wiadomo,
 wartość którego zegara przekroczy jako pierwsza kolejną liczbę
-naturalną \cite{am:decision}. Po utożsamieniu ze sobą stanów, w
+naturalną \cite{am:decision}. Po dodatkowym utożsamieniu ze sobą stanów, w
 których wartości zegarów są większe niż odpowiednie maksymalne stałe z
 ograniczeń, zyskujemy skończoną abstrakcję dla wartościowań zegarów
 (rys. \ref{img:regions}).
@@ -533,7 +566,8 @@ automat stref.
   \label{img:zones}
 \end{figure}
 
-\section{UPPAAL}
+\section{\upp}
+\label{uppaal}
 
 \upp\ jest zestawem narzędzi pozwalającym na modelowanie systemów czasu
 rzeczywistego przy pomocy automatów czasowych, ich symulację a także
@@ -548,7 +582,7 @@ systemów: od protokołów komunikacyjnych po aplikacje multimedialne
 \cite{Ravn:2011:MVW:1987389.1987431}). Był jednym z głównym narzędzi
 stosowanych w -- prowadzonym przez konsorcjum europejskich
 uniwersytetów i przedsiębiorstw -- projekcie \textsc{Ametist}, mającym
-na celu rozwój przemysłowych metod weryfikacji systemów czasu
+na celu rozwój efektywnych metod weryfikacji przemysłowych systemów czasu
 rzeczywistego \cite{AMETISTfinal}.
 
 \subsection{Modelowanie}
@@ -560,7 +594,7 @@ odpowiedzialnościach.
 
 Model projektuje się przy pomocy prostego graficznego interfejsu
 użytkownika (patrz rys.~\ref{img:uppaal-gui}). Wbudowany w aplikację
-symulator pozwala na szybkie zapoznanie się z funkcjonowaniem systemu,
+symulator pozwala na szybkie zapoznanie się z funkcjonowaniem modelu,
 a także ułatwia przeglądanie kontrprzykładów dostarczanych przez
 weryfikator. Co ważne, symulator pokazuje nie konkretne stany systemu,
 a stany symboliczne (strefy). Przydatną funkcją jest także generacja
@@ -606,10 +640,10 @@ dodatkowego oznaczenia wierzchołków automatów jako \emph{pilne}
 Jeśli automat jest w wierzchołku pilnym, nie może wykonać opóźnienia
 (żaden czas nie może upłynąć). Jest to równoważne zadeklarowaniu
 dodatkowego zegara $t$, który będzie resetowany na wszystkich
-krawędziach wchodzących do danego wierzchołka oraz nadaniu mu $t \leq
-0$(\ref{img:uppaal-urgent}). Jako pilne mogą być oznaczone także
-kanały komunikacyjne; procesy muszą się zsynchronizować na takim
-kanale tak szybko jak będzie to możliwe.
+krawędziach wchodzących do danego wierzchołka oraz nadaniu mu
+niezmiennika $t \leq 0$ (rys. \ref{img:uppaal-urgent}). Jako pilne mogą być
+oznaczone także kanały komunikacyjne; procesy muszą się
+zsynchronizować na takim kanale tak szybko jak będzie to możliwe.
 
 \begin{figure}[ht]
   \centering
@@ -619,11 +653,11 @@ kanale tak szybko jak będzie to możliwe.
   \label{img:uppaal-urgent}
 \end{figure}
 
-Jeszcze mocniejszą własność mają wierzchołki przymusowe. Są to
+Jeszcze silniejszą własność mają wierzchołki przymusowe. Są to
 wierzchołki pilne, z których przejście należy wykonać tak szybko jak
 to możliwe. Jeśli któryś z procesów jest w wierzchołku przymusowym,
 system nie może wykonać przejścia z wierzchołka nieprzymusowego.
-Wierzchołki przymusowe są bardzo przydatne np. w modelowaniu atomowych
+Wierzchołki przymusowe są bardzo przydatne np.~w~modelowaniu atomowych
 ciągów komunikacji pomiędzy wieloma procesami.
 
 \subsection{Weryfikacja}
@@ -644,51 +678,56 @@ następujących postaci \cite{by-lncs04}:
 \end{itemize}
 gdzie $\varphi$ i $\psi$ są własnościami stanu tj. predykatami
 dotyczącymi wierzchołków oraz zmiennych liczbowych i zegarów.
+Dodatkowo dostępny jest predykat \texttt{deadlock} prawdziwy w
+stanach, w których nastąpiło zakleszczenie (tj. nie można wykonać
+żadnego dozwolonego przejścia).
+
 
 Semantykę powyższych formuł określamy, rozwijając kolejne
 przejścia w potencjalnie nieskończone drzewo. Litery \texttt{A} i
-\texttt{E} w formułach wprowadzają kwantyfikację po ścieżkach:
+\texttt{E} w formułach wprowadzają kwantyfikację po ścieżkach tego drzewa:
 \texttt{A} oznacza, że dana własność ma być spełniona dla wszystkich
 ścieżek, zaś \texttt{E} -- dla co najmniej jednej. Symbole
 \texttt{[]} oraz \texttt{<>} kwantyfikują stany na pojedynczej
 ścieżce: \texttt{[]} mówi, że własność ma być spełniona dla wszystkich
-stanach na ścieżce, zaś \texttt{<>} -- dla co najmniej jednego. 
+stanach na ścieżce, zaś \texttt{<>} -- w co najmniej jednym. 
 
- \begin{figure}[ht]
-   \centering
-   \subfloat[{\texttt{A[] $\varphi$}}]{
-     \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-1}
-   }
-   \subfloat[\texttt{A<> $\varphi$}]{
-     \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-2}
-   }\\
-   \subfloat[\texttt{E[] $\varphi$}]{
-     \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-3}
-   }
-   \subfloat[\texttt{E<> $\varphi$}]{
-     \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-4}
-   }
-   \subfloat[\texttt{$\varphi$ --> $\psi$}]{
-     \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-5}
-   }
-   \caption{Własności TCTL}
-   \label{img:tctl-props}
- \end{figure}
-O deadlocku.
-Dodatkowo można takżę
+\begin{figure}[ht]
+  \centering
+  \subfloat[{\texttt{A[] $\varphi$}}]{
+    \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-1}
+  }
+  \subfloat[\texttt{A<> $\varphi$}]{
+    \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-2}
+  }\\
+  \subfloat[\texttt{E[] $\varphi$}]{
+    \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-3}
+  }
+  \subfloat[\texttt{E<> $\varphi$}]{
+    \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-4}
+  }
+  \subfloat[\texttt{$\varphi$ --> $\psi$}]{
+    \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-5}
+  }
+  \caption{Własności TCTL}
+  \label{img:tctl-props}
+\end{figure}
 
- 
+W celu ułatwienia weryfikacji ilościowej autorzy \upp-a rozszerzyli
+przedstawiony język własności o zapytania \texttt{sup} i \texttt{inf}.
+Zapytanie \texttt{sup$\{\varphi\}$: x} daje w wyniku największą wartość,
+którą może przyjąć zmienna $x$ w stanie spełniającym predykat $\varphi$.
+Analogicznie, zapytanie \texttt{inf} podaje najmniejszą osiągalną wartość.
+
 \chapter{Język modelowania}
 
 
-
+\addcontentsline{toc}{chapter}{Bibliografia}
 \bibliography{bib.bib}{}
 \bibliographystyle{plalpha}
 
 
 % \begin{thebibliography}{99}
-% \addcontentsline{toc}{chapter}{Bibliografia}
-
 % % http://ops.fhwa.dot.gov/publications/fhwahop06006/form_dot_1700.htm
 % \bibitem[FHWA06]{handbook} Robert L. Gordon, Warren Tighe,
 % \textit{Traffic Control Systems Handbook}, Federal Highway
@@ -709,4 +748,5 @@ Dodatkowo można takżę
 %%% eval: (auto-fill-mode 1)
 %%% End:
 
-% LocalWords:  stałoczasowa
+% LocalWords:  stałoczasowa jednopotokowych wielopotokowej Alura Dilla
+% LocalWords:  Henzingera stałoczasowym stałoczasowych kompozycjonalny
