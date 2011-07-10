@@ -318,7 +318,17 @@ dopiero w następnym cyklu sygnalizacji (w takim wypadku traktowane są
 tak samo jak zgłoszenia przeciwne). Drugą możliwoscią jest
 obsługiwanie takich zgłoszeń w bieżącym cyklu, o ile nie spowoduje to
 przekroczenia maksymalnej długości sygnału zielonego.
-
+\begin{figure}[ht]
+  \centering
+  \subfloat[Opcja podtrzymania wyłączona]{
+    \includegraphics[width=0.8\textwidth]{img/signals-hold-1}
+  }\\\vspace{1cm}
+  \subfloat[Opcja podtrzymania włączona]{
+    \includegraphics[width=0.8\textwidth]{img/signals-hold-2}
+  }
+  \caption{Opcja podtrzymania sygnału dla fazy dwupotokowej.}
+  \label{img:signals-hold}
+\end{figure}
 \paragraph{Podtrzymanie} Innym elementem projektu wielopotokowej fazy
 jest ustalenie zachowania się systemu w przypadku, gdy w jednym z
 aktywnych potoków wykryta została luka, w innym zaś mamy do czynienia
@@ -327,7 +337,7 @@ działania tj. wyłączyć sygnał zielony dla potoku, w którym czujnik
 wykrył lukę.  Można w takim przypadku zastosować procedurę
 \emph{podtrzymania sygnału} \ang{hold}. Polega ona na wydłużeniu
 sygnału aż do momentu, w którym zakończą się sygnały zielone dla
-pozostałych potoków \todo{rysunek}
+pozostałych potoków (rys. \ref{img:signals-hold}).
 
 \subsection{Opis funkcjonowania sygnalizacji dla cyklu} Opis cyklu
 zawiera przede wszystkim informację o kolejności wchodzących w jego
@@ -466,42 +476,170 @@ $\langle l, u \rangle$ a przejścia spełniają następujące reguły:
 
 \section{UPPAAL}
 
-\upp jest zestawem narzędzi pozwalającym na modelowanie systemów czasu
+\upp\ jest zestawem narzędzi pozwalającym na modelowanie systemów czasu
 rzeczywistego przy pomocy automatów czasowych, ich symulację a także
 weryfikację ich własności. Rozwijają go wspólnie Uniwersytet w Uppsali
-oraz Uniwersytet w Aalborg. Pierwsza wersja narzędzia powstała w roku
-1995 \cite{UPPAAL95}.
+oraz Uniwersytet w Aalborg. Pierwsza wersja narzędzia została wydana w roku
+1995 \cite{lpw:fct95}.
 
-coś o GUI, o symulacji
+\upp\ był wielokrotnie wykorzystywany w weryfikacji rzeczywistych
+systemów: od protokołów komunikacyjnych po aplikacje multimedialne
+(m.in. \cite{lp:prfts97}, \cite{lpw:tacas98},
+\cite{DBLP:conf/icfem/BordbarO03},
+\cite{Ravn:2011:MVW:1987389.1987431}). Był jednym z głównym narzędzi
+stosowanych w -- prowadzonym przez konsorcjum europejskich
+uniwersytetów i przedsiębiorstw -- projekcie \textsc{Ametist}, mającym
+na celu rozwój przemysłowych metod weryfikacji systemów czasu
+rzeczywistego \cite{AMETISTfinal}.
 
 \subsection{Modelowanie}
+Modelowanie w \upp-u polega nie tyle na tworzeniu jednego automatu
+czasowego, lecz projektowaniu \emph{szablonów} automatów, których
+instancje (nazywane procesami) tworzą model całego systemu. Dzięki
+temu model podzielić na logiczne części o ściśle określonych
+odpowiedzialnościach.
 
-sieci automatów
-wierzchołki pilne
-wierzchołki konieczne
-synchronizacja jeden do wielu
-zmienne całkowitoliczbowe +tablice+funkcje
+Model projektuje się przy pomocy prostego graficznego interfejsu
+użytkownika (patrz rys.~\ref{img:uppaal-gui}). Wbudowany w aplikację
+symulator pozwala na szybkie zapoznanie się z funkcjonowaniem systemu,
+a także ułatwia przeglądanie kontrprzykładów dostarczanych przez
+weryfikator. Co ważne, symulator pokazuje nie konkretne stany systemu,
+a stany symboliczne (strefy). Przydatną funkcją jest także generacja
+diagramu komunikacji procesów trakcie symulacji
+(rys.~\ref{img:uppaal-msc}).
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/uppaal-editor.png}
+  \caption{Interfejs edytora szablonów procesów.}
+  \label{img:uppaal-gui}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/uppaal-msc.png}
+  \caption{Generowany przez symulator \upp-a diagram komunikacji
+    procesów \ang{message sequence chart}.}
+  \label{img:uppaal-msc}
+\end{figure}
+
+Autorzy \upp-a rozszerzyli podstawową definicję automatów czasowych o
+dodatkowe konstrukcje \cite{by-lncs04}. Większość nie zwiększa siły
+wyrazu formalizmu, a jedynie ułatwia modelowanie bardziej złożonych
+systemów.  Poniżej opisane zostaną najważniejsze rozszerzenia.
+
+\paragraph{Komunikacja} Możliwość modelowania przy pomocy sieci
+automatów czasowych wiąże się z koniecznością wprowadzenia mechanizmu
+komunikacji pomiędzy poszczególnymi procesami. W \upp-u jest ona
+realizowana poprzez synchronizację na kanałach komunikacyjnych.
+\todo{dopisać}.
+\todo{broadcast}.
+
+\paragraph{Zmienne całkowitoliczbowe} Obok zmiennych zegarowych
+użytkownik może deklarować także zmienne całkowitoliczbowe oraz
+tablice. Wyrażeń na nich można używać w ograniczeniach na krawędziach
+oraz niezmiennikach wierzchołków. Przypisania na zmienne wykonywane są
+w trakcie przejścia (analogicznie do resetowania zegarów).
+
+\paragraph{Wierzchołki pilne oraz przymusowe} Wprowadzono możliwość
+dodatkowego oznaczenia wierzchołków automatów jako \emph{pilne}
+\ang{urgent} bądź \emph{przymusowe} \ang{committed}.
+
+Jeśli automat jest w wierzchołku pilnym, nie może wykonać opóźnienia
+(żaden czas nie może upłynąć). Jest to równoważne zadeklarowaniu
+dodatkowego zegara $t$, który będzie resetowany na wszystkich
+krawędziach wchodzących do danego wierzchołka oraz nadaniu mu $t \leq
+0$(\ref{img:uppaal-urgent}). Jako pilne mogą być oznaczone także
+kanały komunikacyjne; procesy muszą się zsynchronizować na takim
+kanale tak szybko jak będzie to możliwe.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.8\textwidth]{img/uppaal-urgent}
+  \caption{Wierzchołek pilny i równoważny mu wierzchołek z dodatkowym
+    zegarem}
+  \label{img:uppaal-urgent}
+\end{figure}
+
+Jeszcze mocniejszą własność mają wierzchołki przymusowe. Są to
+wierzchołki pilne, z których przejście należy wykonać tak szybko jak
+to możliwe. Jeśli któryś z procesów jest w wierzchołku przymusowym,
+system nie może wykonać przejścia z wierzchołka nieprzymusowego.
+Wierzchołki przymusowe są bardzo przydatne np. w modelowaniu atomowych
+ciągów komunikacji pomiędzy wieloma procesami.
 
 \subsection{Weryfikacja}
 
+Weryfikator \upp-a pozwala na dowodzenie własności opisywanych przez
+podzbiór języka TCTL \cite{acd:mc}. Poprawne są wszystkie formuły
+następujących postaci \cite{by-lncs04}:
+\begin{itemize}
+  \item \texttt{A[] $\varphi$} -- ,,zawsze $\varphi$'' (bezpieczeństwo),
+  \item \texttt{E<> $\varphi$} -- ,,być może kiedyś $\varphi$''
+  (osiągalność),
+  \item \texttt{A<> $\varphi$} -- ,,zawsze kiedyś $\varphi$'',
+  \item \texttt{E[] $\varphi$} -- ,,być może zawsze $\varphi$''
+  \item \texttt{$\varphi$ --> $\psi$}\footnote{W czystym TCTL własność
+    ta zostałaby zapisana następująco: \texttt{A[]
+      ($\varphi\rightarrow$ A<> $\psi)$}} -- ,,$\varphi$ zawsze
+  prowadzi do $\psi$'' (żywotność),
+\end{itemize}
+gdzie $\varphi$ i $\psi$ są własnościami stanu tj. predykatami
+dotyczącymi wierzchołków oraz zmiennych liczbowych i zegarów.
 
+Semantykę powyższych formuł oparta jest na rozwinięciu kolejnych
+przejść w potencjalnie nieskończone drzewo. Litery \texttt{A} i
+\texttt{E} w formułach wprowadzają kwantyfikację po ścieżkach:
+\texttt{A} oznacza, że dana własność ma być spełniona dla wszystkich
+ścieżek, zaś \texttt{E} -- dla co najmniej jednej. Symbole
+\texttt{[]} oraz \texttt{<>} kwantyfikują stany na pojedynczej
+ścieżce: \texttt{[]} mówi, że własność ma być spełniona dla wszystkich
+stanach na ścieżce, zaś \texttt{<>} -- dla co najmniej jednego. 
 
+ \begin{figure}[ht]
+   \centering
+   \subfloat[{\texttt{A[] $\varphi$}}]{
+     \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-1}
+   }
+   \subfloat[\texttt{A<> $\varphi$}]{
+     \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-2}
+   }\\
+   \subfloat[\texttt{E[] $\varphi$}]{
+     \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-3}
+   }
+   \subfloat[\texttt{E<> $\varphi$}]{
+     \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-4}
+   }
+   \subfloat[\texttt{$\varphi$ --> $\psi$}]{
+     \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-5}
+   }
+   \caption{Własności TCTL}
+   \label{img:tctl-props}
+ \end{figure}
+O deadlocku.
+Dodatkowo można takżę
+
+ 
 \chapter{Język modelowania}
 
 
-\begin{thebibliography}{99}
-\addcontentsline{toc}{chapter}{Bibliografia}
 
-% http://ops.fhwa.dot.gov/publications/fhwahop06006/form_dot_1700.htm
-\bibitem[FHWA06]{handbook} Robert L. Gordon, Warren Tighe,
-\textit{Traffic Control Systems Handbook}, Federal Highway
-Administration, 2006.
+\bibliography{bib.bib}{}
+\bibliographystyle{plalpha}
 
-% http://ops.fhwa.dot.gov/publications/fhwahop08024/doc_page.htm
-\bibitem[FHWA08]{timing} Peter Koonce i in., \textit{Traffic Signal
-  Timing Manual}, Federal Highway Administration, 2008.
 
-\end{thebibliography}
+% \begin{thebibliography}{99}
+% \addcontentsline{toc}{chapter}{Bibliografia}
+
+% % http://ops.fhwa.dot.gov/publications/fhwahop06006/form_dot_1700.htm
+% \bibitem[FHWA06]{handbook} Robert L. Gordon, Warren Tighe,
+% \textit{Traffic Control Systems Handbook}, Federal Highway
+% Administration, 2006.
+
+% % http://ops.fhwa.dot.gov/publications/fhwahop08024/doc_page.htm
+% \bibitem[FHWA08]{timing} Peter Koonce i in., \textit{Traffic Signal
+%   Timing Manual}, Federal Highway Administration, 2008.
+
+% \end{thebibliography}
 
 \end{document}
 

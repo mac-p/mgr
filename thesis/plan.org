@@ -97,7 +97,7 @@ Definicje
     - podstawowa definicja i przykłady
     - krótka informacja o weryfikacji tychże
    (tj. o abstrakcjach, które pozwalają na weryfikację własności temporalnych)
-
+   
 ** UPPAAL
     - podstawowe informacje o narzędziu
       + jak wygląda modelowanie automatów czasowych

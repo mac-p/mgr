@@ -9,11 +9,11 @@ all: $(PDF)
 $(PDF_IMG): %.pdf: %.svg
 	inkscape -A $@ $< 2&> /dev/null
 
-%.pdf: %.tex
-	pdflatex $< && pdflatex $<	
+#%.pdf: %.tex
+#	pdflatex $< && pdflatex $<	
 
 
-mgr.pdf: mgr.tex $(PDF_IMG)
-
+mgr.pdf: mgr.tex bib.bib $(PDF_IMG)
+	pdflatex $< && bibtex mgr && pdflatex $< && pdflatex $<
 clean:
-	rm -f *.{aux,log,nav,out,snm,toc,pdf} $(PDF_IMG)
+	rm -f *.{aux,log,nav,out,snm,toc,pdf,bbl,blg} $(PDF_IMG)
