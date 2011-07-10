@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   x="0px"
+   y="0px"
+   width="326.78644"
+   height="201.71809"
+   viewBox="0 0 326.78644 201.7181"
+   id="svg9901"
+   version="1.1"
+   inkscape:version="0.48.1 r9760"
+   sodipodi:docname="ta-zones-example-1.svg"
+   style="fill:none;stroke:#333333;stroke-width:1;stroke-linecap:square;stroke-opacity:1">
+  <metadata
+     id="metadata10184">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="691"
+     id="namedview10182"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.496875"
+     inkscape:cx="191.28127"
+     inkscape:cy="80.641134"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg9901" />
+  <title
+     id="title9903" />
+  <desc
+     id="desc9905">
+    <Title
+       id="Title9907" />
+    <Creator
+       id="Creator9909">FreeHEP Graphics2D Driver</Creator>
+    <Producer
+       id="Producer9911">org.freehep.graphicsio.svg.SVGGraphics2D Revision: 1.16 </Producer>
+    <Source
+       id="Source9913" />
+    <Date
+       id="Date9915">niedziela, 10 lipiec 2011 15:49:37 CEST</Date>
+  </desc>
+  <defs
+     id="defs9917">
+    <!-- Symbols for use with SVGGraphics (generic format) -->
+    <!-- Author: Mark Donszelmann -->
+    <!-- Version: $Id: SVGDefs.txt,v 1.1 2002/07/30 19:11:30 duns Exp $ -->
+    <symbol
+       id="hline"
+       viewBox="-50 -50 100 100">
+      <path
+         d="M -50,0 H 50"
+         id="path9920"
+         inkscape:connector-curvature="0" />
+    </symbol>
+    <symbol
+       id="vline"
+       viewBox="-50 -50 100 100">
+      <path
+         d="M 0,-50 V 50"
+         id="path9923"
+         inkscape:connector-curvature="0" />
+    </symbol>
+    <symbol
+       id="plus"
+       viewBox="-50 -50 100 100">
+      <path
+         d="M -50,0 H 50 M 0,-50 V 50"
+         id="path9926"
+         inkscape:connector-curvature="0" />
+    </symbol>
+    <symbol
+       id="cross"
+       viewBox="-50 -50 100 100">
+      <use
+         href="#plus"
+         transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,0,-72.124892)"
+         id="use9929"
+         x="0"
+         y="0"
+         width="320"
+         height="207" />
+    </symbol>
+    <symbol
+       id="star"
+       viewBox="-50 -50 100 100">
+      <use
+         href="#plus"
+         transform="translate(-50,-50)"
+         id="use9932"
+         x="0"
+         y="0"
+         width="320"
+         height="207" />
+      <use
+         href="#cross"
+         transform="translate(-52,-51)"
+         id="use9934"
+         x="0"
+         y="0"
+         width="320"
+         height="207" />
+    </symbol>
+    <symbol
+       id="dot"
+       viewBox="-50 -50 100 100">
+      <circle
+         cx="0"
+         cy="0"
+         r="50"
+         id="circle9937"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="50"
+         sodipodi:ry="50" />
+    </symbol>
+    <!-- sqrt(2)*s -->
+    <symbol
+       id="box"
+       viewBox="-50 -50 100 100">
+      <rect
+         x="-35.5"
+         y="-35.5"
+         width="71"
+         height="71"
+         id="rect9940" />
+    </symbol>
+    <!-- 1/sqrt(3) and sqrt(3)/2 - 1/sqrt(3) -->
+    <symbol
+       id="triup"
+       viewBox="-50 -50 100 100">
+      <path
+         d="M -50,36 0,-50 50,36 z"
+         id="path9943"
+         inkscape:connector-curvature="0" />
+    </symbol>
+    <symbol
+       id="tridn"
+       viewBox="-50 -50 100 100">
+      <use
+         href="#triup"
+         transform="matrix(-1,0,0,-1,50,50)"
+         id="use9946"
+         x="0"
+         y="0"
+         width="320"
+         height="207" />
+    </symbol>
+    <symbol
+       id="diamond"
+       viewBox="-50 -50 100 100">
+      <use
+         href="#box"
+         transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,0,-70.710678)"
+         id="use9949"
+         x="0"
+         y="0"
+         width="320"
+         height="207" />
+    </symbol>
+    <!-- Symbols for use with SVGGraphics (stylable format) -->
+    <!-- Author: Mark Donszelmann -->
+    <!-- Version: $Id: SVGDefs-stylable.txt,v 1.1 2002/07/30 19:11:30 duns Exp $ -->
+    <symbol
+       id="fdot">
+      <use
+         href="#dot"
+         style="fill:currentColor;stroke:none"
+         id="use9952"
+         x="0"
+         y="0"
+         width="320"
+         height="207" />
+    </symbol>
+    <symbol
+       id="fbox">
+      <use
+         href="#box"
+         style="fill:currentColor;stroke:none"
+         id="use9955"
+         x="0"
+         y="0"
+         width="320"
+         height="207" />
+    </symbol>
+    <symbol
+       id="ftriup">
+      <use
+         href="#triup"
+         style="fill:currentColor;stroke:none"
+         id="use9958"
+         x="0"
+         y="0"
+         width="320"
+         height="207" />
+    </symbol>
+    <symbol
+       id="ftridn">
+      <use
+         href="#tridn"
+         style="fill:currentColor;stroke:none"
+         id="use9961"
+         x="0"
+         y="0"
+         width="320"
+         height="207" />
+    </symbol>
+    <symbol
+       id="fdiamond">
+      <use
+         href="#diamond"
+         style="fill:currentColor;stroke:none"
+         id="use9964"
+         x="0"
+         y="0"
+         width="320"
+         height="207" />
+    </symbol>
+  </defs>
+  <rect
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:sans-serif"
+     id="rect9984"
+     height="0"
+     width="0"
+     y="-3.7939446"
+     x="-2.7861328" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#a5afcd;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path9990"
+     d="m 315.21387,189.20606 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.62742 5.37258,-12 12,-12 6.62742,0 12,5.37258 12,12 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path9994"
+     d="m 315.21387,189.20606 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.62742 5.37258,-12 12,-12 6.62742,0 12,5.37258 12,12 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#a5afcd;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path9998"
+     d="m 35.213866,189.20606 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.62742 5.37258,-12 12,-12 6.62742,0 12,5.37258 12,12 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path10002"
+     d="m 35.213866,189.20606 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.62742 5.37258,-12 12,-12 6.62742,0 12,5.37258 12,12 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#a5afcd;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path10006"
+     d="m 179.21387,117.20606 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.62742 5.37258,-12 12,-12 6.62742,0 12,5.37258 12,12 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path10010"
+     d="m 179.21387,117.20606 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.62742 5.37258,-12 12,-12 6.62742,0 12,5.37258 12,12 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#a5afcd;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path10014"
+     d="m 179.21387,29.206055 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.62742 5.37258,-12 12,-12 6.62742,0 12,5.37258 12,12 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path10018"
+     d="m 179.21387,29.206055 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.62742 5.37258,-12 12,-12 6.62742,0 12,5.37258 12,12 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path10022"
+     d="m 175.21387,29.206055 c 0,4.41828 -3.58172,8 -8,8 -4.41828,0 -8,-3.58172 -8,-8 0,-4.41828 3.58172,-8 8,-8 4.41828,0 8,3.58172 8,8 z" />
+  <text
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#8c3863;fill-opacity:1;stroke:none;font-family:sans-serif"
+     id="text10026"
+     y="186.23665"
+     x="316.83331">D</text>
+  <text
+     x="-0.78613293"
+     y="186.20605"
+     id="text10030"
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#8c3863;fill-opacity:1;stroke:none;font-family:sans-serif">C</text>
+  <text
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#8c3863;fill-opacity:1;stroke:none;font-family:sans-serif"
+     id="text10034"
+     y="106.20605"
+     x="143.21387">B</text>
+  <text
+     x="159.21387"
+     y="10.206056"
+     id="text10038"
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#8c3863;fill-opacity:1;stroke:none;font-family:sans-serif">A</text>
+  <g
+     font-weight="normal"
+     font-style="normal"
+     font-size="14"
+     id="g10040"
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#333333;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     transform="translate(191.21387,69.206055)">
+    <text
+       x="-48"
+       y="101"
+       id="text10042"
+       style="fill:#42a848;fill-opacity:1;stroke:none">x &gt;= 5</text>
+    <g
+       font-weight="normal"
+       font-style="normal"
+       font-size="14"
+       id="g10044"
+       style="font-size:14px;font-style:normal;font-weight:normal;font-family:sans-serif">
+      <text
+         x="-16"
+         y="-3"
+         id="text10046"
+         style="fill:#42a848;fill-opacity:1;stroke:none">y &lt; 10</text>
+      <g
+         font-weight="normal"
+         font-style="normal"
+         font-size="14"
+         id="g10048"
+         style="font-size:14px;font-style:normal;font-weight:normal;font-family:sans-serif">
+        <text
+           x="-160"
+           y="-59"
+           id="text10050"
+           style="fill:#42a848;fill-opacity:1;stroke:none">x &lt; 5</text>
+        <g
+           font-weight="normal"
+           font-style="normal"
+           font-size="14"
+           id="g10052"
+           style="font-size:14px;font-style:normal;font-weight:normal;font-family:sans-serif">
+          <text
+             x="-120"
+             y="61"
+             id="text10054"
+             style="fill:#42a848;fill-opacity:1;stroke:none">x &lt; 5</text>
+          <g
+             font-weight="normal"
+             font-style="normal"
+             font-size="14"
+             id="g10056"
+             style="font-size:14px;font-style:normal;font-weight:normal;font-family:sans-serif">
+            <text
+               x="32"
+               y="61"
+               id="text10058"
+               style="fill:#42a848;fill-opacity:1;stroke:none">x &gt;= 5</text>
+            <g
+               font-weight="normal"
+               font-style="normal"
+               font-size="14"
+               id="g10060"
+               style="font-size:14px;font-style:normal;font-weight:normal;font-family:sans-serif">
+              <text
+                 x="-48"
+                 y="117"
+                 id="text10062"
+                 style="fill:#4242a8;fill-opacity:1;stroke:none">x = 0</text>
+              <g
+                 font-weight="normal"
+                 font-style="normal"
+                 font-size="14"
+                 id="g10064"
+                 style="font-size:14px;font-style:normal;font-weight:normal;font-family:sans-serif">
+                <text
+                   x="-16"
+                   y="13"
+                   id="text10066"
+                   style="fill:#4242a8;fill-opacity:1;stroke:none">x = 0</text>
+                <g
+                   font-weight="normal"
+                   font-style="normal"
+                   font-size="14"
+                   id="g10068"
+                   style="font-size:14px;font-style:normal;font-weight:normal;font-family:sans-serif">
+                  <text
+                     x="72"
+                     y="-51"
+                     id="text10070"
+                     style="fill:#4242a8;fill-opacity:1;stroke:none">y = 0</text>
+                  <g
+                     font-weight="normal"
+                     font-style="normal"
+                     font-size="14"
+                     id="g10072"
+                     style="font-size:14px;font-style:normal;font-weight:normal;font-family:sans-serif">
+                    <text
+                       x="-160"
+                       y="-43"
+                       id="text10074"
+                       style="fill:#4242a8;fill-opacity:1;stroke:none">y = 0</text>
+                    <g
+                       font-weight="normal"
+                       font-style="normal"
+                       font-size="14"
+                       id="g10076"
+                       style="font-size:14px;font-style:normal;font-weight:normal;font-family:sans-serif">
+                      <text
+                         x="-120"
+                         y="77"
+                         id="text10078"
+                         style="fill:#4242a8;fill-opacity:1;stroke:none">x = 0</text>
+                      <g
+                         font-weight="normal"
+                         font-style="normal"
+                         font-size="14"
+                         id="g10080"
+                         style="font-size:14px;font-style:normal;font-weight:normal;font-family:sans-serif">
+                        <text
+                           x="32"
+                           y="77"
+                           id="text10082"
+                           style="fill:#4242a8;fill-opacity:1;stroke:none">x = 0</text>
+                        <g
+                           id="g10084"
+                           style="stroke-linecap:round">
+                          <g
+                             id="g10086"
+                             style="stroke-linejoin:bevel">
+                            <g
+                               id="g10088"
+                               style="fill:none;stroke:#000000;stroke-opacity:1">
+                              <path
+                                 d="m -155,120 254,0"
+                                 id="path10090"
+                                 inkscape:connector-curvature="0" />
+                            </g>
+                            <!-- draw -->
+                            <g
+                               id="g10092"
+                               style="fill:none;stroke:#000000;stroke-opacity:1">
+                              <path
+                                 d="M 89.340744,122.58819 99,120 89.340744,117.41181"
+                                 id="path10094"
+                                 inkscape:connector-curvature="0" />
+                            </g>
+                            <!-- draw -->
+                            <g
+                               id="g10096"
+                               style="stroke-linecap:square">
+                              <g
+                                 id="g10098"
+                                 style="stroke-linejoin:miter">
+                                <g
+                                   id="g10100"
+                                   style="stroke-linecap:round">
+                                <g
+                                   id="g10102"
+                                   style="stroke-linejoin:bevel">
+                                <g
+                                   id="g10104"
+                                   style="fill:none;stroke:#000000;stroke-opacity:1">
+                                <path
+                                   d="m -24,-27 0,62"
+                                   id="path10106"
+                                   inkscape:connector-curvature="0" />
+                                </g>
+                                <!-- draw -->
+                                <g
+                                   id="g10108"
+                                   style="fill:none;stroke:#000000;stroke-opacity:1">
+                                <path
+                                   d="M -26.58819,25.340742 -24,35 l 2.58819,-9.659258"
+                                   id="path10110"
+                                   inkscape:connector-curvature="0" />
+                                </g>
+                                <!-- draw -->
+                                <g
+                                   id="g10112"
+                                   style="stroke-linecap:square">
+                                <g
+                                   id="g10114"
+                                   style="stroke-linejoin:miter">
+                                <g
+                                   id="g10116"
+                                   style="stroke-linecap:round">
+                                <g
+                                   id="g10118"
+                                   style="stroke-linejoin:bevel">
+                                <g
+                                   id="g10120"
+                                   style="fill:none;stroke:#000000;stroke-opacity:1">
+                                <path
+                                   d="m 112,107 0,-137 q 0,-10 -10,-10 l -113,0"
+                                   id="path10122"
+                                   inkscape:connector-curvature="0" />
+                                </g>
+                                <!-- draw -->
+                                <g
+                                   id="g10124"
+                                   style="fill:none;stroke:#000000;stroke-opacity:1">
+                                <path
+                                   d="M -1.340742,-42.588192 -11,-40 l 9.659258,2.588192"
+                                   id="path10126"
+                                   inkscape:connector-curvature="0" />
+                                </g>
+                                <!-- draw -->
+                                <g
+                                   id="g10128"
+                                   style="stroke-linecap:square">
+                                <g
+                                   id="g10130"
+                                   style="stroke-linejoin:miter">
+                                <g
+                                   id="g10132"
+                                   style="stroke-linecap:round">
+                                <g
+                                   id="g10134"
+                                   style="stroke-linejoin:bevel">
+                                <g
+                                   id="g10136"
+                                   style="fill:none;stroke:#000000;stroke-opacity:1">
+                                <path
+                                   d="m -168,107 0,-137 q 0,-10 10,-10 l 121,0"
+                                   id="path10138"
+                                   inkscape:connector-curvature="0" />
+                                </g>
+                                <!-- draw -->
+                                <g
+                                   id="g10140"
+                                   style="fill:none;stroke:#000000;stroke-opacity:1">
+                                <path
+                                   d="M -46.65926,-37.411808 -37,-40 l -9.65926,-2.588192"
+                                   id="path10142"
+                                   inkscape:connector-curvature="0" />
+                                </g>
+                                <!-- draw -->
+                                <g
+                                   id="g10144"
+                                   style="stroke-linecap:square">
+                                <g
+                                   id="g10146"
+                                   style="stroke-linejoin:miter">
+                                <g
+                                   id="g10148"
+                                   style="stroke-linecap:round">
+                                <g
+                                   id="g10150"
+                                   style="stroke-linejoin:bevel">
+                                <g
+                                   id="g10152"
+                                   style="fill:none;stroke:#000000;stroke-opacity:1">
+                                <path
+                                   d="M -35.627552,53.813778 -156.37245,114.18623"
+                                   id="path10154"
+                                   inkscape:connector-curvature="0" />
+                                </g>
+                                <!-- draw -->
+                                <g
+                                   id="g10156"
+                                   style="fill:none;stroke:#000000;stroke-opacity:1">
+                                <path
+                                   d="m -148.89041,107.55152 -7.48204,6.63471 9.79698,-2.00481"
+                                   id="path10158"
+                                   inkscape:connector-curvature="0" />
+                                </g>
+                                <!-- draw -->
+                                <g
+                                   id="g10160"
+                                   style="stroke-linecap:square">
+                                <g
+                                   id="g10162"
+                                   style="stroke-linejoin:miter">
+                                <g
+                                   id="g10164"
+                                   style="stroke-linecap:round">
+                                <g
+                                   id="g10166"
+                                   style="stroke-linejoin:bevel">
+                                <g
+                                   id="g10168"
+                                   style="fill:none;stroke:#000000;stroke-opacity:1">
+                                <path
+                                   d="M -12.510757,54.082539 100.51076,113.91746"
+                                   id="path10170"
+                                   inkscape:connector-curvature="0" />
+                                </g>
+                                <!-- draw -->
+                                <g
+                                   id="g10172"
+                                   style="fill:none;stroke:#000000;stroke-opacity:1">
+                                <path
+                                   d="m 90.763039,111.68542 9.747721,2.23204 -7.325755,-6.80686"
+                                   id="path10174"
+                                   inkscape:connector-curvature="0" />
+                                </g>
+                                <!-- draw -->
+                                <g
+                                   id="g10176"
+                                   style="stroke-linecap:square">
+                                <g
+                                   id="g10178"
+                                   style="stroke-linejoin:miter">
+                                <g
+                                   transform="translate(-194,-73)"
+                                   id="g10180" />
+                                <!-- transform -->
+                                </g>
+                                <!-- stroke join -->
+                                </g>
+                                <!-- stroke cap -->
+                                </g>
+                                <!-- stroke join -->
+                                </g>
+                                <!-- stroke cap -->
+                                </g>
+                                <!-- stroke join -->
+                                </g>
+                                <!-- stroke cap -->
+                                </g>
+                                <!-- stroke join -->
+                                </g>
+                                <!-- stroke cap -->
+                                </g>
+                                <!-- stroke join -->
+                                </g>
+                                <!-- stroke cap -->
+                                </g>
+                                <!-- stroke join -->
+                                </g>
+                                <!-- stroke cap -->
+                                </g>
+                                <!-- stroke join -->
+                                </g>
+                                <!-- stroke cap -->
+                                </g>
+                                <!-- stroke join -->
+                                </g>
+                                <!-- stroke cap -->
+                                </g>
+                                <!-- stroke join -->
+                                </g>
+                                <!-- stroke cap -->
+                                </g>
+                                <!-- stroke join -->
+                                </g>
+                                <!-- stroke cap -->
+                              </g>
+                              <!-- stroke join -->
+                            </g>
+                            <!-- stroke cap -->
+                          </g>
+                          <!-- stroke join -->
+                        </g>
+                        <!-- stroke cap -->
+                      </g>
+                      <!-- font -->
+                    </g>
+                    <!-- font -->
+                  </g>
+                  <!-- font -->
+                </g>
+                <!-- font -->
+              </g>
+              <!-- font -->
+            </g>
+            <!-- font -->
+          </g>
+          <!-- font -->
+        </g>
+        <!-- font -->
+      </g>
+      <!-- font -->
+    </g>
+    <!-- font -->
+  </g>
+  <!-- font -->
+</svg>
+<!-- bounding box -->
+
