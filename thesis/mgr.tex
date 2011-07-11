@@ -2,13 +2,14 @@
 
 \usepackage{polski}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
+\usepackage[pdftex]{graphicx}
 
 
 \usepackage{subfig} % Subfigures
 \usepackage{color}
-\usepackage{ntheorem}
-\usepackage[pdfpagelabels, draft, implicit=false]{hyperref}
+\usepackage{ntheorem} % Definitions
+\usepackage{sidecap}
+%\usepackage[pdfpagelabels, draft, implicit=false]{hyperref}
 
 \author{Maciej Pazurkiewicz}
 \nralbumu{248267}
@@ -25,7 +26,7 @@
 \date{Wrzesień 2011}
 
 %Podać dziedzinę wg klasyfikacji Socrates-Erasmus:
-\dziedzina{ 
+\dziedzina{
 11.3 Informatyka\\ 
 }
 
@@ -215,17 +216,20 @@ kontrolerowi przez czujnik
 potoku
 \end{description}
 
-\paragraph{Czujniki dla pojazdów} Czujniki wykrywające pojazdy
-mogą pracować w jednym z dwóch trybów:
-\emph{pulsacyjnym} bądź \emph{obecności}.  W trybie pulsacyjnym
-\ang{pulse mode} czujnik jest wzbudzany tylko w momencie pojawienia
-się pojazdu w zasięgu jego działania.  Natomiast w trybie obecności
-\ang{presence mode} czujnik pozostaje wzbudzony przez cały czas od
-pojawienia się pojazdu w strefie detekcji aż do jej
-opuszczenia. Zgłoszenie ma zatem postać sygnału punktowego w przypadku
-trybu pulsacyjnego oraz ciągłego dla trybu obecności.
+\paragraph{Czujniki dla pojazdów} Czujniki wykrywające pojazdy mogą
+pracować w jednym z dwóch trybów: \emph{pulsacyjnym} bądź
+\emph{obecności}.  W trybie pulsacyjnym \ang{pulse mode} czujnik jest
+wzbudzany tylko w momencie pojawienia się pojazdu w zasięgu jego
+działania.  Natomiast w trybie obecności \ang{presence mode} czujnik
+pozostaje wzbudzony przez cały czas od pojawienia się pojazdu w
+strefie detekcji aż do jej opuszczenia. Zgłoszenie ma zatem postać
+sygnału punktowego w przypadku trybu pulsacyjnego oraz ciągłego dla
+trybu obecności.
 
-\paragraph{Czujniki dla pieszych} \todo{Poprawić}
+\paragraph{Czujniki dla pieszych} Pieszy uruchamia czujnik, który
+przekazuje sygnał kontrolerowi. Po zakończeniu obsługi potoku dla
+pieszych kontroler przesyła informację zwrotną do czujnika, który jest
+wtedy resetowany i staje się gotowy na ponowne uruchomienie.
 
 \subsection{Opis funkcjonowania sygnalizacji na poziomie pojedynczego
 potoku}
@@ -257,9 +261,9 @@ długości tego czasu tym decyduje inny parametr --
 \emph{wydłużenie}). Gdy w tym czasie kontroler nie otrzyma kolejnego
 zgłoszenia tj. wykryta zostanie luka pomiędzy nadjeżdżającymi
 pojazdami, sygnał zielony zostaje przerwany (patrz
-rys. \ref{img:gap-out}).
+\imgr{img:gap-out}).
 
-\begin{figure}[ht] \centering
+\begin{figure}[h] \centering
   \includegraphics[width=0.7\textwidth]{img/signals-gap-out}
   \caption{Zakończenie sygnału zielonego przez wykrycie luki.}
 \label{img:gap-out}
@@ -269,11 +273,10 @@ Duże natężenie ruchu w danym potoku mogłoby powodować brak luk między
 pojazdami i -- co za tym idzie~-- zbyt duże opóźnienia w obsłudze
 pozostałych potoków. Aby ograniczyć z góry czas oczekiwania, określa
 się maksymalny czas, w którym potok może otrzymywać sygnał zielony w
-obecności zgłoszenia przeciwnego (patrz
-rys. \ref{img:max-out}). Należy podkreślić, że w razie braku
-zgłoszenia przeciwnego sygnał zielony będzie nadawany tak długo aż nie
-nastąpi wykrycie luki.
-\begin{figure}[ht] \centering
+obecności zgłoszenia przeciwnego (patrz \imgr{img:max-out}). Należy
+podkreślić, że w razie braku zgłoszenia przeciwnego sygnał zielony
+będzie nadawany tak długo aż nie nastąpi wykrycie luki.
+\begin{figure}[h] \centering
   \includegraphics[width=0.7\textwidth]{img/signals-max-out}
   \caption{Zakończenie sygnału zielonego przez wykorzystanie
 maksymalnego czasu.}
@@ -306,7 +309,7 @@ wchodzą w jej skład. Faza może obejmować:
 scramble, X~crossing}]{
     \includegraphics[width=0.27\textwidth]{img/signals-phase-example-3}
 }
-  \caption{Przykładowe fazy}
+  \caption{Przykładowe fazy.}
 \end{figure}
 
 Zauważmy, że choć już w opisie na poziomie potoku zaszła konieczność
@@ -330,7 +333,7 @@ dopiero w następnym cyklu sygnalizacji (w takim wypadku traktowane są
 tak samo jak zgłoszenia przeciwne). Drugą możliwością jest
 obsługiwanie takich zgłoszeń w bieżącym cyklu, o ile nie spowoduje to
 przekroczenia maksymalnej długości sygnału zielonego.
-\begin{figure}[ht]
+\begin{figure}
   \centering
   \subfloat[Opcja podtrzymania wyłączona]{
     \includegraphics[width=0.8\textwidth]{img/signals-hold-1}
@@ -355,9 +358,9 @@ zielone dla pozostałych potoków (rys. \ref{img:signals-hold-on}).
 \subsection{Opis funkcjonowania sygnalizacji dla cyklu} Opis cyklu
 zawiera przede wszystkim informację o kolejności wchodzących w jego
 skład faz.
-\begin{figure}[ht] \centering
+\begin{figure} \centering
   \includegraphics[width=0.7\textwidth]{img/signals-cycle-example}
-  \caption{Przykładowy cykl}
+  \caption{Przykładowy cykl.}
 \end{figure}
 Jedyną dodatkową decyzją pozostającą do podjęcia na tym etapie jest
 zachowanie się sygnalizacji w przypadku braku zgłoszeń tj. w
@@ -377,7 +380,7 @@ informacje specyfikujące sposób owego złożenia.
 Poniższe zestawienie podsumowuje parametry zawarte w poszczególnych
 warstwach opisu.
 \begin{enumerate}
-  \item \textbf{Potok ruchu} 
+  \item \textbf{Potok ruchu}
   \begin{itemize}
     \item długości interwałów przejściowych
     \begin{itemize}
@@ -417,7 +420,7 @@ weryfikacyjnych.
 Podrozdział \ref{ta-theory} wprowadza definicję automatów czasowych
 oraz zawiera najważniejsze informacje z teorii z nimi związanej;
 natomiast \ref{uppaal} opisuje \upp-a -- zastosowane w pracy narzędzie
-do weryfikacji systemów modelowanych przy pomocy automatów czasowych. 
+do weryfikacji systemów modelowanych przy pomocy automatów czasowych.
 
 \section{Automaty czasowe}
 \label{ta-theory}
@@ -446,8 +449,22 @@ przypisać wyrażenie opisujące wartościowanie zegarów, przy którym jej
 wykonanie jest dozwolone. Analogiczne ograniczenia dla wierzchołków
 nazywane są \emph{niezmiennikami}. Poprawne są tylko te stany automatu
 czasowego, w których wartościowanie zegarów spełnia niezmiennik danego
-wierzchołka.
+wierzchołka. Przykładowy automat przedstawiono na
+rys. \ref{img:ta-simple}.
 
+\begin{SCfigure}[4]
+  \centering
+  \includegraphics[width=0.3\textwidth]{img/ta-simple}
+  \caption {Przykładowy automat czasowy z jednym zegarem~$t$.
+    Czcionką zieloną oznaczone są ograniczenia na krawędzie, fioletową
+    niezmienniki wierzchołków, zaś niebieską -- operacje resetowania
+    zegara.\\ Automat zaczyna pracę w wierzchołku czerwonym, w którym
+    przebywa dokładnie przez 10 jednostek czasu. Następnie przechodzi
+    do wierzchołka zielonego (5-10 jednostek, niedeterministycznie) i
+    pomarańczowego (dokładnie 3 jednostki), po czym powraca do stanu
+    początkowego.}
+  \label{img:ta-simple}
+\end{SCfigure}
 
 \subsection{Formalna definicja} Przyjmijmy, że mamy skończony zbiór
 $\mathcal{C}$ zmiennych rzeczywistych (zegarów) oraz skończony alfabet
@@ -527,7 +544,7 @@ naturalną \cite{am:decision}. Po dodatkowym utożsamieniu ze sobą stanów, w
 których wartości zegarów są większe niż odpowiednie maksymalne stałe z
 ograniczeń, zyskujemy skończoną abstrakcję dla wartościowań zegarów
 (rys. \ref{img:regions}).
-\begin{figure}[ht]
+\begin{figure}
   \centering
   \includegraphics[width=0.4\textwidth]{img/ta-regions}
   \caption{Regiony dla automatu o dwóch zegarach (każdy punkt
@@ -554,13 +571,13 @@ wartościowań zegarów spełniających koniunkcję ograniczeń zegarowych.
 Rysunek \ref{img:zones} przedstawia automat czasowy i odpowiadający mu
 automat stref.
 
-\begin{figure}[ht]
+\begin{figure}
   \centering
   \subfloat[Przykładowy automat czasowy.] {
-    \includegraphics[width=0.3\textwidth]{img/ta-zones-example-1}
+    \includegraphics[width=0.35\textwidth]{img/ta-zones-example-1}
   } \hspace{1cm}
   \subfloat[Odpowiadający mu automat stref.] {
-    \includegraphics[width=0.4\textwidth]{img/ta-zones}
+    \includegraphics[width=0.35\textwidth]{img/ta-zones}
   }
   \caption{Strefy.}
   \label{img:zones}
@@ -588,7 +605,7 @@ rzeczywistego \cite{AMETISTfinal}.
 \subsection{Modelowanie}
 Modelowanie w \upp-u polega nie tyle na tworzeniu jednego automatu
 czasowego, lecz projektowaniu \emph{szablonów} automatów, których
-instancje (nazywane procesami) tworzą model całego systemu. Dzięki
+instancje -- nazywane procesami -- tworzą model całego systemu. Dzięki
 temu model podzielić na logiczne części o ściśle określonych
 odpowiedzialnościach.
 
@@ -600,14 +617,14 @@ weryfikator. Co ważne, symulator pokazuje nie konkretne stany systemu,
 a stany symboliczne (strefy). Przydatną funkcją jest także generacja
 diagramu komunikacji procesów trakcie symulacji
 (rys.~\ref{img:uppaal-msc}).
-\begin{figure}[ht]
+\begin{figure}
   \centering
   \includegraphics[width=0.9\textwidth]{img/uppaal-editor.png}
   \caption{Interfejs edytora szablonów procesów.}
   \label{img:uppaal-gui}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}
   \centering
   \includegraphics[width=0.9\textwidth]{img/uppaal-msc.png}
   \caption{Generowany przez symulator \upp-a diagram komunikacji
@@ -616,16 +633,31 @@ diagramu komunikacji procesów trakcie symulacji
 \end{figure}
 
 Autorzy \upp-a rozszerzyli podstawową definicję automatów czasowych o
-dodatkowe konstrukcje \cite{by-lncs04}. Większość nie zwiększa siły
+dodatkowe konstrukcje. Większość nie zwiększa siły
 wyrazu formalizmu, a jedynie ułatwia modelowanie bardziej złożonych
-systemów.  Poniżej opisane zostaną najważniejsze rozszerzenia.
-
-\paragraph{Komunikacja} Możliwość modelowania przy pomocy sieci
-automatów czasowych wiąże się z koniecznością wprowadzenia mechanizmu
-komunikacji pomiędzy poszczególnymi procesami. W \upp-u jest ona
-realizowana poprzez synchronizację na kanałach komunikacyjnych.
-\todo{dopisać}.
-\todo{broadcast}.
+systemów.  Poniżej opisane zostaną najważniejsze rozszerzenia
+(ich wyczerpujący opis wraz z formalnie zdefiniowaną semantyką
+odnaleźć można w \cite{by-lncs04}).
+\paragraph{Procesy i ich komunikacja} Możliwość modelowania przy
+pomocy sieci automatów czasowych wiąże się z koniecznością
+wprowadzenia mechanizmu komunikacji pomiędzy poszczególnymi
+procesami. W \upp-u jest ona realizowana poprzez synchronizację na
+kanałach komunikacyjnych. Dwa procesy synchronizują się na kanale
+komunikacyjnym \texttt{a}, gdy jeden z nich wykonuje z nich
+akcję~\texttt{a?}, a drugi --~\texttt{a!}. Kanał komunikacyjny może
+być zadeklarowany także jako \emph{rozgłoszeniowy} \ang{broadcast}, co
+pozwala na synchronizację \emph{jeden do wielu}.
+\begin{SCfigure}[3]
+  \includegraphics[width=0.6\textwidth]{img/ta-communication}
+  \caption[Synchronizujące się ze sobą automaty czasowe.]
+  {Synchronizujące się ze sobą automaty czasowe. System składa się z
+    dwóch procesów: czujnika i sygnalizatora. Proces sygnalizatora
+    przypomina ten z \imgr{img:ta-simple}; w tym wypadku jednak czas
+    przebywania w wierzchołku czerwonym nie jest stały, lecz
+    wyznaczany przez proces czujnika. Czujnik wysyła polecenie
+    początku pracy \texttt{start!}, a następnie czeka na informację o
+    jej zakończeniu na kanale \texttt{finished}.}
+\end{SCfigure}
 
 \paragraph{Zmienne całkowitoliczbowe} Obok zmiennych zegarowych
 użytkownik może deklarować także zmienne całkowitoliczbowe oraz
@@ -641,15 +673,15 @@ Jeśli automat jest w wierzchołku pilnym, nie może wykonać opóźnienia
 (żaden czas nie może upłynąć). Jest to równoważne zadeklarowaniu
 dodatkowego zegara $t$, który będzie resetowany na wszystkich
 krawędziach wchodzących do danego wierzchołka oraz nadaniu mu
-niezmiennika $t \leq 0$ (rys. \ref{img:uppaal-urgent}). Jako pilne mogą być
+niezmiennika $t \leq 0$ (\imgr{img:uppaal-urgent}). Jako pilne mogą być
 oznaczone także kanały komunikacyjne; procesy muszą się
 zsynchronizować na takim kanale tak szybko jak będzie to możliwe.
 
-\begin{figure}[ht]
+\begin{figure}[h]
   \centering
-  \includegraphics[width=.8\textwidth]{img/uppaal-urgent}
+  \includegraphics[width=.5\textwidth]{img/uppaal-urgent}
   \caption{Wierzchołek pilny i równoważny mu wierzchołek z dodatkowym
-    zegarem}
+    zegarem.}
   \label{img:uppaal-urgent}
 \end{figure}
 
@@ -679,9 +711,8 @@ następujących postaci \cite{by-lncs04}:
 gdzie $\varphi$ i $\psi$ są własnościami stanu tj. predykatami
 dotyczącymi wierzchołków oraz zmiennych liczbowych i zegarów.
 Dodatkowo dostępny jest predykat \texttt{deadlock} prawdziwy w
-stanach, w których nastąpiło zakleszczenie (tj. nie można wykonać
-żadnego dozwolonego przejścia).
-
+stanach, w których nastąpiło zakleszczenie tj. nie można wykonać
+żadnego dozwolonego przejścia.
 
 Semantykę powyższych formuł określamy, rozwijając kolejne
 przejścia w potencjalnie nieskończone drzewo. Litery \texttt{A} i
@@ -690,9 +721,9 @@ przejścia w potencjalnie nieskończone drzewo. Litery \texttt{A} i
 ścieżek, zaś \texttt{E} -- dla co najmniej jednej. Symbole
 \texttt{[]} oraz \texttt{<>} kwantyfikują stany na pojedynczej
 ścieżce: \texttt{[]} mówi, że własność ma być spełniona dla wszystkich
-stanach na ścieżce, zaś \texttt{<>} -- w co najmniej jednym. 
+stanach na ścieżce, zaś \texttt{<>} -- w co najmniej jednym.
 
-\begin{figure}[ht]
+\begin{figure}
   \centering
   \subfloat[{\texttt{A[] $\varphi$}}]{
     \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-1}
@@ -709,7 +740,7 @@ stanach na ścieżce, zaś \texttt{<>} -- w co najmniej jednym.
   \subfloat[\texttt{$\varphi$ --> $\psi$}]{
     \includegraphics[width=0.3\textwidth]{img/uppaal-tctl-5}
   }
-  \caption{Własności TCTL}
+  \caption{Własności TCTL.}
   \label{img:tctl-props}
 \end{figure}
 
@@ -725,20 +756,6 @@ Analogicznie, zapytanie \texttt{inf} podaje najmniejszą osiągalną wartość.
 \addcontentsline{toc}{chapter}{Bibliografia}
 \bibliography{bib.bib}{}
 \bibliographystyle{plalpha}
-
-
-% \begin{thebibliography}{99}
-% % http://ops.fhwa.dot.gov/publications/fhwahop06006/form_dot_1700.htm
-% \bibitem[FHWA06]{handbook} Robert L. Gordon, Warren Tighe,
-% \textit{Traffic Control Systems Handbook}, Federal Highway
-% Administration, 2006.
-
-% % http://ops.fhwa.dot.gov/publications/fhwahop08024/doc_page.htm
-% \bibitem[FHWA08]{timing} Peter Koonce i in., \textit{Traffic Signal
-%   Timing Manual}, Federal Highway Administration, 2008.
-
-% \end{thebibliography}
-
 \end{document}
 
 %%% Local Variables:
