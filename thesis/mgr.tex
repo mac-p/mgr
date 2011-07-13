@@ -4,12 +4,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage[pdftex]{graphicx}
 
-
 \usepackage{subfig} % Subfigures
 \usepackage{color}
 \usepackage{ntheorem} % Definitions
-\usepackage{sidecap}
-%\usepackage[pdfpagelabels, draft, implicit=false]{hyperref}
+\usepackage{sidecap} % Side captions to figures
+\usepackage{multicol}
+\usepackage{listings}
+
 
 \author{Maciej Pazurkiewicz}
 \nralbumu{248267}
@@ -40,12 +41,12 @@
 czasowe, Uppaal}
 
 %--------------------------------------------------------------------------
-% Moje makra
+% My macros
 %--------------------------------------------------------------------------
 \newcommand{\ang}[1]{(ang.~\emph{#1})}
 \newcommand{\imgr}[1]{rys.~\ref{#1}}
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
-
+\newcommand{\todocite}{\todo{[source]}}
 \newcommand{\upp}{\textsc{Uppaal}}
 
 %Math mode
@@ -58,6 +59,26 @@ czasowe, Uppaal}
 \theorempostwork{\bigskip\end{samepage}}
 \newtheorem{definition}{Definicja}
 
+%Listings
+\lstdefinelanguage{Signals} {}
+
+\lstset{
+  basicstyle=\tt, extendedchars = true,
+  keywordstyle=\underbar,
+  emphstyle=\bf,
+  %columns=fullflexible,
+  xleftmargin=1cm,
+  captionpos=b, abovecaptionskip=12pt, belowcaptionskip=12pt,
+  delim=**[is][\ttfamily]{|}{|},
+  mathescape=true,
+  belowskip=.5cm,
+  aboveskip=.5cm,
+  language=Signals,
+}
+\definecolor{light-gray}{gray}{0.40}
+\newcommand{\com}[1]{\upshape\color{light-gray}{#1}}
+
+%--------------------------------------------------------------------------
 
 \begin{document}
 \maketitle
@@ -755,6 +776,234 @@ Analogicznie, zapytanie \texttt{inf} podaje najmniejszą osiągalną wartość.
 
 \chapter{Język modelowania}
 
+\todo{Wstępniak!}
+
+\section{Poszczególne warstwy opisu}
+
+Forma zaproponowanego języka modelowania jest prosta i bazuje na
+formacie YAML\todocite. Sprawia to, że jest ona zarówno czytelna dla
+człowieka jak i łatwa w przetwarzaniu maszynowym. Opis w każdej
+warstwie jest po prostu słownikiem wartości odpowiednich
+
+\paragraph{Elementy wstępne}
+Aby uprościć dalszy opis wprowadzamy następujące pomocnicze typy danych:
+\lstset{
+  emph={movement, id, user, length, intervals, red_amber, amber,
+    red_clear, green, max_green, min_green, gap, movements, hold,
+    late, flashing, max_time, phases, rest},
+  emph=[2]{movement, phase, cycle},
+  emphstyle=[2]\underbar,
+  morecomment=[l][\color{light-gray}]{//},
+  extendedchars=true,
+  texcl=true,
+  frame=lines
+}
+\begin{lstlisting}
+   mvmt_id  == int[0..m]   // \com{m -- liczba potoków}
+   phase_id == int[0..p]   // \com{p -- liczba faz}
+   time                    // \com{długość odcinka czasu}
+\end{lstlisting}
+
+\paragraph{Potok ruchu}
+Na poziomie potoku definiujemy jego identyfikator, typ uczestnika
+ruchu (\texttt{user}) oraz długości poszczególnych interwałów.  Dla
+sygnału zielonego o zmiennej długości określamy parametry
+\emph{minimalny zielony} (\texttt{min\_green}) oraz \emph{wydłużenie}
+(\texttt{gap}). Jeśli jego długość jest stała wystarczy proste
+określenie typu \texttt{time}\footnote{Standardowo w sygnalizacji
+  wzbudzanej sygnał zielony ma zmienną długość dla pojazdów i stałą --
+dla pieszych. Takie rozwiązanie przedstawiono w listingu. Oczywiście
+nic nie stoi na przeszkodzie, aby potokowi pojazdów także przypisać
+stałą długość sygnału zielonego.}.
+
+\noindent\begin{minipage}{1.0\linewidth}
+\begin{lstlisting}[caption=Schemat opisu potoku pojazdów.]
+movement
+   id:     mvmt_id
+   user:   VEHICLE
+   intervals:
+      green:
+         min_green: time
+         gap:       time
+      red_amber: time
+      amber:     time
+      red_clear: time
+\end{lstlisting}
+\end{minipage}
+
+\noindent\begin{minipage}{1.0\linewidth}
+\begin{lstlisting}[caption=Schemat opisu dla potoku pieszych.]
+movement
+   id:     mvmt_id
+   user:   PEDESTRIAN
+   intervals:
+      green    : time
+      flashing : time
+      red_clear: time
+\end{lstlisting}
+\end{minipage}
+
+\paragraph{Faza} Specyfikacja dla fazy obejmuje przede wszystkim jej
+unikalny identyfikator oraz listę składających się na nią potoków.
+Gdy przynajmniej jeden z potoków należących do fazy ma zmienną długość
+okresu aktywności, należy zdefiniować parametr maksymalny zielony
+(\texttt{max\_time}).  Dodatkowo dla faz wielopotokowych zdefiniować
+można listy potoków:
+\begin{itemize}
+  \item dla których stosowana będzie procedura podtrzymania sygnału
+  (lista \texttt{hold});
+  \item dla których zgłoszenia późne będą -- w miarę możliwości --
+  obsługiwane w bieżącym okresie aktywności fazy (lista \texttt{late}).
+\end{itemize}
+\noindent\begin{minipage}{1.0\linewidth}
+\begin{lstlisting}[caption=Schemat opisu fazy.]
+phase:
+   id: phase_id
+   movements: list of mvmt_id
+   max_time : time
+   hold: list of mvmt_id
+   late: list of mvmt_id
+\end{lstlisting}
+\end{minipage}
+
+\paragraph{Cykl} Podstawowym elementem definicji cyklu jest
+uporządkowana lista faz wchodzących w jego skład. Dodatkowo określić
+należy zachowanie się sygnalizacji w stanie spoczynku (parametr
+\texttt{rest}). Wartością tego parametru może być identyfikator fazy,
+która ma być wtedy obsługiwana, bądź stała \texttt{REST-IN-RED},
+oznaczająca nadawanie sygnału czerwonego wszystkim potokom.
+
+\noindent\begin{minipage}{1.0\linewidth}
+\begin{lstlisting}[caption=Schemat opisu cyklu.]
+cycle:
+   phases: list of phase_id
+   rest: phase_id | REST-IN-RED
+\end{lstlisting}
+\end{minipage}
+  
+\paragraph{Przykład kompletnej specyfikacji}
+
+\section{Modele}
+
+\subsection{Założenia}
+\todo{Zdanie wstępne}
+
+Część z nich wynika z samej istoty modelowania tj. upraszczania
+rzeczywistości. Przyjęto następujące założenia o ruchu pojazdów i
+pracy czujników:
+\begin{itemize}
+  \item każde zgłoszenie przyjęte w trakcie interwału zielonego uważa
+  się za obsłużone tj. pojazd, od którego pochodzi, opuszcza
+  skrzyżowanie;
+  \item każde zgłoszenie przyjęte poza interwałem zielonym będzie
+  obsłużone w przyszłości tj. w końcu zostanie wyświetlony sygnał zielony.
+\end{itemize}
+Możemy zatem określić następującą własność żywotności, której
+spełnienia będziemy oczekiwali od stworzonych modeli sygnalizacji:
+przyjęcie zgłoszenia oznacza, że albo sygnał zielony jest właśnie
+wyświetlany, albo zostanie on w końcu wyświetlony. Pomijamy te
+scenariusze, w których czujnik zostanie wzbudzony w trakcie interwału
+zielonego, lecz pojazdowi nie uda się opuścić skrzyżowanania.
+
+Źródłem następnego założenia jest formalizm automatów czasowych. Nie
+nakłada on żadnych ograniczeń na czas, który upływa pomiędzy
+wykonaniem kolejnych tranzycji. Sprawia to, że możliwy jest
+scenariusz, w którym nieskończenie wiele tranzycji zostanie wykonanych
+w skończonym odcinku czasu (w szczególności -- zerowym). Modele, w
+których on zachodzi nazywamy \emph{zenonowskimi}\todocite.
+Potencjalnie zenonowskie są naszych systemach automaty reprezentujące
+interakcję ze środowiskiem zewnętrznym, czyli czujniki. Aby wykluczyć
+ich niepożądane biegi, nie pozwalamy na wzbudzenie czujnika częściej
+niż co jedną jednostkę czasu (patrz \imgr{img:models-zeno}). Można to
+odnieść do rzeczywistości poprzez uznanie, że bardzo bliskie w czasie
+wzbudzenia zlepiane są w jedno.
+\todo{img:models-zeno}
+
+\subsection{Decyzje projektowe}
+\subsection{Modele}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/models-hierarchy}
+  \caption{Zależności między poszczególnymi komponentami modelu.}
+  \label{img:hierarchy}
+\end{figure}
+
+\subsubsection{Kontroler potoku}
+Kontroler potoku odpowiada za sterowanie pracą jednego sygnalizatora.
+Komponent jest złożony z jednego automatu, którego struktura jest
+ściśle związana z nadawanymi sygnałami. Mamy zatem wierzchołek dla
+każdego sygnału o stałej długości oraz zestaw wierzchołków dla
+sygnałów o zmiennej długości. Wśród wierzchołków ,,zielonych''
+wyróżniamy:
+\begin{itemize}
+  \item \texttt{InitialGreen} -- część początkowa,
+  \item \texttt{ExtGreen} -- cześć rozszerzalna przed wykryciem luki,
+  \item \texttt{GappedOut} -- cześć rozszerzalna po wykryciu luki (w przypadku, gdy dla
+  potoku włączona jest opcja podtrzymania wierzchołek ten jest
+  natychmiast opuszczany; w przeciwnym przypadku automat przebywa w
+  nim aż do otrzymania polecenia zakończenia od kontrolera fazy)
+  \item \texttt{Rest} -- stan spoczynku.
+\end{itemize}
+Natomiast sygnał czerwony związany jest z następującymi wierzchołkami:
+\begin{itemize}
+  \item \texttt{RedClear} -- okres czyszczenia
+  \item \texttt{RedNoDemand} -- potok nieaktywny, brak zgłoszenia
+  \item \texttt{RedWaiting} -- potok nieaktywny, przyjęto zgłoszenie
+  od czujnika
+\end{itemize}
+Podstawowy schemat pracy kontrolera jest następujący:
+
+
+
+\subsubsection{Kontroler fazy}
+\todo{Składa się z dwóch automatów. Wydzielenie zegara maksymalnego...}
+Podstawowy cykl funkcjonowania kontrolera przebiega następująco:
+(\imgr{img:models-phase}):
+\begin{enumerate}
+  \item Kontroler przyjmuje zgłoszenie od jednego z potoków i
+  przekazuje informacje o zgłoszeniu przeciwnym kontrolerowi aktywnej
+  fazy (lub kontrolerowi cyklu w przypadku spoczynku w czerwonym).
+  \item Kontroler dostaje polecenie startu od kontrolera cyklu,
+  przekazuje je tym kontrolerom potoków, które zgłosiły
+  zapotrzebowanie. Jeśli już w tym momencie jest zapotrzebowanie
+  przeciwne, uruchamiany jest zegar czasu maksymalnego.
+  \item Kontroler przechodzi w główny stan cyklu, w którym obsługuje
+  następujące komunikaty od kontrolerów potoków:
+  \begin{itemize}
+    \item informacje o wykryciu luki,
+    \item informacje o zakończeniu pracy,
+    \item zgłoszenia późne.
+  \end{itemize}
+  Konkretne działanie podejmowane w każdym z powyższych przypadków
+  zależą od wybranych opcji. Jeśli zgłoszenie przeciwne nie zostało
+  obsłużone wcześniej, to może zostać obsłużone w tym stanie
+  (tj. uruchomiony będzie zegar czasu maksymalnego).
+  \item Aktywność fazy może zostać zakończona z dwóch powodów:\todo{Dopisać.}
+  \begin{itemize}
+    \item W momencie, gdy każdy z kontrolerów potoku przekazał
+    informację bądź o wykryciu luki bądź o zakończeniu pracy,
+    kontroler fazy przechodzi w ostatni etap swojej pracy. Wysyła
+    wszystkim podtrzymanym potokom polecenie zakończenia pracy i po
+    otrzymaniu potwierdzenia jej zakończenia sam przechodzi w jeden ze
+    stanów nieaktywności, informując o tym kontroler cyklu.
+  \end{itemize}
+\end{enumerate}
+Podobnie jak na poziomie opisu, działanie kontrolera fazy
+jednopotokowej jest znacznie prostsze. Zapewnia on jedynie poprawną
+pracę zegara czasu maksymalnego, nie pełni natomiast funkcji
+związanych z koordynacją wielu potoków (tj. zgłoszeń późnych i podtrzymania).
+
+\todo{Należy podkreślić fakt, że kontrolery fazy są komponentami
+  niezależnymi czasowo.}
+
+\subsubsection{Kontroler cyklu}
+Funkcjonowanie kontrolera cyklu..
+Kontroler uruchamia fazę na którą jest zapotrzebowanie, następnie zaś
+czeka na potwierdzenie zakończenia jej aktywności.
+
+\subsubsection{Podsumowanie}
+
 
 \addcontentsline{toc}{chapter}{Bibliografia}
 \bibliography{bib.bib}{}
@@ -764,7 +1013,7 @@ Analogicznie, zapytanie \texttt{inf} podaje najmniejszą osiągalną wartość.
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master:
-t~%%% coding: utf-8
+%%% coding: utf-8
 %%% eval: (auto-fill-mode 1)
 %%% End:
 

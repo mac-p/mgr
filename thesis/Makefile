@@ -16,4 +16,4 @@ $(PDF_IMG): %.pdf: %.svg
 mgr.pdf: mgr.tex bib.bib $(PDF_IMG)
 	pdflatex $< && bibtex mgr && pdflatex $< && pdflatex $<
 clean:
-	rm -f *.{aux,log,nav,out,snm,toc,pdf,bbl,blg} $(PDF_IMG)
+	rm -f *.{aux,log,nav,out,snm,toc,pdf,bbl,blg,thm} $(PDF_IMG)

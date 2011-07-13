@@ -110,7 +110,9 @@ Definicje
    podstawą dla języka modelowania systemów sygnalizacji.
 
 * Język
-Najważniejszy rozdział w pracy.
+
+*Co chciałbym uczynić tym rozdziałem?*
+   
    * o przydatności formalnego języka modelarskiego
    * pożądane cechy języka opisu modeli
      - aparat pojęciowy stosowany przez ludzi zajmujących się sygnalizacją
@@ -143,8 +145,16 @@ Najważniejszy rozdział w pracy.
 	  - ew. z przejściem dla pieszych
 	  - wszystkie własności powinny się tu ładnie weryfikować
 
-* Eksperymenty (weryfikacja)
-  * weryfikacja jakościowa
+* Eksperymenty    
+** Co chciałbym uczynić tymże rozdziałem?
+   - pokazać, że moje modele są poprawne
+   - pokazać, że optymalizacje, których dokonałem rzeczywiścier działają
+   - pokazać, w jaki sposób eksperymenty mogą przydać się użytkownikowi języka
+     - weryfikacja ilościowa
+     - rozszerzanie modeli o własne rzeczy
+   - pokazać ciekawe fakty o weryfikacji w UPPAAL-u
+
+** Elementy rozdziału
     - cechy ekstensjonalne (dla każdego modelu sygnalizacji świetlnej)
       + bezpieczeństwo (brak kolizji)
       + żywotność (każde żądanie zostanie zrealizowane)
@@ -158,11 +168,13 @@ Najważniejszy rozdział w pracy.
     - początkowa zieleń
   * weryfikacja a zasoby (czyli być może także o tym, czego się nie
     udało zweryfikować i co z tym zrobić)
-  * myśli
+  *myśli*
     + Weryfikacja własności ogólnych własności bezpieczeństwa jest
       prosta. Wystarczy przybliżenie z góry i kilka sekund.
     + Weryfikacja 'not deadlock' mówi bardzo dużo o systemie. Jak
       sformalizować to przemyślenie?
+
+
 * Podsumowanie
 
 # LocalWords:  FHWA UPPAAL
