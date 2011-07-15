@@ -10,7 +10,9 @@
 \usepackage{sidecap} % Side captions to figures
 \usepackage{multicol}
 \usepackage{listings}
-
+\usepackage{rotating} % Sideway figures
+\usepackage{array} % Tables
+\usepackage{url}
 
 \author{Maciej Pazurkiewicz}
 \nralbumu{248267}
@@ -48,6 +50,7 @@ czasowe, Uppaal}
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
 \newcommand{\todocite}{\todo{[source]}}
 \newcommand{\upp}{\textsc{Uppaal}}
+\newcommand{\rarr}{$\rightarrow$}
 
 %Math mode
 \newcommand{\pair}[2]{\langle #1, #2 \rangle}
@@ -776,8 +779,8 @@ Analogicznie, zapytanie \texttt{inf} podaje najmniejszą osiągalną wartość.
 
 \chapter{Język modelowania}
 
-\todo{Wstępniak!}
 
+\section{Pożądane cechy języka modelowania}
 \section{Poszczególne warstwy opisu}
 
 Forma zaproponowanego języka modelowania jest prosta i bazuje na
@@ -883,11 +886,11 @@ cycle:
   
 \paragraph{Przykład kompletnej specyfikacji}
 
-\section{Modele}
+\chapter{Modele}
 
-\subsection{Założenia}
-\todo{Zdanie wstępne}
+\section{Założenia}
 
+Już 
 Część z nich wynika z samej istoty modelowania tj. upraszczania
 rzeczywistości. Przyjęto następujące założenia o ruchu pojazdów i
 pracy czujników:
@@ -911,16 +914,43 @@ wykonaniem kolejnych tranzycji. Sprawia to, że możliwy jest
 scenariusz, w którym nieskończenie wiele tranzycji zostanie wykonanych
 w skończonym odcinku czasu (w szczególności -- zerowym). Modele, w
 których on zachodzi nazywamy \emph{zenonowskimi}\todocite.
-Potencjalnie zenonowskie są naszych systemach automaty reprezentujące
-interakcję ze środowiskiem zewnętrznym, czyli czujniki. Aby wykluczyć
+Potencjalnie zenonowskie są naszych systemach automaty modelujące
+zachowanie środowiska zewnętrznym, czyli czujniki. Aby wykluczyć
 ich niepożądane biegi, nie pozwalamy na wzbudzenie czujnika częściej
 niż co jedną jednostkę czasu (patrz \imgr{img:models-zeno}). Można to
-odnieść do rzeczywistości poprzez uznanie, że bardzo bliskie w czasie
+odnieść do rzeczywistości, uznając, że bardzo bliskie w czasie
 wzbudzenia zlepiane są w jedno.
 \todo{img:models-zeno}
 
-\subsection{Decyzje projektowe}
-\subsection{Modele}
+\section{Decyzje projektowe}
+Modelowanie złożonych systemów przy pomocy automatów czasych powinno w
+jak największym stopniu spełniać następujące zasady:
+\begin{enumerate}
+  \item Model powinien dobrze odzwierciedlać oczekiwane zachowania systemu.
+\end{enumerate}
+
+
+
+\section{Modele}
+Proponowany model systemu sygnalizacji świetlnej składa się z
+komponentów, będących wydzielonymi jednostkami o określonej
+odpowiedzialności. Rolę komponentu odgrywa jeden bądź dwa ściśle
+powiązane automaty czasowe. Wszystkie komponenty można podzielić na
+dwie grupy:
+\begin{itemize}
+  \item komponenty reprezentujące elementy systemu biorące udział w
+  interakcji ze środowiskiem zewnętrznym,
+  \item komponenty reprezentujące elementy układu sterowania.
+\end{itemize}
+Do pierwszej grupy należą czujniki i sygnalizatory, do drugiej zaś --
+kontrolery. Dla każdego poziomu opisu systemu tj. potoku, fazy oraz
+cyklu przewidziano jeden zarządzający nim kontroler.
+
+Komponenty tworzą strukturę warstwową (patrz \imgr{img:hierarchy}). Do
+komunikacji dochodzi w zasadzie tylko pomiędzy sąsiadującymi
+warstwami. Co więcej, jest to struktura hierarchiczna: komponent
+wysyła polecenia jednemu bądź większej liczbie swoich komponentów
+podrzędnych oraz otrzymuje je od swojego komponentu nadrzędnego.
 
 \begin{figure}[h]
   \centering
@@ -929,20 +959,24 @@ wzbudzenia zlepiane są w jedno.
   \label{img:hierarchy}
 \end{figure}
 
-\subsubsection{Kontroler potoku}
-Kontroler potoku odpowiada za sterowanie pracą jednego sygnalizatora.
-Komponent jest złożony z jednego automatu, którego struktura jest
-ściśle związana z nadawanymi sygnałami. Mamy zatem wierzchołek dla
-każdego sygnału o stałej długości oraz zestaw wierzchołków dla
-sygnałów o zmiennej długości. Wśród wierzchołków ,,zielonych''
-wyróżniamy:
+\subsection{Czujniki i sygnalizatory}
+
+Sygnalizator jest komponentem
+
+\subsection{Kontroler potoku}
+
+Kontroler potoku zarządza pracą sygnalizatora oraz odbiera zgłoszenia
+lod czujnika. Jego ro
+
+\paragraph{Struktura} Funkcję kontrolera potoku pełni jeden automat,
+którego struktura jest ściśle związana z nadawanymi sygnałami. Mamy
+zatem wierzchołek dla każdego sygnału o stałej długości oraz zestaw
+wierzchołków dla sygnałów o zmiennej długości. Wśród wierzchołków
+,,zielonych'' wyróżniamy:
 \begin{itemize}
   \item \texttt{InitialGreen} -- część początkowa,
   \item \texttt{ExtGreen} -- cześć rozszerzalna przed wykryciem luki,
-  \item \texttt{GappedOut} -- cześć rozszerzalna po wykryciu luki (w przypadku, gdy dla
-  potoku włączona jest opcja podtrzymania wierzchołek ten jest
-  natychmiast opuszczany; w przeciwnym przypadku automat przebywa w
-  nim aż do otrzymania polecenia zakończenia od kontrolera fazy)
+  \item \texttt{GappedOut} -- cześć rozszerzalna po wykryciu luki,
   \item \texttt{Rest} -- stan spoczynku.
 \end{itemize}
 Natomiast sygnał czerwony związany jest z następującymi wierzchołkami:
@@ -952,58 +986,154 @@ Natomiast sygnał czerwony związany jest z następującymi wierzchołkami:
   \item \texttt{RedWaiting} -- potok nieaktywny, przyjęto zgłoszenie
   od czujnika
 \end{itemize}
-Podstawowy schemat pracy kontrolera jest następujący:
-
-
-
-\subsubsection{Kontroler fazy}
-\todo{Składa się z dwóch automatów. Wydzielenie zegara maksymalnego...}
-Podstawowy cykl funkcjonowania kontrolera przebiega następująco:
-(\imgr{img:models-phase}):
+Praca kontrolera potoku nadzorowana jest przez dwa zegary:
+\begin{itemize}
+  \item \texttt{fixed\_t} -- odpowiada za interwały (bądź ich części) o
+  stałej długości,
+  \item \texttt{gap\_t} -- odpowiada za długość części rozszerzalnej
+  interwału zielonego; w momencie otrzymania zgłoszenia jest on
+  resetowany, zatem osiągnięcie przezeń wartości równej wydłużeniu
+  oznacza wykrycie luki.
+\end{itemize}
+\paragraph{Bazowy schemat funkcjonowania} Podstawowy cykl pracy
+kontrolera potoku wzbudzanego przebiega następująco:
 \begin{enumerate}
-  \item Kontroler przyjmuje zgłoszenie od jednego z potoków i
+  \item Kontroler otrzymuje zgłoszenie od czujnika (\texttt{act?}) i przekazuje
+  informację o zapotrzebowaniu do kontrolera fazy (\texttt{call!}).
+  \item Kontroler odbiera polecenie startu od kontrolera fazy
+  (\texttt{go?}) i przechodzi w stan aktywności.
+  \item Kontroler zarządza nadanie sygnału czerwono-żółtego, a
+  następnie części początkowej sygnału zielonego (\texttt{chg!})
+  \item Po zakończeniu części początkowej, kontroler przechodzi do
+  części rozszerzalnej; trwa ona aż do momentu, w którym zajdzie jeden
+  z dwóch warunków:
+  \begin{itemize}
+    \item zostanie wykryta luka; informacja o tym jest wysyłana do
+    kontrolera fazy (\url{gapped_out!});
+    \item kontroler fazy wyśle informację o osiągnięciu czasu
+    maksymalnego (\texttt{maxed\_out?}).
+  \end{itemize}
+  \item Kontroler zarządzanie kolejno nadanie sygnału żółtego i
+  czerwonego-czyszczącego (\texttt{chg!}), po czym zgłasza zakończenie pracy
+  kontrolerowi fazy (\texttt{gone\_off!}).
+\end{enumerate}
+\begin{sidewaysfigure}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/models-mvmt}
+  \caption{Model kontrolera potoku dla pojazdów.}
+  \label{img:mvmt-ctrl}
+\end{sidewaysfigure}
+
+\subsection{Kontroler fazy}
+Kontroler fazy zarządza funkcjonowaniem zależnych od siebie
+kontrolerów potoków, przede wszystkim poprzez wysyłanie im poleceń
+rozpoczęcia i zakończenia pracy.
+
+\paragraph{Struktura} Kontroler fazy składa się z dwóch
+automatów. Pierwszy z nich odpowiada za logikę, zaś drugi wyłącznie za
+odmierzanie czasu maksymalnego. Główny automat komunikuje się z
+automatem-zegarem wysyłając mu polecenia \url{timer_on} i
+\url{timer_off}. Podział komponentu na dwie części pozwolił na
+zmniejszenie liczby wierzchołków i ogólne uproszczenie konstrukcji.
+
+Główna część kontrolera fazy składa się z następujących wierzchołków:
+\begin{itemize}
+  \item \url{Inactive} -- faza nieaktywna, brak zapotrzebowania;
+  \item \url{InactiveWaiting} -- faza nieaktywna, oczekiwanie na
+  polecenie startu;
+  \item \url{Active} -- faza aktywna;
+  \item \url{GoingOff} -- oczekiwanie na potwierdzenia zakończenia
+  pracy przez potoki.
+\end{itemize}
+W jego skład wchodzą także poniższe zmienne:
+\begin{itemize}
+  \item \url{mvmts_on : int} -- liczba aktywnych potoków,
+  \item \url{mvmts_not_out : int} -- liczba potoków, w których nie wykryto luki,
+  \item \url{call_arr[mvmts] : bool} -- dane o zapotrzebowaniu,
+  \item \url{held[mvmts] : bool} -- dane o podtrzymanych sygnałach,
+  \item \url{timer_set : bool} -- informacja o aktywności zegara czasu
+  maksymalnego
+\end{itemize}
+
+\paragraph{Bazowy schemat działania} Podstawowy cykl funkcjonowania
+kontrolera przebiega następująco: (\imgr{img:models-phase}):
+\begin{enumerate}
+  \item Kontroler przyjmuje zgłoszenie od jednego z potoków (\url{call?}) i
   przekazuje informacje o zgłoszeniu przeciwnym kontrolerowi aktywnej
-  fazy (lub kontrolerowi cyklu w przypadku spoczynku w czerwonym).
-  \item Kontroler dostaje polecenie startu od kontrolera cyklu,
-  przekazuje je tym kontrolerom potoków, które zgłosiły
-  zapotrzebowanie. Jeśli już w tym momencie jest zapotrzebowanie
-  przeciwne, uruchamiany jest zegar czasu maksymalnego.
+  fazy lub kontrolerowi cyklu w przypadku spoczynku w czerwonym (\url{opp!}).
+  \item Kontroler dostaje polecenie startu od kontrolera cyklu
+  (\url{start?}), przekazuje je tym kontrolerom potoków, które
+  zgłosiły zapotrzebowanie (\url{go!}). Jeśli już w tym momencie jest
+  zapotrzebowanie przeciwne, uruchamiany jest zegar czasu
+  maksymalnego.
   \item Kontroler przechodzi w główny stan cyklu, w którym obsługuje
   następujące komunikaty od kontrolerów potoków:
   \begin{itemize}
-    \item informacje o wykryciu luki,
-    \item informacje o zakończeniu pracy,
-    \item zgłoszenia późne.
+    \item informacje o wykryciu luki (\url{gapped_out?}),
+    \item informacje o zakończeniu pracy (\url{gone_off?}),
+    \item zgłoszenia późne (\url{call?}).
   \end{itemize}
   Konkretne działanie podejmowane w każdym z powyższych przypadków
   zależą od wybranych opcji. Jeśli zgłoszenie przeciwne nie zostało
   obsłużone wcześniej, to może zostać obsłużone w tym stanie
   (tj. uruchomiony będzie zegar czasu maksymalnego).
-  \item Aktywność fazy może zostać zakończona z dwóch powodów:\todo{Dopisać.}
+  \item Aktywność fazy może zostać zakończona z dwóch powodów:
   \begin{itemize}
-    \item W momencie, gdy każdy z kontrolerów potoku przekazał
-    informację bądź o wykryciu luki bądź o zakończeniu pracy,
-    kontroler fazy przechodzi w ostatni etap swojej pracy. Wysyła
-    wszystkim podtrzymanym potokom polecenie zakończenia pracy i po
-    otrzymaniu potwierdzenia jej zakończenia sam przechodzi w jeden ze
-    stanów nieaktywności, informując o tym kontroler cyklu.
+    \item każdy z kontrolerów przekazał informację o wykryciu luki
+    bądź o zakończeniu pracy,
+    \item osiągnięty został czas maksymalny.
   \end{itemize}
+  W chwili wystąpienia jednego z tych warunków kontroler przechodzi w
+  ostatni etap swojej pracy. Wysyła wszystkim potokom, które nadal
+  wyświetlają sygnał zielony (w szczególności -- podtrzymanym)
+  polecenie zakończenia pracy (\url{go_off!}) i czeka na otrzymanie
+  potwierdzenie jego wykonania (\url{gone_off?}). Następnie przechodzi
+  w jeden ze stanów nieaktywności, informując o tym kontroler cyklu
+  (\url{finished!}).
 \end{enumerate}
-Podobnie jak na poziomie opisu, działanie kontrolera fazy
-jednopotokowej jest znacznie prostsze. Zapewnia on jedynie poprawną
-pracę zegara czasu maksymalnego, nie pełni natomiast funkcji
-związanych z koordynacją wielu potoków (tj. zgłoszeń późnych i podtrzymania).
 
-\todo{Należy podkreślić fakt, że kontrolery fazy są komponentami
-  niezależnymi czasowo.}
+\subsection{Kontroler cyklu}
+Kontroler cyklu jest najprostszym z przedstawionych elementem
+sterowania sygnalizacją. Uruchamia pierwszą kolejności fazę,
+na którą jest zapotrzebowanie, następnie zaś czeka na potwierdzenie
+zakończenia jej aktywności. Gdy nie ma zapotrzebowania na żadną fazę
+kontroler przechodzi w stan spoczynku bądź uruchamia fazę spoczynkową.
 
-\subsubsection{Kontroler cyklu}
-Funkcjonowanie kontrolera cyklu..
-Kontroler uruchamia fazę na którą jest zapotrzebowanie, następnie zaś
-czeka na potwierdzenie zakończenia jej aktywności.
+\subsection{Podsumowanie}
 
-\subsubsection{Podsumowanie}
+\renewcommand{\arraystretch}{1.4}
+\begin{table}
+  \centering
+  \begin{tabular}{>{\scshape}r|p{0.35\textwidth}|>{\ttfamily}p{0.25\textwidth}}
+    \firsthline\firsthline
+    \textbf{Komponenty} & \textbf{Komunikat} & \textnormal{\bfseries Nazwa kanału} \\ \hline
+    Czujnik \rarr\ Potok & zgłoszenie & act[mvmt\_id] \\ \hline
+    Potok \rarr\ Sygnalizator & polecenie zmiany sygnału & chg[mvmt\_id]
+    \\ \hline
+    Potok \rarr\ Faza & zgłoszenie zapotrzebowania & call[phase\_id] \\
+                      & informacja o wykryciu luki & gapped\_out[phase\_id] \\
+                      & potwierdzenie zakończenia aktywności & gone\_off[phase\_id]
+    \\ \hline
+    Faza \rarr\ Potok & polecenie startu & go[mvmt\_id] \\
+                      & polecenie zakończenia & go\_off[mvmt\_id] \\
+                      & osiągnięcie czasu maksymalnego & maxed\_out[phase\_id]
+    \\ \hline
+    Faza \rarr\ Faza & zgłoszenie przeciwne & opp
+    \\ \hline
+    Cykl \rarr\ Faza & polecenie startu & start \\ \hline
+    Faza \rarr\ Cykl & potwierdzenie zakończenia aktywności & finished \\
+    \hline\hline
+  \end{tabular}
+  \caption{Komunikacja między komponentami}
+  \label{tab:models-comm}
+\end{table}
 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/models-msc}
+  \caption{Schemat komunikacji pomiędzy procesami}
+  \label{img:models-msc}
+\end{figure}
 
 \addcontentsline{toc}{chapter}{Bibliografia}
 \bibliography{bib.bib}{}
