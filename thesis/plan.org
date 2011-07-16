@@ -132,7 +132,8 @@ Definicje
      - o Zenonie z Elei
    * dyskusja zakresu (jakie systemy można zamodelować)
      i rozszerzalności (jakie systemy można by zamodelować)
-   * modele
+
+* Modele
      - podział na komponenty, opis ich odpowiedzialności i komunikacji między nimi
        (wyżej poziomowe spojrzenie na moje modele; ważne, bo same automaty czasem _wydają się_ dosyć skomplikowane)
      - automaty wchodzące w skład poszczególnych komponentów
@@ -145,11 +146,39 @@ Definicje
 	  - ew. z przejściem dla pieszych
 	  - wszystkie własności powinny się tu ładnie weryfikować
 
+** Dlaczego to co robię dobre?
+
+** Dlaczego język dobry?
+ 1. Dostajemy precyzyjny opis o ustalonej semantyce.
+ 2. Coś o jasno zdefiniowanym znaczeniu jest na pewno cennym elementem
+    projektu.
+ 3. Ustalona semantyka daje możliwość zastosowania metod formalnych
+    czy też jakiegokolwiek rodzaju automatycznego przetwarzania.
+
+Jak ktoś może chcieć z tego korzystać:
+ 1. Wygenerowany model może być podstawą projektu rzeczywistego
+    systemu.
+ 2. Wygenerowany model może spełniać
+
+** Modele
+Oczekiwania:
+ 1. Chcemy dobrze zamodelować (odzwierciedlić)
+    1. zachowania systemu
+    2. zachowania środowiska (tu pewnie największa abstrakcja)
+    3. strukturę systemu (żeby łatwiej było przełożyć
+ 2. Chcemy aby modele spełniały ogólne zasady dobrego projektu
+    1. Dzięki temu będą utrzymywalne
+    2. Dzięki temu będzie można je oglądać (a to może być całkiem
+       pomocne nawet dla tych co nie znają formalizmu.
+ 3. Chcemy aby były weryfikowalne, czyli nie nazbyt skomplikowane.
+
 * Eksperymenty    
 ** Co chciałbym uczynić tymże rozdziałem?
    - pokazać, że moje modele są poprawne
-   - pokazać, że optymalizacje, których dokonałem rzeczywiścier działają
-   - pokazać, w jaki sposób eksperymenty mogą przydać się użytkownikowi języka
+   - pokazać, że optymalizacje, których dokonałem rzeczywiścier
+     działają
+   - pokazać, w jaki sposób eksperymenty mogą przydać się
+     użytkownikowi języka
      - weryfikacja ilościowa
      - rozszerzanie modeli o własne rzeczy
    - pokazać ciekawe fakty o weryfikacji w UPPAAL-u
@@ -167,8 +196,7 @@ Definicje
     - maksymalny czas oczekiwania na realizację żądania
     - początkowa zieleń
   * weryfikacja a zasoby (czyli być może także o tym, czego się nie
-    udało zweryfikować i co z tym zrobić)
-  *myśli*
+    udało zweryfikować i co z tym zrobić) *myśli*
     + Weryfikacja własności ogólnych własności bezpieczeństwa jest
       prosta. Wystarczy przybliżenie z góry i kilka sekund.
     + Weryfikacja 'not deadlock' mówi bardzo dużo o systemie. Jak
@@ -187,3 +215,55 @@ Rozszerzamy je o zgłoszenie, zgłoszenie przeciwne
 
 Opowiadamy o detekcji
 
+
+
+
+Jakie cele sobie stawiam?
+
+Chciałbym pokazać, że metody formalne są przydatne i zaproponować
+konkretny sposób korzystania z nich.
+
+Tym konkretnym sposobem jest dołożenie warstwy pośredniej między
+system a jego formalny model.
+
+Tę warstwę pośrednią stanowi formalny opis systemu.
+
+
+Jestem jakimś gościem od sygnalizacji świetlnej, co może mi dać praca
+Maćka?
+
+Mam w ręku modele automatów w UPPAAL-u, co one dają?
+ * Mogę po zaprojektowaniu mojego modelu zweryfikować ilościowo jego
+   własności:
+   - Zwłaszcza takie typu sup/inf:
+     * najdłuższy czas oczekiwania (dla potoku, dla fazy)
+     * minimalny czas między zielonymi,
+     * minimalna długość kompletnego cyklu.
+ * Mogę pooglądać sobie działanie na symulatorze
+   - W szczególności zobaczyć ścieżki, generujące powyższe
+     "maksymalne" własności.
+
+Co dodatkowego mi daje to, że mam język?
+ * Precyzyjny opis systemu zrozumiały dla mas.
+ * Pozwala na bardzo szybkie generowanie formalnych modeli, zmianę ich
+   parametrów itp.
+   - szybko,
+   - trudniej się pomylić,
+ * Przydaje się, gdyż czasem chcemy wzbogacić nasz model o jakieś
+   dodatki potrzebne do konkretnej weryfikacji.
+
+
+Co Ty Maćku na takie coś:
+ 1. Dodać rozdział o dobroci wynikającej z modelowania automatami
+    czasowymi (uppaalowskimi automatami czasowymi) do rozdziału o TA.
+ 2. Do rozdziału o języku dodać informację o tym, jaką wartość dodaną
+    może on stanowić
+
+Chyba zamiast rozdziału o pożądanych cechach lepiej taki, szczególnie,
+że te pożądane cechy to zalety. Czyżby?
+
+A może przynajmniej akapit: co byśmy chcieli i potem co by nam to
+dało
+
+No i wtedy w rozdziale o modelach dajemy, ze zeby było fajnie to
+musimy zaprojektować to w taki sposób.

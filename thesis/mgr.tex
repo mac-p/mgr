@@ -12,7 +12,7 @@
 \usepackage{listings}
 \usepackage{rotating} % Sideway figures
 \usepackage{array} % Tables
-\usepackage{url}
+\usepackage{url} %Proper line breaking for typewriter-style texts
 
 \author{Maciej Pazurkiewicz}
 \nralbumu{248267}
@@ -779,10 +779,59 @@ Analogicznie, zapytanie \texttt{inf} podaje najmniejszą osiągalną wartość.
 
 \chapter{Język modelowania}
 
+Choć modelowanie systemów czasu rzeczywistego -- w szczególności
+systemów sygnalizacji świetlnej -- automatami czasowymi niesie ze sobą
+wiele korzyści, jest ono niewątpliwie zadaniem skomplikowanym i
+czasochłonnym. Pewnym ułatwieniem byłoby wprowadzenie warstwy
+pośredniej pomiędzy docelowy system a jego formalny model.  W
+proponowanym rozwiązaniu rolę tej warstwy odgrywa specyfikacja systemu
+wykonanana w zaprojektowanym do tego celu języku modelowaniu.
 
-\section{Pożądane cechy języka modelowania}
+Podrozdział \ref{c:lang:req} przedstawia podstawowe wymagania, które
+powinien spełniać język formalnego modelowania oraz korzyści, któryc
+
+\section{Wymagania i korzyści}
+\label{c:lang:req}
+
+\subsection{Wymagania}
+Na wstępie należy zaznaczyć, że celem jest zaprojektowanie
+wysokopoziomowego języka służącego wyłącznie do opisu systemów
+sygnalizacji świetlnej, nie zaś języka modelowania ogólnego
+przeznaczenia. Zawężenie dziedziny prowadzi bowiem do uproszczenia
+języka i dostosowania go w jak największym stopniu do konkretnych
+potrzeb.
+
+Kluczowym wymaganiem stawianym projektowanemu językowi jest
+możliwość automatycznego przełożenia stworzonych w nim specyfikacji na
+model składający s
+
+Należy
+jednak zadbać jednocześnie o to, aby był on dostatecznie elastyczny,
+by w przyjętej formie można było przedstawić jak najliczniejszy zbiór
+stosowanych bądź potencjalnych rozwiązań z zakresu sygnalizacji
+świetlnej. Kolejnym ważnym wymaganiem jest oparcie składni na
+istniejącej terminologii wykorzystywanej w dziedzinie. Terminy mogą
+zostać usystematyzowane, można doprecyzować ich znaczenie, natomiast
+należy unikać wprowadzania zupełnie nowych.
+
+\subsection{Oczekiwane korzyści}
+Formalny opis w języku spełniającym powyższe wymagania powinien
+stanowić realną wartość dodaną w projekcie systemu sygnalizacji
+świetlnej. Przede wszystkim dlatego, że stanowi on uporządkowaną
+specyfikacją precyzyjnie określającą sposób jego funkcjonowania: w
+razie wątpliwości można się zawsze odnieść do wygenerowanego modelu.
+Po drugie automatyczna generacja modeli pozwoli na szybkie i
+pozbawione błędów modyfikowanie projektu i ponowną weryfikację jego
+własności. Formalne opisy oraz wygenerowane modele mogą być także
+wykorzystywane jako podstawa do wprowadzania własnych rozszerzeń już
+na poziomie automatów czasowych.
+
+Zauważmy, że wprowadzenie warstwy pośredniej nie tylko ułatwia
+modelowanie automatami czasowymi osobom znającym ten formalizm, ale
+także daje dostęp do korzyści wynikających z jego stosowania osobom
+z nim niezaznajomionym.
+
 \section{Poszczególne warstwy opisu}
-
 Forma zaproponowanego języka modelowania jest prosta i bazuje na
 formacie YAML\todocite. Sprawia to, że jest ona zarówno czytelna dla
 człowieka jak i łatwa w przetwarzaniu maszynowym. Opis w każdej
@@ -923,11 +972,39 @@ wzbudzenia zlepiane są w jedno.
 \todo{img:models-zeno}
 
 \section{Decyzje projektowe}
-Modelowanie złożonych systemów przy pomocy automatów czasych powinno w
-jak największym stopniu spełniać następujące zasady:
-\begin{enumerate}
+
+Modelowanie przy pomocy automatów czasowych odgrywają kluczową rolę
+w zaproponowanej metodzie projektowania i weryfikacji systemów
+sygnalizacji świetlnej. 
+
+\begin{itemize}
   \item Model powinien dobrze odzwierciedlać oczekiwane zachowania systemu.
-\end{enumerate}
+  \item spełniać ogólne zasady dobrego projektowania systemów
+  \item być czytelny
+  \item być weryfikowalny.
+\end{itemize}
+
+\paragraph{Ogólne zasady dobrego projektu}
+Duża część wymagań stawianych modelom nie różni się od wymagań
+stawianym pozostałym elementom projektu oraz właściwego systemu
+informatycznego. Są to m.in.~własności takie jak: utrzymywalność,
+łatwość dalszego rozwoju czy konfiguracji modelu. W celu ich
+realizacji należy oprzeć się na ogólnie znanych wzorcach dotyczących
+poprawnego projektowania aplikacji.
+
+Podstawowym elementem projektu jest właściwy podział systemu na
+moduły. Należy zadbać o to, aby poszczególne moduły miały ściśle
+określony zakres odpowiedzialności oraz jasno zdefiniowany interfejs,
+pozwalający w jak największym stopniu uniezależnić je od pozostałych.
+\todo{Dopisać}
+
+\paragraph{Wzorce projektowe dla automatów czasowych} Poza ogólnymi 
+zasadami dobrego projektowania, należy wziąć pod uwagę także te
+związane z formalizmem automatów czasowych.
+
+jawna i taka sama komunikacja.
+
+
 
 
 
