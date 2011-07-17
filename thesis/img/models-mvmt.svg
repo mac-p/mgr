@@ -1,0 +1,777 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg-20010904.dtd">
+
+<svg x="0px" y="0px" width="1266px" height="548px" viewBox="0 0 1266 548" stroke="#333333" stroke-opacity="1.0" fill="none" stroke-width="1" stroke-linecap="square" >
+<title>
+
+</title>
+<desc>
+<Title></Title>
+<Creator>FreeHEP Graphics2D Driver</Creator>
+<Producer>org.freehep.graphicsio.svg.SVGGraphics2D Revision: 1.16 </Producer>
+<Source></Source>
+<Date>czwartek, 14 lipiec 2011 18:32:56 CEST</Date>
+</desc>
+<defs>
+<!-- Symbols for use with SVGGraphics (generic format) -->
+<!-- Author: Mark Donszelmann -->
+<!-- Version: $Id: SVGDefs.txt,v 1.1 2002/07/30 19:11:30 duns Exp $ -->
+
+<symbol id="hline" viewBox="-50 -50 100 100">
+  <path d="M -50 0 H 50"/>
+</symbol>
+
+<symbol id="vline" viewBox="-50 -50 100 100">
+  <path d="M 0 -50 V 50"/>
+</symbol>
+
+<symbol id="plus" viewBox="-50 -50 100 100">
+  <path d="M -50 0 H 50 M 0 -50 V 50"/>
+</symbol>
+
+<symbol id="cross" viewBox="-50 -50 100 100">
+  <use xlink:href="#plus" transform="rotate(45)translate(-51,-51)"/>
+</symbol>
+
+<symbol id="star" viewBox="-50 -50 100 100">
+  <use xlink:href="#plus" transform="translate(-50,-50)"/>
+  <use xlink:href="#cross" transform="translate(-52,-51)"/>
+</symbol>
+
+<symbol id="dot" viewBox="-50 -50 100 100">
+  <circle cx="0" cy="0" r="50"/>
+</symbol>
+
+<!-- sqrt(2)*s -->
+<symbol id="box" viewBox="-50 -50 100 100">
+  <rect x="-35.5" y="-35.5" width="71" height="71"/>
+</symbol>
+
+<!-- 1/sqrt(3) and sqrt(3)/2 - 1/sqrt(3) -->
+<symbol id="triup" viewBox="-50 -50 100 100">
+  <path d="M -50 36 L 0 -50 L 50 36 z"/> 
+</symbol>
+
+<symbol id="tridn" viewBox="-50 -50 100 100">
+  <use xlink:href="#triup" transform="rotate(180)translate(-50,-50)"/>
+</symbol>
+
+<symbol id="diamond" viewBox="-50 -50 100 100">
+  <use xlink:href="#box" transform="rotate(45)translate(-50,-50)"/>
+</symbol>
+<!-- Symbols for use with SVGGraphics (stylable format) -->
+<!-- Author: Mark Donszelmann -->
+<!-- Version: $Id: SVGDefs-stylable.txt,v 1.1 2002/07/30 19:11:30 duns Exp $ -->
+
+<symbol id="fdot">
+  <use xlink:href="#dot" style="stroke:none;fill:currentColor"/>
+</symbol>
+
+<symbol id="fbox">
+  <use xlink:href="#box" style="stroke:none;fill:currentColor"/>
+</symbol>
+
+<symbol id="ftriup">
+  <use xlink:href="#triup" style="stroke:none;fill:currentColor"/>
+</symbol>
+
+<symbol id="ftridn">
+  <use xlink:href="#tridn" style="stroke:none;fill:currentColor"/>
+</symbol>
+
+<symbol id="fdiamond">
+  <use xlink:href="#diamond" style="stroke:none;fill:currentColor"/>
+</symbol>
+</defs>
+
+<g stroke="#333333" stroke-opacity="1.0" fill="none" stroke-width="1" stroke-linecap="square" >
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="12" >
+<g transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)">
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="12" >
+<g stroke-width="1.0" >
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-miterlimit="10.0" >
+<g stroke-dasharray="none" stroke-dashoffset="0.0" >
+<rect stroke="none" fill="#ffffff" fill-opacity="1.0"  x="0.0" y="0.0" width="0.0" height="0.0"/>
+<g transform="matrix(1.0,0.0,0.0,1.0,914.0,393.0)">
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#a742a8" fill-opacity="1.0"  x="-352.0" y="-11.0">
+fixed_t &lt;= RED_CLEAR
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#a742a8" fill-opacity="1.0"  x="-112.0" y="-11.0">
+fixed_t &lt;= AMBER
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#a742a8" fill-opacity="1.0"  x="152.0" y="-235.0">
+gap_t &lt;= GAP
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#a742a8" fill-opacity="1.0"  x="-440.0" y="-195.0">
+fixed_t &lt;= INIT_GREEN - GAP
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#a742a8" fill-opacity="1.0"  x="-800.0" y="-227.0">
+fixed_t &lt;= RED_AMBER
+</text>
+<g stroke="none" fill="#00ff00" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M -380.0 -360.0 C -380.0 -353.372583 -385.372583 -348.0 -392.0 -348.0 C -398.627417 -348.0 -404.0 -353.372583 -404.0 -360.0 C -404.0 -366.627417 -398.627417 -372.0 -392.0 -372.0 C -385.372583 -372.0 -380.0 -366.627417 -380.0 -360.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -380.0 -360.0 C -380.0 -353.372583 -385.372583 -348.0 -392.0 -348.0 C -398.627417 -348.0 -404.0 -353.372583 -404.0 -360.0 C -404.0 -366.627417 -398.627417 -372.0 -392.0 -372.0 C -385.372583 -372.0 -380.0 -366.627417 -380.0 -360.0 z "/>
+</g> <!-- draw -->
+<g stroke="none" fill="#a5afcd" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M -604.0 40.0 C -604.0 46.627417 -609.372583 52.0 -616.0 52.0 C -622.627417 52.0 -628.0 46.627417 -628.0 40.0 C -628.0 33.372583 -622.627417 28.0 -616.0 28.0 C -609.372583 28.0 -604.0 33.372583 -604.0 40.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -604.0 40.0 C -604.0 46.627417 -609.372583 52.0 -616.0 52.0 C -622.627417 52.0 -628.0 46.627417 -628.0 40.0 C -628.0 33.372583 -622.627417 28.0 -616.0 28.0 C -609.372583 28.0 -604.0 33.372583 -604.0 40.0 z "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -612.786062 36.169778 C -614.814929 34.467357 -617.819359 34.642345 -619.636868 36.568792 C -621.454377 38.495239 -621.454377 41.504761 -619.636868 43.431208 C -617.819359 45.357655 -614.814929 45.532643 -612.786062 43.830222 "/>
+</g> <!-- draw -->
+<g stroke="none" fill="#ff0000" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M -604.0 128.0 C -604.0 134.627417 -609.372583 140.0 -616.0 140.0 C -622.627417 140.0 -628.0 134.627417 -628.0 128.0 C -628.0 121.372583 -622.627417 116.0 -616.0 116.0 C -609.372583 116.0 -604.0 121.372583 -604.0 128.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -604.0 128.0 C -604.0 134.627417 -609.372583 140.0 -616.0 140.0 C -622.627417 140.0 -628.0 134.627417 -628.0 128.0 C -628.0 121.372583 -622.627417 116.0 -616.0 116.0 C -609.372583 116.0 -604.0 121.372583 -604.0 128.0 z "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -608.0 128.0 C -608.0 132.418278 -611.581722 136.0 -616.0 136.0 C -620.418278 136.0 -624.0 132.418278 -624.0 128.0 C -624.0 123.581722 -620.418278 120.0 -616.0 120.0 C -611.581722 120.0 -608.0 123.581722 -608.0 128.0 z "/>
+</g> <!-- draw -->
+<g stroke="none" fill="#a5afcd" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M -604.0 -136.0 C -604.0 -129.372583 -609.372583 -124.0 -616.0 -124.0 C -622.627417 -124.0 -628.0 -129.372583 -628.0 -136.0 C -628.0 -142.627417 -622.627417 -148.0 -616.0 -148.0 C -609.372583 -148.0 -604.0 -142.627417 -604.0 -136.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -604.0 -136.0 C -604.0 -129.372583 -609.372583 -124.0 -616.0 -124.0 C -622.627417 -124.0 -628.0 -129.372583 -628.0 -136.0 C -628.0 -142.627417 -622.627417 -148.0 -616.0 -148.0 C -609.372583 -148.0 -604.0 -142.627417 -604.0 -136.0 z "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -612.786062 -139.830222 C -614.814929 -141.532643 -617.819359 -141.357655 -619.636868 -139.431208 C -621.454377 -137.504761 -621.454377 -134.495239 -619.636868 -132.568792 C -617.819359 -130.642345 -614.814929 -130.467357 -612.786062 -132.169778 "/>
+</g> <!-- draw -->
+<g stroke="none" fill="#ff0000" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M -604.0 -56.0 C -604.0 -49.372583 -609.372583 -44.0 -616.0 -44.0 C -622.627417 -44.0 -628.0 -49.372583 -628.0 -56.0 C -628.0 -62.627417 -622.627417 -68.0 -616.0 -68.0 C -609.372583 -68.0 -604.0 -62.627417 -604.0 -56.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -604.0 -56.0 C -604.0 -49.372583 -609.372583 -44.0 -616.0 -44.0 C -622.627417 -44.0 -628.0 -49.372583 -628.0 -56.0 C -628.0 -62.627417 -622.627417 -68.0 -616.0 -68.0 C -609.372583 -68.0 -604.0 -62.627417 -604.0 -56.0 z "/>
+</g> <!-- draw -->
+<g stroke="none" fill="#ff0000" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M -348.0 -48.0 C -348.0 -41.372583 -353.372583 -36.0 -360.0 -36.0 C -366.627417 -36.0 -372.0 -41.372583 -372.0 -48.0 C -372.0 -54.627417 -366.627417 -60.0 -360.0 -60.0 C -353.372583 -60.0 -348.0 -54.627417 -348.0 -48.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -348.0 -48.0 C -348.0 -41.372583 -353.372583 -36.0 -360.0 -36.0 C -366.627417 -36.0 -372.0 -41.372583 -372.0 -48.0 C -372.0 -54.627417 -366.627417 -60.0 -360.0 -60.0 C -353.372583 -60.0 -348.0 -54.627417 -348.0 -48.0 z "/>
+</g> <!-- draw -->
+<g stroke="none" fill="#ffff00" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M -108.0 -48.0 C -108.0 -41.372583 -113.372583 -36.0 -120.0 -36.0 C -126.627417 -36.0 -132.0 -41.372583 -132.0 -48.0 C -132.0 -54.627417 -126.627417 -60.0 -120.0 -60.0 C -113.372583 -60.0 -108.0 -54.627417 -108.0 -48.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -108.0 -48.0 C -108.0 -41.372583 -113.372583 -36.0 -120.0 -36.0 C -126.627417 -36.0 -132.0 -41.372583 -132.0 -48.0 C -132.0 -54.627417 -126.627417 -60.0 -120.0 -60.0 C -113.372583 -60.0 -108.0 -54.627417 -108.0 -48.0 z "/>
+</g> <!-- draw -->
+<g stroke="none" fill="#a5afcd" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M 140.0 -48.0 C 140.0 -41.372583 134.627417 -36.0 128.0 -36.0 C 121.372583 -36.0 116.0 -41.372583 116.0 -48.0 C 116.0 -54.627417 121.372583 -60.0 128.0 -60.0 C 134.627417 -60.0 140.0 -54.627417 140.0 -48.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 140.0 -48.0 C 140.0 -41.372583 134.627417 -36.0 128.0 -36.0 C 121.372583 -36.0 116.0 -41.372583 116.0 -48.0 C 116.0 -54.627417 121.372583 -60.0 128.0 -60.0 C 134.627417 -60.0 140.0 -54.627417 140.0 -48.0 z "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 131.213938 -51.830222 C 129.185071 -53.532643 126.180641 -53.357655 124.363132 -51.431208 C 122.545623 -49.504761 122.545623 -46.495239 124.363132 -44.568792 C 126.180641 -42.642345 129.185071 -42.467357 131.213938 -44.169778 "/>
+</g> <!-- draw -->
+<g stroke="none" fill="#00ff00" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M 140.0 -144.0 C 140.0 -137.372583 134.627417 -132.0 128.0 -132.0 C 121.372583 -132.0 116.0 -137.372583 116.0 -144.0 C 116.0 -150.627417 121.372583 -156.0 128.0 -156.0 C 134.627417 -156.0 140.0 -150.627417 140.0 -144.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 140.0 -144.0 C 140.0 -137.372583 134.627417 -132.0 128.0 -132.0 C 121.372583 -132.0 116.0 -137.372583 116.0 -144.0 C 116.0 -150.627417 121.372583 -156.0 128.0 -156.0 C 134.627417 -156.0 140.0 -150.627417 140.0 -144.0 z "/>
+</g> <!-- draw -->
+<g stroke="none" fill="#00ff00" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M 140.0 -240.0 C 140.0 -233.372583 134.627417 -228.0 128.0 -228.0 C 121.372583 -228.0 116.0 -233.372583 116.0 -240.0 C 116.0 -246.627417 121.372583 -252.0 128.0 -252.0 C 134.627417 -252.0 140.0 -246.627417 140.0 -240.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 140.0 -240.0 C 140.0 -233.372583 134.627417 -228.0 128.0 -228.0 C 121.372583 -228.0 116.0 -233.372583 116.0 -240.0 C 116.0 -246.627417 121.372583 -252.0 128.0 -252.0 C 134.627417 -252.0 140.0 -246.627417 140.0 -240.0 z "/>
+</g> <!-- draw -->
+<g stroke="none" fill="#00ff00" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M -380.0 -240.0 C -380.0 -233.372583 -385.372583 -228.0 -392.0 -228.0 C -398.627417 -228.0 -404.0 -233.372583 -404.0 -240.0 C -404.0 -246.627417 -398.627417 -252.0 -392.0 -252.0 C -385.372583 -252.0 -380.0 -246.627417 -380.0 -240.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -380.0 -240.0 C -380.0 -233.372583 -385.372583 -228.0 -392.0 -228.0 C -398.627417 -228.0 -404.0 -233.372583 -404.0 -240.0 C -404.0 -246.627417 -398.627417 -252.0 -392.0 -252.0 C -385.372583 -252.0 -380.0 -246.627417 -380.0 -240.0 z "/>
+</g> <!-- draw -->
+<g stroke="none" fill="#ffa500" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M -604.0 -240.0 C -604.0 -233.372583 -609.372583 -228.0 -616.0 -228.0 C -622.627417 -228.0 -628.0 -233.372583 -628.0 -240.0 C -628.0 -246.627417 -622.627417 -252.0 -616.0 -252.0 C -609.372583 -252.0 -604.0 -246.627417 -604.0 -240.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -604.0 -240.0 C -604.0 -233.372583 -609.372583 -228.0 -616.0 -228.0 C -622.627417 -228.0 -628.0 -233.372583 -628.0 -240.0 C -628.0 -246.627417 -622.627417 -252.0 -616.0 -252.0 C -609.372583 -252.0 -604.0 -246.627417 -604.0 -240.0 z "/>
+</g> <!-- draw -->
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#8c3863" fill-opacity="1.0"  x="-408.0" y="-379.0">
+Rest
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#8c3863" fill-opacity="1.0"  x="-744.0" y="133.0">
+RedNoDemand
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#8c3863" fill-opacity="1.0"  x="-712.0" y="-51.0">
+RedWaiting
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#8c3863" fill-opacity="1.0"  x="-352.0" y="-27.0">
+RedClear
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#8c3863" fill-opacity="1.0"  x="-112.0" y="-27.0">
+Amber
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#8c3863" fill-opacity="1.0"  x="136.0" y="-123.0">
+GappedOut
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#8c3863" fill-opacity="1.0"  x="152.0" y="-251.0">
+ExtGreen
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#8c3863" fill-opacity="1.0"  x="-440.0" y="-211.0">
+InitialGreen
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#8c3863" fill-opacity="1.0"  x="-712.0" y="-243.0">
+RedAmber
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-568.0" y="133.0">
+gone_off[pid]!
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-832.0" y="37.0">
+go[id]?
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-312.0" y="-347.0">
+end_rest?
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-352.0" y="29.0">
+act[id]?
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-112.0" y="29.0">
+act[id]?
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-8.0" y="-195.0">
+gapped_out[pid]!
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-672.0" y="77.0">
+act[id]?
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-752.0" y="-27.0">
+call[pid]!
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="128.0" y="-347.0">
+act[id]?
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-672.0" y="-187.0">
+chg[id]!
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-752.0" y="-107.0">
+go[id]?
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-568.0" y="-51.0">
+gone_off[pid]!
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-288.0" y="-67.0">
+chg[id]!
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-80.0" y="-83.0">
+chg[id]!
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="232.0" y="-131.0">
+maxed_out[pid]?
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="48.0" y="-83.0">
+go_off[id]?
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-592.0" y="-259.0">
+chg[id]!
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-568.0" y="109.0">
+fixed_t == RED_CLEAR 
+</text>
+<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-568.0" y="122.0">
+&amp;&amp; !stored_act
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-816.0" y="21.0">
+rest
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-600.0" y="-315.0">
+rest &amp;&amp;
+</text>
+<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-600.0" y="-302.0">
+fixed_t == INIT_GREEN - GAP
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-248.0" y="-283.0">
+!rest &amp;&amp;
+</text>
+<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-248.0" y="-270.0">
+fixed_t == INIT_GREEN - GAP
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-8.0" y="-211.0">
+gap_t == GAP
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-568.0" y="-83.0">
+fixed_t == RED_CLEAR 
+</text>
+<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-568.0" y="-70.0">
+&amp;&amp; stored_act
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-288.0" y="-83.0">
+fixed_t == AMBER
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-592.0" y="-275.0">
+fixed_t == RED_AMBER
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-912.0" y="53.0">
+service[id] = false
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-312.0" y="-331.0">
+gap_t = 0,
+</text>
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-312.0" y="-318.0">
+service[id] = true
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-248.0" y="-259.0">
+gap_t = 0,
+</text>
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-248.0" y="-246.0">
+service[id] = true
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-352.0" y="45.0">
+stored_act = true,
+</text>
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-352.0" y="58.0">
+demand[pid]++,
+</text>
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-352.0" y="71.0">
+service[id] = false
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-112.0" y="45.0">
+stored_act = true,
+</text>
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-112.0" y="58.0">
+demand[pid]++,
+</text>
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-112.0" y="71.0">
+service[id] = false
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-8.0" y="-179.0">
+who = id,
+</text>
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-8.0" y="-166.0">
+service[id] = false
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-744.0" y="93.0">
+demand[pid]++,
+</text>
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-744.0" y="106.0">
+service[id] = false
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-752.0" y="-11.0">
+call_arr[id] = true,
+</text>
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-752.0" y="2.0">
+who = id,
+</text>
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-752.0" y="15.0">
+stored_act = false,
+</text>
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-752.0" y="28.0">
+wait_t = 0
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="128.0" y="-331.0">
+gap_t = 0
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-696.0" y="-171.0">
+fixed_t = 0
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-752.0" y="-91.0">
+call_arr[id] = false,
+</text>
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-752.0" y="-78.0">
+demand[pid]--
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-288.0" y="-51.0">
+fixed_t = 0
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-80.0" y="-67.0">
+fixed_t = 0,
+</text>
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-80.0" y="-54.0">
+service[id] = true
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-592.0" y="-243.0">
+fixed_t = 0
+</text>
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -370.620575 -40.503117 L -487.830322 42.23317 Q -496.0 48.0 -504.320496 53.547001 L -605.18335 120.788895 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -598.582031 113.277397 L -605.18335 120.788895 L -595.710693 117.584412 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -616.0 141.0 L -616.0 142.0 Q -616.0 152.0 -626.0 152.0 L -774.0 152.0 Q -784.0 152.0 -784.0 142.0 L -784.0 -126.0 Q -784.0 -136.0 -774.0 -136.0 L -629.0 -136.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -638.659241 -133.411804 L -629.0 -136.0 L -638.659241 -138.588196 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -379.0 -360.0 L -146.0 -360.0 Q -136.0 -360.0 -126.896332 -355.861969 L 116.165237 -245.37944 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 106.300774 -247.020264 L 116.165237 -245.37944 L 108.442772 -251.732666 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -392.0 -253.0 L -392.0 -347.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -389.411804 -337.340729 L -392.0 -347.0 L -394.588196 -337.340729 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -379.0 -240.0 L 115.0 -240.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 105.340744 -237.411804 L 115.0 -240.0 L 105.340744 -242.588196 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -360.0 -35.0 L -360.0 62.0 Q -360.0 72.0 -370.0 72.0 L -382.0 72.0 Q -392.0 72.0 -389.42337 62.33765 L -363.349609 -35.438946 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -363.337646 -25.438953 L -363.349609 -35.438946 L -368.339233 -26.772713 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -120.0 -35.0 L -120.0 62.0 Q -120.0 72.0 -130.0 72.0 L -142.0 72.0 Q -152.0 72.0 -149.42337 62.33765 L -123.349617 -35.438946 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -123.337646 -25.438953 L -123.349617 -35.438946 L -128.339249 -26.772713 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 128.0 -227.0 L 128.0 -157.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 125.411812 -166.659256 L 128.0 -157.0 L 130.588196 -166.659256 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -616.0 115.0 L -616.0 53.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -613.411804 62.65926 L -616.0 53.0 L -618.588196 62.65926 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -616.0 27.0 L -616.0 -43.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -613.411804 -33.34074 L -616.0 -43.0 L -618.588196 -33.34074 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 128.0 -253.0 L 128.0 -318.0 Q 128.0 -328.0 138.0 -328.0 L 150.0 -328.0 Q 160.0 -328.0 156.582565 -318.602051 L 132.442657 -252.217316 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 133.311279 -262.179504 L 132.442657 -252.217316 L 138.17601 -260.410522 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -616.0 -149.0 L -616.0 -227.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -613.411804 -217.340744 L -616.0 -227.0 L -618.588196 -217.340744 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -616.0 -69.0 L -616.0 -123.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -613.411804 -113.340744 L -616.0 -123.0 L -618.588196 -113.340744 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -373.0 -48.0 L -478.0 -48.0 Q -488.0 -48.0 -496.240417 -42.334713 L -605.287476 32.635124 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -598.794128 25.0301 L -605.287476 32.635124 L -595.861511 29.295654 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -133.0 -48.0 L -347.0 -48.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -337.340729 -50.588192 L -347.0 -48.0 L -337.340729 -45.411808 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 115.0 -48.0 L -107.0 -48.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -97.340744 -50.588192 L -107.0 -48.0 L -97.340744 -45.411808 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 139.627548 -234.186218 L 215.055725 -196.472137 Q 224.0 -192.0 224.0 -182.0 L 224.0 -106.0 Q 224.0 -96.0 215.055725 -91.527863 L 139.627548 -53.813778 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 147.109589 -60.448475 L 139.627548 -53.813778 L 149.42453 -55.818581 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 128.0 -131.0 L 128.0 -61.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 125.411812 -70.659256 L 128.0 -61.0 L 130.588196 -70.659256 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -603.0 -240.0 L -405.0 -240.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -414.659271 -237.411804 L -405.0 -240.0 L -414.659271 -242.588196 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g transform="matrix(1.0,0.0,0.0,1.0,-914.0,-393.0)">
+</g> <!-- transform -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- transform -->
+</g> <!-- stroke dash -->
+</g> <!-- stroke limit -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke width -->
+</g> <!-- font -->
+</g> <!-- transform -->
+</g> <!-- top-level -->
+</g> <!-- font -->
+</svg> <!-- bounding box -->
