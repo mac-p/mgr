@@ -419,14 +419,13 @@ warstwach opisu.
     \item parametry decydujące o~długości interwału zielonego:
     \begin{itemize}
       \item minimalny zielony,
-      \item maksymalny zielony,
       \item wydłużenie;
     \end{itemize}
   \end{itemize}
   \item \textbf{Faza:}
   \begin{itemize}
     \item potoki składające się na fazę,
-    \item czas maksymalny,
+    \item maksymalny zielony,
     \item obsługa późnych zgłoszeń,
     \item podtrzymanie sygnału zielonego;
   \end{itemize}
@@ -656,7 +655,7 @@ diagramu komunikacji procesów trakcie symulacji
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.9\textwidth]{img/uppaal-msc.png}
+  \includegraphics[width=0.8\textwidth]{img/uppaal-msc.png}
   \caption{Generowany przez symulator \upp-a diagram komunikacji
     procesów \ang{message sequence chart}.}
   \label{img:uppaal-msc}
@@ -785,10 +784,10 @@ Analogicznie, zapytanie \texttt{inf} podaje najmniejszą osiągalną wartość.
 Choć modelowanie systemów czasu rzeczywistego -- w szczególności
 systemów sygnalizacji świetlnej -- automatami czasowymi niesie ze sobą
 wiele korzyści, może być ono zadaniem skomplikowanym i
-czasochłonnym. Pewnym ułatwieniem byłoby wprowadzenie warstwy
-pośredniej pomiędzy docelowy system a jego formalny model.  W
-proponowanym rozwiązaniu rolę tej warstwy odgrywa specyfikacja systemu
-wykonana w zaprojektowanym do tego celu języku modelowania.
+czasochłonnym. Wynika to ze swego rodzaju niskopoziomowości tego
+formalizmu. Rozwiązaniem tego problemu jest wprowadzenie
+sformalizowanego opisu stanowiącego warstwę pośrednią pomiędzy
+rzeczywistym systemem a jego modelem w języku automatów czasowych.
 
 Podrozdział \ref{c:lang:req} przedstawia podstawowe wymagania, które
 powinien spełniać język formalnego modelowania oraz potencjalne
@@ -800,33 +799,30 @@ korzyści wynikające z jego stosowania, natomiast podrozdział
 
 \subsection{Pożądane własności}
 
-\paragraph{Składnia} Aby dobrze odgrywać rolę warstwy pośredniej w
-weryfikacji systemów sygnalizacji świetlnej, projektowany język
-powinien być wysokopoziomowy i przeznaczony wyłącznie do opisu takich
-systemów; naszym celem nie jest stworzenie języka modelowania ogólnego
-przeznaczenia. Zawężenie dziedziny prowadzi bowiem do uproszczenia
-języka i dostosowania go w jak największym stopniu do konkretnych
-potrzeb. Należy jednak zadbać jednocześnie o to, aby był on
-dostatecznie elastyczny, by w przyjętej formie można było przedstawić
-jak najliczniejszy zbiór stosowanych bądź potencjalnych rozwiązań z
-zakresu sygnalizacji świetlnej. Kolejnym ważnym wymaganiem jest
-oparcie składni na istniejącej terminologii wykorzystywanej w
-dziedzinie. Terminy mogą zostać usystematyzowane, można doprecyzować
-ich znaczenie, natomiast należy unikać wprowadzania zupełnie nowych.
+Kluczowym wymaganiem stawianym specyfikacji w prezentowanym języku
+modelowania jest możliwość jej automatycznego przekształcenia w model
+w języku automatów czasowych. Po pierwsze daje to jednoznaczną
+semantykę takiego opisu: wątpliwości można rozstrzygnąć, symulując
+działanie modelu w wybranym scenariuszu. Po drugie zaś -- udostępnia
+korzyści wynikające z włączenia do projektu formalnych modeli bez
+potrzeby ich ręcznego konstruowania.
 
-\paragraph{Semantyka} Kluczowym wymaganiem co do semantyki specyfikacji
-jest możliwosć automatycznego jej przełożenia na model w języku
-automatów czasowych.
+Kolejnymi pożądanymi cechami omawianego języka modelowania są prostota
+i wysokopoziomowość. W celu ich zapewnienia należy zawęzić dziedzinę
+języka wyłącznie do systemów sygnalizacji świetlnej, dbając
+jednocześnie o to, aby był on dostatecznie elastyczny, by w przyjętej
+formie można było wyspecyfikować jak najliczniejszy zbiór stosowanych
+rozwiązań. Aby ułatwić modelowanie, składnia języka powinna być oparta
+na istniejącym aparacie pojęciowym.
 
 \subsection{Oczekiwane korzyści}
 \label{ss:lang:req:benefits}
 Formalny opis w języku spełniającym powyższe wymagania powinien
 stanowić realną wartość dodaną w projekcie systemu sygnalizacji
-świetlnej. Przede wszystkim dlatego, że stanowiłby on uporządkowaną
-specyfikację precyzyjnie określającą sposób jego funkcjonowania: w
-razie wątpliwości można się zawsze odnieść do wygenerowanego modelu.
-Po drugie automatyczna generacja modeli pozwoliłaby na szybkie i
-pozbawione błędów modyfikowanie projektu i ponowną weryfikację jego
+świetlnej. Przede wszystkim, byłby on usystematyzowaną
+specyfikacją precyzyjnie określającą sposób jego funkcjonowania. Po
+drugie automatyczna generacja modeli pozwoliłaby na szybkie i
+niepodatne na błędy modyfikowanie projektu oraz ponowną weryfikację jego
 własności. Formalne opisy oraz wygenerowane modele mogłyby być także
 wykorzystywane jako podstawa do wprowadzania własnych rozszerzeń już
 na poziomie automatów czasowych.
@@ -835,6 +831,9 @@ Zauważmy, że wprowadzenie warstwy pośredniej nie tylko ułatwiłoby
 modelowanie automatami czasowymi osobom znającym ten formalizm, ale
 także dałoby dostęp do korzyści wynikających z jego stosowania osobom
 z nim niezaznajomionym.
+
+% Przydaje się także do tego, że czasem chcemy dodać do modelu
+% coś co jest potrzebne tylko w weryfikacji.
 
 \section{Składnia}
 \label{c:lang:lang}
@@ -946,18 +945,71 @@ cycle:
 \end{minipage}
   
 \subsection{Przykład kompletnej specyfikacji}
-\todo{Napisać.}
+%\noindent\begin{minipage}{1.0\linewidth}
+\begin{lstlisting}[caption=Schemat opisu potoku pojazdów.]
+movement
+   id:     mvmt_id
+   user:   VEHICLE
+   intervals:
+      green:
+         min_green: time
+         gap:       time
+      red_amber: time
+      amber:     time
+      red_clear: time
 
+movement
+   id:     mvmt_id
+   user:   VEHICLE
+   intervals:
+      green:
+         min_green: time
+         gap:       time
+      red_amber: time
+      amber:     time
+      red_clear: time
+
+movement
+   id:     mvmt_id
+   user:   VEHICLE
+   intervals:
+      green:
+         min_green: time
+         gap:       time
+      red_amber: time
+      amber:     time
+      red_clear: time
+movement
+   id:     mvmt_id
+   user:   VEHICLE
+   intervals:
+      green:
+         min_green: time
+         gap:       time
+      red_amber: time
+      amber:     time
+      red_clear: time
+
+movement
+   id:     mvmt_id
+   user:   PEDESTRIAN
+   intervals:
+      green    : time
+      flashing : time
+      red_clear: time
+\end{lstlisting}
+%\end{minipage}
 \chapter{Modele}
+Kluczową kwestią niezbędną dla osiągnięcia pełni korzyści wymienionych
+w \ref{ss:lang:req:benefits} jest wysoka jakość generowanych
+modeli. Niniejszy rozdział przedstawia najważniejsze kwestie związane z
+ich konstrukcją.
 
-Kluczowym dla osiągnięcia korzyści przedstawionych w
-\ref{ss:lang:req:benefits} aspektem jest wysoka jakość generowanych
-modeli.
-
-Podrozdział \ref{s:models:assumptions} zawiera opis założeń, które
-przyjęto, tworząc modele. Podrozdział \ref{s:models:models}
-przedstawia ich konstrukcję oraz podstawowy schemat działania,
-natomiast \ref{s:models:project} omawia najważniejsze decyzje projektowe.
+Podrozdział \ref{s:models:assumptions} zawiera opis dodatkowych
+założeń, które przyjęto, projektując modele. Podrozdział
+\ref{s:models:models} przedstawia podział systemu na komponenty, ich
+strukturę oraz podstawowy schemat działania, natomiast
+\ref{s:models:project} omawia najważniejsze decyzje projektowe.
 
 \section{Założenia}
 \label{s:models:assumptions}
@@ -968,33 +1020,33 @@ formalizm przyjęty jako język modelowania.
 
 Przyjęto następujące założenia o ruchu pojazdów i pracy czujników:
 \begin{itemize}
-  \item każde zgłoszenie przyjęte w trakcie interwału zielonego uważa
-  się za obsłużone tj. pojazd, od którego pochodzi, opuszcza
-  skrzyżowanie;
-  \item każde zgłoszenie przyjęte poza interwałem zielonym będzie
-  obsłużone w przyszłości tj. w końcu zostanie wyświetlony sygnał zielony.
+  \item Każde zgłoszenie otrzymane w trakcie interwału zielonego uważa
+  się za obsłużone tj. przyjmuje się, że pojazd, od którego pochodzi,
+  opuszcza skrzyżowanie. Pominięte zostają scenariusze, w których
+  czujnik zostanie wzbudzony w trakcie interwału zielonego, lecz
+  pojazd nie opuści skrzyżowania.
+  \item Każde zgłoszenie przyjęte poza interwałem zielonym będzie
+  obsłużone w przyszłości tj. w końcu zostanie wyświetlony sygnał
+  zielony. Stanie się tak także wtedy, gdy właściwy pojazd opuści
+  skrzyżowanie wcześniej. 
 \end{itemize}
-Możemy zatem określić następującą własność żywotności, której
-spełnienia będziemy oczekiwali od stworzonych modeli sygnalizacji:
-przyjęcie zgłoszenia oznacza, że albo sygnał zielony jest właśnie
-wyświetlany, albo zostanie on w końcu wyświetlony. Pomijamy te
-scenariusze, w których czujnik zostanie wzbudzony w trakcie interwału
-zielonego, lecz pojazdowi nie uda się opuścić skrzyżowania oraz te w
-których pojazd, wzbudziwszy czujnik, opuszcza skrzyżowanie jeszcze
-przed wyświetleniem sygnału zielonego.
+Formalnym ujęciem powyższych założeń jest następująca własność
+żywotności, której spełnienia będziemy oczekiwali od stworzonych
+modeli sygnalizacji: przyjęcie zgłoszenia oznacza, że albo sygnał
+zielony jest właśnie wyświetlany, albo zostanie on w końcu
+wyświetlony.
 
 Źródłem następnego założenia jest formalizm automatów czasowych. Nie
-nakłada on żadnych ograniczeń na czas, który upływa pomiędzy
-wykonaniem kolejnych tranzycji. Sprawia to, że możliwy jest
-scenariusz, w którym nieskończenie wiele tranzycji zostanie wykonanych
-w skończonym odcinku czasu (w szczególności -- zerowym). Modele, w
-których on zachodzi nazywamy \emph{zenonowskimi} \cite{henz-94}.
-Potencjalnie zenonowskie są naszych systemach automaty modelujące
-zachowanie środowiska zewnętrznym, czyli czujniki. Aby wykluczyć ich
-niepożądane biegi, nie pozwalamy na wzbudzenie czujnika częściej niż
-co jedną jednostkę czasu (patrz \imgr{img:models-zeno}). Można to
-odnieść do rzeczywistości, uznając, że bardzo bliskie w czasie
-wzbudzenia zlepiane są w jedno.
+nakłada on żadnych ograniczeń na czas, który upływa pomiędzy kolejnymi
+tranzycjami, co sprawia, że możliwy jest scenariusz, w którym
+nieskończenie wiele tranzycji zostanie wykonanych w skończonym odcinku
+czasu (w szczególności -- zerowym). Modele, w których on zachodzi
+nazywamy \emph{zenonowskimi} \cite{henz-94}.  Potencjalnie zenonowskie
+są naszych systemach automaty modelujące zachowanie środowiska
+zewnętrznym, czyli czujniki. Aby wykluczyć ich niepożądane biegi, nie
+pozwalamy na wzbudzenie czujnika częściej niż co jedną jednostkę czasu
+(patrz \imgr{img:models-zeno}). Można to odnieść do rzeczywistości,
+uznając, że bardzo bliskie w czasie wzbudzenia zlepiane są w jedno.
 
 \begin{figure}
   \centering
@@ -1016,19 +1068,23 @@ odpowiedzialności. Rolę komponentu odgrywa jeden bądź dwa ściśle
 powiązane automaty czasowe. Wszystkie komponenty można podzielić na
 dwie grupy:
 \begin{itemize}
-  \item komponenty reprezentujące elementy systemu biorące udział w
-  interakcji ze środowiskiem zewnętrznym,
+  \item komponenty reprezentujące elementy systemu, które biorą udział
+  w interakcji ze środowiskiem zewnętrznym,
   \item komponenty reprezentujące elementy układu sterowania.
 \end{itemize}
 Do pierwszej grupy należą czujniki i sygnalizatory, do drugiej zaś --
-kontrolery. Dla każdego poziomu opisu systemu tj. potoku, fazy oraz
-cyklu przewidziano jeden zarządzający nim kontroler.
+kontrolery. Dla każdego poziomu opisu systemu, tj. potoku, fazy oraz
+cyklu, przewidziano jeden zarządzający nim kontroler.
 
 Komponenty tworzą strukturę warstwową (patrz \imgr{img:hierarchy}). Do
 komunikacji dochodzi w zasadzie tylko pomiędzy sąsiadującymi
 warstwami. Co więcej, jest to struktura hierarchiczna: komponent
 wysyła polecenia jednemu bądź większej liczbie swoich komponentów
 podrzędnych oraz otrzymuje je od swojego komponentu nadrzędnego.
+
+Sekcje \ref{ss:models:models:dets}-\ref{ss:models:models:ring}
+opisują strukturę i sposób funkcjonowania poszczególnych komponentów,
+natomiast \ref{ss:models:models:summary} podsumowuje ich komunikację.
 
 \begin{figure}[h]
   \centering
@@ -1038,7 +1094,7 @@ podrzędnych oraz otrzymuje je od swojego komponentu nadrzędnego.
 \end{figure}
 
 \subsection{Czujniki i sygnalizatory}
-
+\label{ss:models:models:dets}
 Komponenty należące do najniższej warstwy systemu są prostymi
 automatami czasowymi.
 Sygnalizatory nie zawierają żadnych elementów sterowania, przyjmują
@@ -1048,11 +1104,11 @@ kontrolerów potoku (patrz \imgr{img:lights}).
 \begin{figure}
   \centering
   \subfloat[Sygnalizator dla pojazdów]{
-    \includegraphics[width=0.3\textwidth]{img/models-light-car}
+    \includegraphics[width=0.35\textwidth]{img/models-light-car}
   }
   \hspace{1cm}
-  \subfloat[Sygnalizatory dla pieszych]{
-    \includegraphics[width=0.3\textwidth]{img/models-light-ped}
+  \subfloat[Sygnalizator dla pieszych]{
+    \includegraphics[width=0.35\textwidth]{img/models-light-ped}
   }
   \caption{Automaty reprezentujące sygnalizatory}
   \label{img:lights}
@@ -1084,13 +1140,24 @@ przycisku. Zwróćmy uwagę na fakt, że jest on jawnie resetowany
 Kontroler potoku zarządza pracą pojedynczego sygnalizatora poprzez
 decydowanie o długości wyświetlanych sygnałów (w ramach wyznaczonych
 przez odpowiedni kontroler fazy). Odbiera on również zgłoszenia od
-czujnika.
+odpowiedniego czujnika.
 
-\paragraph{Struktura} Funkcję kontrolera potoku pełni jeden automat,
-którego struktura jest ściśle związana z nadawanymi sygnałami (patrz
-\imgr{img:mvmt-ctrl}). Mamy zatem wierzchołek dla każdego sygnału o
-stałej długości oraz zestaw wierzchołków dla sygnałów o zmiennej
-długości. Wśród wierzchołków ,,zielonych'' wyróżniamy:
+Poniżej znajduje się opis modelu kontrolera w pełni wzbudzanego potoku
+dla pojazdów.
+\paragraph{Struktura} Funkcję kontrolera potoku pełni jeden automat o
+następujących parametrach:
+\begin{itemize}
+  \item \url{id} -- identyfikator potoku;
+  \item \url{pid} -- identyfikator fazy, w skład której wchodzi dany potok;
+  \item \url{RED_AMBER}, \url{INIT_GREEN}, \url{AMBER},
+  \url{RED_CLEAR}, \url{GAP} -- parametry decydujące o długości
+  poszczególnych sygnałów.
+\end{itemize}
+Struktura kontrolera potoków jest ściśle związana z nadawanymi
+sygnałami (patrz \imgr{img:mvmt-ctrl}). Mamy zatem wierzchołek dla
+każdego sygnału o stałej długości oraz zestaw wierzchołków dla
+sygnałów o zmiennej długości. Wśród wierzchołków ,,zielonych''
+wyróżniamy:
 \begin{itemize}
   \item \texttt{InitialGreen} -- część początkowa,
   \item \texttt{ExtGreen} -- cześć rozszerzalna przed wykryciem luki,
@@ -1126,17 +1193,16 @@ kontrolera potoku wzbudzanego przebiega następująco:
   części rozszerzalnej; trwa ona aż do momentu, w którym zajdzie jeden
   z dwóch warunków:
   \begin{itemize}
-    \item zostanie wykryta luka; informacja o tym jest wysyłana do
-    kontrolera fazy (\url{gapped_out!});
+    \item zostanie wykryta luka tj. zegar \url{gap_t} osiągnie wartość
+    \url{GAP}; informacja o tym jest wysyłana do kontrolera fazy
+    (\url{gapped_out!});
     \item kontroler fazy wyśle informację o osiągnięciu czasu
     maksymalnego (\texttt{maxed\_out?}).
   \end{itemize}
-  \item Kontroler zarządzanie kolejno nadanie sygnału żółtego i
+  \item Kontroler zarządza kolejno nadanie sygnału żółtego i
   czerwonego-czyszczącego (\texttt{chg!}), po czym zgłasza zakończenie pracy
   kontrolerowi fazy (\texttt{gone\_off!}).
 \end{enumerate}
-
-\todo{Nakreślić schemat pracy stałoczasowego kontrolera potoku.}
 
 \begin{sidewaysfigure}
   \centering
@@ -1149,6 +1215,7 @@ kontrolera potoku wzbudzanego przebiega następująco:
 Kontroler fazy zarządza funkcjonowaniem zależnych od siebie
 kontrolerów potoków, wyznaczając początek i maksymalny czas ich pracy.
 
+Poniżej opisano model wielopotokowego kontrolera fazy.
 \paragraph{Struktura} Kontroler fazy składa się z dwóch
 automatów. Pierwszy z nich odpowiada za logikę, zaś drugi wyłącznie za
 odmierzanie czasu maksymalnego. Główny automat komunikuje się z
@@ -1156,7 +1223,16 @@ automatem-zegarem wysyłając mu polecenia \url{timer_on} i
 \url{timer_off}. Podział komponentu na dwie części pozwolił na
 zmniejszenie liczby wierzchołków i ogólne uproszczenie jego konstrukcji.
 
-Główna część kontrolera fazy składa się z następujących wierzchołków:
+Główna część kontrolera fazy jest automatem o następujących
+parametrach:
+\begin{itemize}
+  \item \url{id} -- identyfikator fazy;
+  \item \url{m1}, \url{m2}, ... -- identyfikatory składających się na
+  nią potoków;
+  \item \url{MAX} -- maksymalny zielony.
+\end{itemize}
+Jak w typowym automacie sterującym, większość jej wierzchołków jest
+oznaczonych jako przymusowe; do pozostałych należą:
 \begin{itemize}
   \item \url{Inactive} -- faza nieaktywna, brak zapotrzebowania;
   \item \url{InactiveWaiting} -- faza nieaktywna, oczekiwanie na
@@ -1176,7 +1252,7 @@ W jego skład wchodzą także poniższe zmienne:
 \end{itemize}
 
 \paragraph{Bazowy schemat działania} Podstawowy cykl funkcjonowania
-kontrolera przebiega następująco: (\imgr{img:models-phase}):
+kontrolera przebiega następująco:
 \begin{enumerate}
   \item Kontroler przyjmuje zgłoszenie od jednego z potoków (\url{call?}) i
   przekazuje informacje o zgłoszeniu przeciwnym kontrolerowi aktywnej
@@ -1194,13 +1270,15 @@ kontrolera przebiega następująco: (\imgr{img:models-phase}):
     \item zgłoszenia późne (\url{call?}).
   \end{itemize}
   Konkretne działanie podejmowane w każdym z powyższych przypadków
-  zależą od wybranych opcji. Jeśli zgłoszenie przeciwne nie zostało
-  obsłużone wcześniej, to może zostać obsłużone w tym stanie
-  (tj. uruchomiony będzie zegar czasu maksymalnego).
+  zależą od wybranych opcji. Jeśli zgłoszenie przeciwne
+  (\url{opp?}) nie zostało obsłużone wcześniej, to może zostać
+  obsłużone w tym stanie tj. uruchomiony będzie zegar czasu
+  maksymalnego.
   \item Aktywność fazy może zostać zakończona z dwóch powodów:
   \begin{itemize}
     \item każdy z kontrolerów przekazał informację o wykryciu luki
-    bądź o zakończeniu pracy,
+    (\url{mvmts_not_out == 0}) bądź o zakończeniu pracy
+    (\url{mvmts_on == 0}),
     \item osiągnięty został czas maksymalny.
   \end{itemize}
   W chwili wystąpienia jednego z tych warunków kontroler przechodzi w
@@ -1212,8 +1290,6 @@ kontrolera przebiega następująco: (\imgr{img:models-phase}):
   (\url{finished!}).
 \end{enumerate}
 
-\todo{Nakreślić pracę prostszych (przede wszystkim jednopotokowych) kontrolerów.}
-
 \begin{sidewaysfigure}
   \centering
   \includegraphics[width=1.1\textwidth]{img/models-phasectrl}
@@ -1222,22 +1298,41 @@ kontrolera przebiega następująco: (\imgr{img:models-phase}):
 \end{sidewaysfigure}
 
 \subsection{Kontroler cyklu}
-Kontroler cyklu jest najprostszym z przedstawionych elementem
-sterowania sygnalizacją. Uruchamia pierwszą kolejności fazę,
-na którą jest zapotrzebowanie, następnie zaś czeka na potwierdzenie
-zakończenia jej aktywności. Gdy nie ma zapotrzebowania na żadną fazę
-kontroler przechodzi w stan spoczynku bądź uruchamia fazę spoczynkową.
+\label{ss:models:models:ring}
+Kontroler cyklu jest najprostszym z przedstawionych elementów
+sterowania sygnalizacją (patrz \imgr{img:ring-ctrl}). Jego jedynym
+parametrem jest \url{rest_ph} -- numer fazy spoczynkowej.
 
-\todo{Wstawić obrazek}
+Kontroler cyklu uruchamia pierwszą kolejności fazę, na którą
+jest zapotrzebowanie (\url{start!}), następnie zaś czeka na
+potwierdzenie zakończenia jej aktywności (\url{finished?}). Gdy nie ma
+zapotrzebowania na żadną fazę kontroler przechodzi w stan spoczynku
+bądź uruchamia fazę spoczynkową.
 
-\subsection{Podsumowanie pracy kontrolerów}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{img/models-ring}
+  \caption{Model kontrolera cyklu}
+  \label{img:ring-ctrl}
+\end{figure}
+
+\subsection{Podsumowanie}
+\label{ss:models:models:summary}
+% \todo{
+% mamy sobie hierarchię, każdy rządzi kimś i jest rządzony przez kogoś
+
+% kluczową rolę w sterowaniu odgrywają kontrolery potoku i fazy,
+% one zarządzają czasem
+
+% może i jest dużo komunikatów, ale pozwala to uniezależnić od siebie 
+% }
 
 Tabela \ref{tab:models:channels} podsumowuje najważniejsze kanały
 komunikacyjne modelu, natomiast \imgr{img:models:msc} przedstawia
 podstawowy schemat komunikacji.
 
 \renewcommand{\arraystretch}{1.4}
-\begin{table}[h]
+\begin{table}
   \centering
   \begin{tabular}{>{\scshape}r|p{0.35\textwidth}|>{\ttfamily}p{0.25\textwidth}}
     \firsthline\firsthline
@@ -1259,31 +1354,32 @@ podstawowy schemat komunikacji.
     Faza \rarr\ Cykl & potwierdzenie zakończenia aktywności & finished \\
     \hline\hline
   \end{tabular}
-  \caption{Komunikacja między komponentami}
+  \caption{Komunikacja między komponentami.}
   \label{tab:models:channels}
 \end{table}
 
-\begin{figure}[h]
+\begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{img/models-msc}
   \caption{Podstawowy schemat komunikacji pomiędzy procesami.}
-  \caption*{\todo{Opisać}}
+  \caption*{Schemat przedstawia komunikację w jednym cyklu aktywności
+    fazy. Dla uproszczenia pominięto komunikację kontrolera potoku z
+    sygnalizatorem oraz komunikację między komponentami fazy 2.}
   \label{img:models:msc}
 \end{figure}
 
 
 \section{Decyzje projektowe}
-\label{s:models:project};
+\label{s:models:project}
 
-Konstrukcja modelu wynika nie tylko z samej istoty postawionego
+Sposób konstrukcji modelu wynika nie tylko z samej istoty postawionego
 zadania, lecz także z pewnych ogólnych zasad inżynierii
 oprogramowania. Podjęte decyzje projektowe wynikają z dążenia do
 osiągnięcia następujących własności modelu:
-
 \begin{enumerate}
   \item możliwie dokładne odzwierciedlenie funkcjonowania docelowego systemu,
   \item konfigurowalność,
-  \item utrzymywalnośc i czytelność,
+  \item utrzymywalność i czytelność,
   \item weryfikowalność,
 \end{enumerate}
 Konstrukcja automatów przebiegała w dwóch etapach. W pierwszym,
@@ -1294,38 +1390,38 @@ automaty były optymalizowane.
 
 \subsection{Wstępna konstrukcja modelu}
 
-W pierwszym etapie pracy kierowano się przede wszystkim
-ogólnie znanymi zasadami prawidłowego projektowania oprogramowania.
-System został podzielony na komponenty, określono ich
-odpowiedzialności oraz interfejsy, przy pomocy których komunikują się
-z pozostałymi.
-
-% Podobnie jak należy czynić w ... , zadbano o unikanie powtarzania się tych
-% samych elementów struktury automatu w wielu miejscach.
-
-% W modelowaniu automatami czasowymi można zdefiniować przydatne wzorce
-% projektowe. Ich obszerny, poparty przykładami, opis odnaleźć można w
-% \todocite. 
-\todo{Dopisać ten rozdział}.
+W pierwszym etapie pracy system został podzielony na komponenty,
+określono ich odpowiedzialności oraz interfejsy, przy pomocy których
+komunikują się z pozostałymi. Kierowano się przede wszystkim ogólnie
+znanymi zasadami prawidłowego projektowania oprogramowania takimi jak
+ukrywanie wewnętrznej implementacji komponentów czy unikanie
+powtarzania się podobnych elementów struktury. Już na tym etapie
+należało zadbać o wydajność weryfikacji, co polegało m.in. na
+minimalizacji liczby zmiennych (przede wszystkim -- zegarowych) oraz
+oznaczaniu wierzchołków jako przymusowe.
 
 \subsection{Optymalizacja modeli}
 \label{s:models:opt}
 
-Poniżej przedstawiono najważniejsze z metod optymalizacji modeli.
+Celem optymalizacji modelu jest redukcja zasobów, tj. pamięci
+operacyjnej i czasu procesora, potrzebnych do zweryfikowania pewnych
+jego własności. Poniżej przedstawiono najważniejsze z zastosowanych metod.
 
 \paragraph{Minimalizacja liczby przeplotów} Podstawowym środkiem
 służącym optymalizacji modelu jest minimalizacja liczby możliwych
 przeplotów i -- co za tym idzie -- zmniejszenie przestrzeni stanów
-przeszukiwanej w czasie weryfikacji\footnote{Istność zmniejszania
-  liczby przeplotów jest tym większa, że w \upp-u nie zaimplementowano
+przeszukiwanej w czasie weryfikacji\footnote{Znaczenie ograniczania
+  liczby przeplotów jest tym większe, że w \upp-u nie zaimplementowano
   redukcji częściowo-porządkowych.}. Najprostszą metodą osiągnięcia
-tego celu jest wspomniane wyżej oznaczanie wierzchołków jako pilnych.
-\todo{...}  Przykładem tego działania było pominięcie nieistotnych,
+tego celu jest wspomniane wyżej oznaczanie wierzchołków jako przymusowe.
+Innym sposobem jest uniemożliwienie wykonania tranzycji, które nie
+mają znaczenia z punktu widzenia funkcjonowania docelowego
+systemu. Przykładem tego działania było pominięcie nieistotnych,
 tj. niemających wpływu na pracę kontrolera, wzbudzeń czujnika. Należą
 do nich m.in. wzbudzenia w początkowej części interwału zielonego lub
 wzbudzenia dla nieaktywnego potoku, gdy już wcześniej zostało
 zgłoszone zapotrzebowanie. Aby je wyeliminować, dla każdego potoku
-wprowadzono zmienną \url{service} typu boolowskiego. Kontroler ustawia
+wprowadzono zmienną boolowską \url{service}. Kontroler ustawia
 jej wartość na prawdziwą, gdy wzbudzenia czujnika są istotne oraz
 fałszywą -- w przeciwnym przypadku. W automacie reprezentującym
 czujnik dodano ograniczenie na krawędź, pozwalające mu przejść w stan
@@ -1333,10 +1429,10 @@ wzbudzenia wyłącznie, gdy \url{service} ma wartość prawdziwą.
 
 \paragraph{Redukcja zmiennych aktywnych} Kolejną ważną metodą
 optymalizacji modeli jest \emph{redukcja zmiennych aktywnych}.
-Chociaż wartości zmiennych są stale utrzymywane w modelu, czasem
-zachodzi sytuacja, w której w pewnych stanach wartość niektórych z
-nich nie ma znaczenia: dwa stany różniące się wyłącznie takimi
-zmiennymi można uznać za identyczne. Zresetowanie wartości tych
+Chociaż wartości wszystkich zmiennych są stale utrzymywane w modelu,
+czasem zachodzi sytuacja, w której w pewnych stanach wartość
+niektórych z nich nie ma znaczenia: dwa stany różniące się wyłącznie
+takimi zmiennymi można uznać za identyczne. Zresetowanie wartości tych
 zmiennych utożsami zatem te stany, co zmniejszy rozmiar przeszukiwanej
 przy weryfikacji przestrzeni.
 
@@ -1387,34 +1483,35 @@ weryfikacji najbardziej skomplikowanych systemów.
 \chapter{Eksperymenty}
 
 
-  Mam następujący pomysł na ten rozdział:
-  \begin{enumerate}
-    \item W pierwszej części zweryfikować bazowy zestaw własności
-    dla dwóch w miarę prostych modeli. Na ich podstawie poruszyć kwestie takie jak:
-    \begin{itemize}
-      \item problem z weryfikacją pełnej żywotności (trwa bardzo
-      długo) i jego rozwiązanie: weryfikacja żywotności ograniczonej
-      (nie dość, że jest ona dużo istotniejsza, to jeszcze prościej ją
-      sprawdzić -- \emph{de facto} jest własnością bezpieczeństwa
-      \item praktycznie wszystkie własności bezpieczeństwa da się
-      zweryfikować, przybliżając strefy z góry (przez otoczkę wypukłą);
-      pozwala to na weryfikację tych własności nawet w bardzo dużych modelach
-    \end{itemize}
-    \item W drugiej części nieco rozwinąć zestaw weryfikowanych
-    wartości; kładąc nieco więcej nacisku na weryfikację cech ilościowych.
-    \item W trzeciej części pokazać ciekawe -- z punktu widzenia ich
-    weryfikacji -- własności modeli.
-    \begin{itemize}
-      \item Przede wszystkim pokazać zależność rozmiaru przestrzeni
-      stanów rozmiaru modelu i jego parametrów. Głównym bohaterem
-      będzie tu z pewnością \url{A[] not deadlock}, gdyż nie daje się
-      ona szybko zweryfikować przy pomocy otoczki wypukłej.
-      \item Mógłbym też pokazać jak na czas weryfikacji wpływają
-      optymalizacje opisane w \ref{s:models:opt}.
-    \end{itemize}
-
-
-  \end{enumerate}
+Mam następujący pomysł na ten rozdział:
+\begin{enumerate}
+  \item W pierwszej części zweryfikować bazowy zestaw własności dla
+  dwóch w miarę prostych modeli. Na ich podstawie poruszyć kwestie
+  takie jak:
+  \begin{itemize}
+    \item problem z weryfikacją pełnej żywotności (trwa bardzo długo)
+    i jego rozwiązanie: weryfikacja żywotności ograniczonej (nie dość,
+    że jest ona dużo istotniejsza, to jeszcze prościej ją sprawdzić --
+    \emph{de facto} jest własnością bezpieczeństwa
+    \item praktycznie wszystkie własności bezpieczeństwa da się
+    zweryfikować, przybliżając strefy z góry (przez otoczkę wypukłą);
+    pozwala to na weryfikację tych własności nawet w bardzo dużych
+    modelach
+  \end{itemize}
+  \item W drugiej części nieco rozwinąć zestaw weryfikowanych
+  wartości; kładąc nieco więcej nacisku na weryfikację cech
+  ilościowych.
+  \item W trzeciej części pokazać ciekawe -- z punktu widzenia ich
+  weryfikacji -- własności modeli.
+  \begin{itemize}
+    \item Przede wszystkim pokazać zależność rozmiaru przestrzeni
+    stanów rozmiaru modelu i jego parametrów. Głównym bohaterem będzie
+    tu z pewnością \url{A[] not deadlock}, gdyż nie daje się ona
+    szybko zweryfikować przy pomocy otoczki wypukłej.
+    \item Mógłbym też pokazać jak na czas weryfikacji wpływają
+    optymalizacje opisane w \ref{s:models:opt}.
+  \end{itemize}
+\end{enumerate}
 
 % \section{Podstawowe własności}
 
@@ -1467,5 +1564,7 @@ weryfikacji najbardziej skomplikowanych systemów.
 
 % LocalWords:  stałoczasowa jednopotokowych wielopotokowej Alura Dilla TCTL
 % LocalWords:  Henzingera stałoczasowym stałoczasowych kompozycjonalny
-      optymalizacje opisane w \ref{s:models:opt}% LocalWords:  boolowskiego
-      optymalizacje opisane w \ref{s:models:opt}% LocalWords:  wielopotokowych
+% LocalWords:  boolowskiego konfigurowalność boolowską utrzymywalność
+% LocalWords:  wielopotokowych stałoczasowego jednostanowymi zenonowskie
+% LocalWords:  niezenonowski Zenonowskość zenonowskimi wysokopoziomowość
+% LocalWords:  wyspecyfikować niskopoziomowości rozgłoszeniowy zenonowski
