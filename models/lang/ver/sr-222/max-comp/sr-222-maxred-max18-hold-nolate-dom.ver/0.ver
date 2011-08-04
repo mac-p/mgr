@@ -1,0 +1,11 @@
+Options for the verification:
+  Generating no trace
+  Search order is breadth first
+  Using conservative space optimisation
+  Seed is 1310958032
+  State space representation uses minimal constraint systems
+
+Verifying property 1 at line 1
+ -- Property is satisfied.
+ -- States stored : 2072592 states
+ -- States explored : 5725640 states

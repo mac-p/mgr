@@ -1,0 +1,15 @@
+Verifying model from sr-222/max-comp/sr-222-maxred-max13-hold-nolate-dom.ver/sr-222-maxred-max13-hold-nolate.xml for properties from sr-222/max-comp/sr-222-maxred-max13-hold-nolate-dom.ver/deadlock.q.
+Verification started at Mon Jul 18 01:40:18 2011.
+
+Options for the verification:
+  Generating no trace
+  Search order is breadth first
+  Using conservative space optimisation
+  Seed is 1310946018
+  State space representation uses minimal constraint systems
+
+
+NO NAME        SUCCESS TIME      REALTIME     STATES STORED STATES EXPLORED     VIRTUAL RESIDENT
+-- ----        ------  ----      --------     ------------  ------------        ------- --------
+0  No deadlock YES     199:20.28 1000012014   1408609       3679451             126m    119m    
+                                                                                                
