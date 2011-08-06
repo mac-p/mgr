@@ -3,17 +3,15 @@
 /*
 Phase agrees with Mvmt (Inactivity-->Red)
 */
-A[] PC0.Inactive imply (MvC00.RedNoDemand||MvC00.RedGotCall)\
-
+A[] PC0.Inactive imply (MvC00.RedNoDemand||MvC00.RedGotCall)
 
 /*
 Mvmt agrees with Light (on Green)
 */
-A[] (MvC00.InitGreen||MvC00.ExtGreen||MvC00.GappedOut||MvC00.Rest) imply L00.Green\
-
+A[] (MvC00.InitGreen||MvC00.ExtGreen||MvC00.GappedOut||MvC00.Rest) imply L00.Green
 
 /*
-
+One phase active at any time
 */
 A[] (PC0.Active + PC1.Active + PC2.Active + PC3.Active <= 1)
 
@@ -33,6 +31,6 @@ No deadlock
 A[] not deadlock
 
 /*
-
+Full liveness
 */
 Det00.Actuated --> L00.Green
