@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   x="0px"
+   y="0px"
+   width="499px"
+   height="195px"
+   viewBox="0 0 499 195"
+   stroke="#333333"
+   stroke-opacity="1.0"
+   fill="none"
+   stroke-width="1"
+   stroke-linecap="square"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.1 r9760"
+   sodipodi:docname="models-maxtimer-noactred.svg">
+  <metadata
+     id="metadata229">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="691"
+     id="namedview227"
+     showgrid="false"
+     inkscape:zoom="1.9198397"
+     inkscape:cx="103.08678"
+     inkscape:cy="74.998715"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <title
+     id="title4" />
+  <desc
+     id="desc6">
+    <Title
+       id="Title8" />
+    <Creator
+       id="Creator10">FreeHEP Graphics2D Driver</Creator>
+    <Producer
+       id="Producer12">org.freehep.graphicsio.svg.SVGGraphics2D Revision: 1.16 </Producer>
+    <Source
+       id="Source14" />
+    <Date
+       id="Date16">poniedziałek, 18 lipiec 2011 23:20:31 CEST</Date>
+  </desc>
+  <defs
+     id="defs18">
+    <!-- Symbols for use with SVGGraphics (generic format) -->
+    <!-- Author: Mark Donszelmann -->
+    <!-- Version: $Id: SVGDefs.txt,v 1.1 2002/07/30 19:11:30 duns Exp $ -->
+    <symbol
+       id="hline"
+       viewBox="-50 -50 100 100">
+      <path
+         d="M -50 0 H 50"
+         id="path21" />
+    </symbol>
+    <symbol
+       id="vline"
+       viewBox="-50 -50 100 100">
+      <path
+         d="M 0 -50 V 50"
+         id="path24" />
+    </symbol>
+    <symbol
+       id="plus"
+       viewBox="-50 -50 100 100">
+      <path
+         d="M -50 0 H 50 M 0 -50 V 50"
+         id="path27" />
+    </symbol>
+    <symbol
+       id="cross"
+       viewBox="-50 -50 100 100">
+      <use
+         href="#plus"
+         transform="rotate(45)translate(-51,-51)"
+         id="use30" />
+    </symbol>
+    <symbol
+       id="star"
+       viewBox="-50 -50 100 100">
+      <use
+         href="#plus"
+         transform="translate(-50,-50)"
+         id="use33" />
+      <use
+         href="#cross"
+         transform="translate(-52,-51)"
+         id="use35" />
+    </symbol>
+    <symbol
+       id="dot"
+       viewBox="-50 -50 100 100">
+      <circle
+         cx="0"
+         cy="0"
+         r="50"
+         id="circle38" />
+    </symbol>
+    <!-- sqrt(2)*s -->
+    <symbol
+       id="box"
+       viewBox="-50 -50 100 100">
+      <rect
+         x="-35.5"
+         y="-35.5"
+         width="71"
+         height="71"
+         id="rect41" />
+    </symbol>
+    <!-- 1/sqrt(3) and sqrt(3)/2 - 1/sqrt(3) -->
+    <symbol
+       id="triup"
+       viewBox="-50 -50 100 100">
+      <path
+         d="M -50 36 L 0 -50 L 50 36 z"
+         id="path44" />
+    </symbol>
+    <symbol
+       id="tridn"
+       viewBox="-50 -50 100 100">
+      <use
+         href="#triup"
+         transform="rotate(180)translate(-50,-50)"
+         id="use47" />
+    </symbol>
+    <symbol
+       id="diamond"
+       viewBox="-50 -50 100 100">
+      <use
+         href="#box"
+         transform="rotate(45)translate(-50,-50)"
+         id="use50" />
+    </symbol>
+    <!-- Symbols for use with SVGGraphics (stylable format) -->
+    <!-- Author: Mark Donszelmann -->
+    <!-- Version: $Id: SVGDefs-stylable.txt,v 1.1 2002/07/30 19:11:30 duns Exp $ -->
+    <symbol
+       id="fdot">
+      <use
+         href="#dot"
+         style="stroke:none;fill:currentColor"
+         id="use53" />
+    </symbol>
+    <symbol
+       id="fbox">
+      <use
+         href="#box"
+         style="stroke:none;fill:currentColor"
+         id="use56" />
+    </symbol>
+    <symbol
+       id="ftriup">
+      <use
+         href="#triup"
+         style="stroke:none;fill:currentColor"
+         id="use59" />
+    </symbol>
+    <symbol
+       id="ftridn">
+      <use
+         href="#tridn"
+         style="stroke:none;fill:currentColor"
+         id="use62" />
+    </symbol>
+    <symbol
+       id="fdiamond">
+      <use
+         href="#diamond"
+         style="stroke:none;fill:currentColor"
+         id="use65" />
+    </symbol>
+  </defs>
+  <rect
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:sans-serif"
+     id="rect85"
+     height="0"
+     width="0"
+     y="0"
+     x="0" />
+  <text
+     x="133"
+     y="30"
+     id="text95"
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#4242a8;fill-opacity:1;stroke:none;font-family:sans-serif">max_t[pid] = 0</text>
+  <text
+     x="357"
+     y="126"
+     id="text103"
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#a742a8;fill-opacity:1;stroke:none;font-family:sans-serif">max_t[pid] &lt;= MAX</text>
+  <text
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#8c3863;fill-opacity:1;stroke:none;font-family:sans-serif"
+     id="text107"
+     y="78"
+     x="357">Running</text>
+  <text
+     x="133"
+     y="170"
+     id="text111"
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#42a0a8;fill-opacity:1;stroke:none;font-family:sans-serif">timer_off[pid]?</text>
+  <text
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#42a0a8;fill-opacity:1;stroke:none;font-family:sans-serif"
+     id="text115"
+     y="14"
+     x="133">timer_on[pid]?</text>
+  <text
+     x="41"
+     y="95"
+     id="text119"
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#42a0a8;fill-opacity:1;stroke:none;font-family:sans-serif">maxed_out[pid]!</text>
+  <text
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#8c3863;fill-opacity:1;stroke:none;font-family:sans-serif"
+     id="text123"
+     y="80"
+     x="3">Off</text>
+  <text
+     x="205"
+     y="94"
+     id="text127"
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#42a848;fill-opacity:1;stroke:none;font-family:sans-serif">max_t[pid] == MAX</text>
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#a5afcd;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path131"
+     d="m 25,97 c 0,6.62742 -5.37258,12 -12,12 C 6.37258,109 1,103.62742 1,97 1,90.372583 6.37258,85 13,85 c 6.62742,0 12,5.372583 12,12 z" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path135"
+     d="m 25,97 c 0,6.62742 -5.37258,12 -12,12 C 6.37258,109 1,103.62742 1,97 1,90.372583 6.37258,85 13,85 c 6.62742,0 12,5.372583 12,12 z" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path139"
+     d="m 21,97 c 0,4.41828 -3.58172,8 -8,8 -4.41828,0 -8,-3.58172 -8,-8 0,-4.418278 3.58172,-8 8,-8 4.41828,0 8,3.581722 8,8 z" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#a5afcd;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path143"
+     d="m 193,97 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.627417 5.37258,-12 12,-12 6.62742,0 12,5.372583 12,12 z" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path147"
+     d="m 193,97 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.627417 5.37258,-12 12,-12 6.62742,0 12,5.372583 12,12 z" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path151"
+     d="m 184.21394,93.169778 c -2.02887,-1.702421 -5.0333,-1.527433 -6.85081,0.399014 -1.81751,1.926447 -1.81751,4.935969 0,6.862418 1.81751,1.92644 4.82194,2.10143 6.85081,0.39901" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#a5afcd;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path155"
+     d="m 385,97 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.627417 5.37258,-12 12,-12 6.62742,0 12,5.372583 12,12 z" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path159"
+     d="m 385,97 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.627417 5.37258,-12 12,-12 6.62742,0 12,5.372583 12,12 z" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path167"
+     d="m 361.21962,102.49751 -99.15779,46.27363 Q 253,153 243,153 l -116,0 q -10,0 -18.80472,-4.741 L 24.44614,103.1633" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path171"
+     d="m 34.17789,105.46392 -9.73175,-2.30062 7.27761,6.85828" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path183"
+     d="M 24.07156,90.186733 108.48341,38.240974 Q 117,33 127,33 l 116,0 q 10,0 18.82353,4.705879 l 99.70588,53.176476" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path187"
+     d="m 351.78856,88.620518 9.74085,2.261837 -7.3049,-6.829232" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path199"
+     d="M 168,97 26,97" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path203"
+     d="M 35.65927,94.411808 26,97 l 9.65927,2.58819" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path215"
+     d="M 360,97 194,97" />
+  <path
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path219"
+     d="M 203.65926,94.411808 194,97 l 9.65926,2.58819" />
+  <!-- font -->
+</svg>
+<!-- bounding box -->
+

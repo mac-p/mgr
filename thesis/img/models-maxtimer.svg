@@ -1,0 +1,241 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg-20010904.dtd">
+
+<svg x="0px" y="0px" width="499px" height="195px" viewBox="0 0 499 195" stroke="#333333" stroke-opacity="1.0" fill="none" stroke-width="1" stroke-linecap="square" >
+<title>
+
+</title>
+<desc>
+<Title></Title>
+<Creator>FreeHEP Graphics2D Driver</Creator>
+<Producer>org.freehep.graphicsio.svg.SVGGraphics2D Revision: 1.16 </Producer>
+<Source></Source>
+<Date>poniedziałek, 18 lipiec 2011 23:20:31 CEST</Date>
+</desc>
+<defs>
+<!-- Symbols for use with SVGGraphics (generic format) -->
+<!-- Author: Mark Donszelmann -->
+<!-- Version: $Id: SVGDefs.txt,v 1.1 2002/07/30 19:11:30 duns Exp $ -->
+
+<symbol id="hline" viewBox="-50 -50 100 100">
+  <path d="M -50 0 H 50"/>
+</symbol>
+
+<symbol id="vline" viewBox="-50 -50 100 100">
+  <path d="M 0 -50 V 50"/>
+</symbol>
+
+<symbol id="plus" viewBox="-50 -50 100 100">
+  <path d="M -50 0 H 50 M 0 -50 V 50"/>
+</symbol>
+
+<symbol id="cross" viewBox="-50 -50 100 100">
+  <use xlink:href="#plus" transform="rotate(45)translate(-51,-51)"/>
+</symbol>
+
+<symbol id="star" viewBox="-50 -50 100 100">
+  <use xlink:href="#plus" transform="translate(-50,-50)"/>
+  <use xlink:href="#cross" transform="translate(-52,-51)"/>
+</symbol>
+
+<symbol id="dot" viewBox="-50 -50 100 100">
+  <circle cx="0" cy="0" r="50"/>
+</symbol>
+
+<!-- sqrt(2)*s -->
+<symbol id="box" viewBox="-50 -50 100 100">
+  <rect x="-35.5" y="-35.5" width="71" height="71"/>
+</symbol>
+
+<!-- 1/sqrt(3) and sqrt(3)/2 - 1/sqrt(3) -->
+<symbol id="triup" viewBox="-50 -50 100 100">
+  <path d="M -50 36 L 0 -50 L 50 36 z"/> 
+</symbol>
+
+<symbol id="tridn" viewBox="-50 -50 100 100">
+  <use xlink:href="#triup" transform="rotate(180)translate(-50,-50)"/>
+</symbol>
+
+<symbol id="diamond" viewBox="-50 -50 100 100">
+  <use xlink:href="#box" transform="rotate(45)translate(-50,-50)"/>
+</symbol>
+<!-- Symbols for use with SVGGraphics (stylable format) -->
+<!-- Author: Mark Donszelmann -->
+<!-- Version: $Id: SVGDefs-stylable.txt,v 1.1 2002/07/30 19:11:30 duns Exp $ -->
+
+<symbol id="fdot">
+  <use xlink:href="#dot" style="stroke:none;fill:currentColor"/>
+</symbol>
+
+<symbol id="fbox">
+  <use xlink:href="#box" style="stroke:none;fill:currentColor"/>
+</symbol>
+
+<symbol id="ftriup">
+  <use xlink:href="#triup" style="stroke:none;fill:currentColor"/>
+</symbol>
+
+<symbol id="ftridn">
+  <use xlink:href="#tridn" style="stroke:none;fill:currentColor"/>
+</symbol>
+
+<symbol id="fdiamond">
+  <use xlink:href="#diamond" style="stroke:none;fill:currentColor"/>
+</symbol>
+</defs>
+
+<g stroke="#333333" stroke-opacity="1.0" fill="none" stroke-width="1" stroke-linecap="square" >
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="12" >
+<g transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)">
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="12" >
+<g stroke-width="1.0" >
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-miterlimit="10.0" >
+<g stroke-dasharray="none" stroke-dashoffset="0.0" >
+<rect stroke="none" fill="#ffffff" fill-opacity="1.0"  x="0.0" y="0.0" width="0.0" height="0.0"/>
+<g transform="matrix(1.0,0.0,0.0,1.0,341.0,129.0)">
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-296.0" y="-19.0">
+max_t[pid] = 0
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-208.0" y="-99.0">
+max_t[pid] = 0
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-208.0" y="61.0">
+max_t[pid] = 0
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#a742a8" fill-opacity="1.0"  x="16.0" y="-3.0">
+max_t[pid] &lt;= MAX
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#8c3863" fill-opacity="1.0"  x="16.0" y="-51.0">
+Running
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-208.0" y="45.0">
+timer_off[pid]?
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-208.0" y="-115.0">
+timer_on[pid]?
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a0a8" fill-opacity="1.0"  x="-300.0" y="-34.0">
+maxed_out[pid]!
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#8c3863" fill-opacity="1.0"  x="-338.0" y="-49.0">
+Off
+</text>
+<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
+<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-136.0" y="-35.0">
+max_t[pid] == MAX
+</text>
+<g stroke="none" fill="#a5afcd" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M -316.0 -32.0 C -316.0 -25.372583 -321.372583 -20.0 -328.0 -20.0 C -334.627417 -20.0 -340.0 -25.372583 -340.0 -32.0 C -340.0 -38.627417 -334.627417 -44.0 -328.0 -44.0 C -321.372583 -44.0 -316.0 -38.627417 -316.0 -32.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -316.0 -32.0 C -316.0 -25.372583 -321.372583 -20.0 -328.0 -20.0 C -334.627417 -20.0 -340.0 -25.372583 -340.0 -32.0 C -340.0 -38.627417 -334.627417 -44.0 -328.0 -44.0 C -321.372583 -44.0 -316.0 -38.627417 -316.0 -32.0 z "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -320.0 -32.0 C -320.0 -27.581722 -323.581722 -24.0 -328.0 -24.0 C -332.418278 -24.0 -336.0 -27.581722 -336.0 -32.0 C -336.0 -36.418278 -332.418278 -40.0 -328.0 -40.0 C -323.581722 -40.0 -320.0 -36.418278 -320.0 -32.0 z "/>
+</g> <!-- draw -->
+<g stroke="none" fill="#a5afcd" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M -148.0 -32.0 C -148.0 -25.372583 -153.372583 -20.0 -160.0 -20.0 C -166.627417 -20.0 -172.0 -25.372583 -172.0 -32.0 C -172.0 -38.627417 -166.627417 -44.0 -160.0 -44.0 C -153.372583 -44.0 -148.0 -38.627417 -148.0 -32.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -148.0 -32.0 C -148.0 -25.372583 -153.372583 -20.0 -160.0 -20.0 C -166.627417 -20.0 -172.0 -25.372583 -172.0 -32.0 C -172.0 -38.627417 -166.627417 -44.0 -160.0 -44.0 C -153.372583 -44.0 -148.0 -38.627417 -148.0 -32.0 z "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -156.786062 -35.830222 C -158.814929 -37.532643 -161.819359 -37.357655 -163.636868 -35.431208 C -165.454377 -33.504761 -165.454377 -30.495239 -163.636868 -28.568792 C -161.819359 -26.642345 -158.814929 -26.467357 -156.786062 -28.169778 "/>
+</g> <!-- draw -->
+<g stroke="none" fill="#a5afcd" fill-opacity="1.0" fill-rule="nonzero" >
+<path d="M 44.0 -32.0 C 44.0 -25.372583 38.627417 -20.0 32.0 -20.0 C 25.372583 -20.0 20.0 -25.372583 20.0 -32.0 C 20.0 -38.627417 25.372583 -44.0 32.0 -44.0 C 38.627417 -44.0 44.0 -38.627417 44.0 -32.0 z "/>
+</g> <!-- fill -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 44.0 -32.0 C 44.0 -25.372583 38.627417 -20.0 32.0 -20.0 C 25.372583 -20.0 20.0 -25.372583 20.0 -32.0 C 20.0 -38.627417 25.372583 -44.0 32.0 -44.0 C 38.627417 -44.0 44.0 -38.627417 44.0 -32.0 z "/>
+</g> <!-- draw -->
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 20.21962 -26.502489 L -78.938171 19.771145 Q -88.0 24.0 -98.0 24.0 L -214.0 24.0 Q -224.0 24.0 -232.804718 19.259003 L -316.553864 -25.836702 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -306.822113 -23.536076 L -316.553864 -25.836702 L -309.276245 -18.978422 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -316.928436 -38.813267 L -232.516586 -90.759026 Q -224.0 -96.0 -214.0 -96.0 L -98.0 -96.0 Q -88.0 -96.0 -79.176468 -91.294121 L 20.529411 -38.117645 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 10.788565 -40.379482 L 20.529411 -38.117645 L 13.224509 -44.946877 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -173.0 -32.0 L -315.0 -32.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -305.340729 -34.588192 L -315.0 -32.0 L -305.340729 -29.41181 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g stroke-linecap="round" >
+<g stroke-linejoin="bevel" >
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M 19.0 -32.0 L -147.0 -32.0 "/>
+</g> <!-- draw -->
+<g stroke="#000000" stroke-opacity="1.0" fill="none" >
+<path d="M -137.340744 -34.588192 L -147.0 -32.0 L -137.340744 -29.41181 "/>
+</g> <!-- draw -->
+<g stroke-linecap="square" >
+<g stroke-linejoin="miter" >
+<g transform="matrix(1.0,0.0,0.0,1.0,-341.0,-129.0)">
+</g> <!-- transform -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- font -->
+</g> <!-- transform -->
+</g> <!-- stroke dash -->
+</g> <!-- stroke limit -->
+</g> <!-- stroke join -->
+</g> <!-- stroke cap -->
+</g> <!-- stroke width -->
+</g> <!-- font -->
+</g> <!-- transform -->
+</g> <!-- top-level -->
+</g> <!-- font -->
+</svg> <!-- bounding box -->

@@ -9,7 +9,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="731.94214"
+   width="741.94214"
    height="512.45612"
    id="svg2"
    version="1.1"
@@ -264,7 +264,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="223.78142"
+     inkscape:cx="233.78142"
      inkscape:cy="263.47159"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -288,7 +288,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -296,7 +296,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-9.8726234,-62.971931)">
+     transform="translate(0.12737656,-62.971931)">
     <path
        style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="m 40.028873,129.97108 0,443.45697"
@@ -325,14 +325,14 @@
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       x="9.0913734"
-       y="89.788338"
+       x="-0.90862656"
+       y="88.359764"
        id="text3038"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3040"
-         x="9.0913734"
-         y="89.788338">czujnik</tspan></text>
+         x="-0.90862656"
+         y="88.359764">czujnik 1.1</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
@@ -347,7 +347,7 @@
          sodipodi:role="line"
          x="166.07349"
          y="102.40553"
-         id="tspan3046">potoku</tspan></text>
+         id="tspan3046">potoku 1.1</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
