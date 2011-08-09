@@ -565,7 +565,7 @@ Formalnie ujmuje to poniższa definicja.
 \end{definition}
 
 \subsection{Problemy weryfikacyjne}
-
+\label{ss:ta:theory:verification}
 Liczba konfiguracji tak zdefiniowanego automatu jest nieprzeliczalna, co
 sprawia, że wydaje się, że nie stanowi on odpowiedniego modelu dla zadań
 weryfikacyjnych. Rozwiązanie tego problemu zaproponowali już Alur
@@ -674,10 +674,10 @@ liczby regionów.
   \label{img:zones}
 \end{figure}
 
-Analogicznie, do automatu regionów kostruuje się automat stref.
+Analogicznie, do automatu regionów konstruuje się automat stref.
 Rysunek \ref{img:zones-automaton} przedstawia automat czasowy
-i~odpowiadający mu automat stref. Zauważmy, że powiększenie stałych z
-ograniczeń nie wpłynęłoby na rozmiar automatu stref, natomiast
+i~odpowiadający mu automat stref. Zauważmy, że powiększenie stałych
+z~ograniczeń nie wpłynęłoby na rozmiar automatu stref, natomiast
 zdecydowanie zwielokrotniłoby rozmiar automatu regionów. Rozmiar
 automatu stref zależy wyłącznie od liczby istotnie różnych
 konfiguracji wyjściowego automatu czasowego.
@@ -988,7 +988,7 @@ Na poziomie potoku definiujemy jego identyfikator, typ uczestnika
 ruchu (\texttt{user}) oraz długości poszczególnych interwałów.  Dla
 sygnału zielonego o~zmiennej długości określamy parametry
 \emph{minimalny zielony} (\texttt{min\_green}) oraz \emph{wydłużenie}
-(\texttt{gap}). Jeśli jego długość jest stała wystarczy proste
+(\texttt{gap}). Jeśli jego długość jest stała, wystarczy proste
 określenie typu \texttt{time}\footnote{Standardowo w~sygnalizacji
   wzbudzanej sygnał zielony ma zmienną długość dla pojazdów i~stałą --
 dla pieszych. Takie rozwiązanie przedstawiono w~listingu. Oczywiście
@@ -1063,29 +1063,34 @@ cycle:
 \subsection{Przykład kompletnej specyfikacji}
 
 Poniższa specyfikacja opisuje proste 4-odnogowe skrzyżowanie.
-Cykl składa się z~dwóch faz:
+Cykl składa się z~dwóch faz (patrz \imgr{img:lang-spec-example}):
 \begin{itemize}
   \item faza dla pojazdów nadjeżdżających z~północy i~południa (potoki
   0~i 1),
   \item faza dla pojazdów nadjeżdżających ze wschodu i~zachodu oraz
   pieszych (potoki 2, 3~i 4).
 \end{itemize}
-\todo{Wstawić obrazek.}
 Zwróćmy uwagę na zastosowanie stałych.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{img/lang-spec-example}
+  \caption{Graficzna reprezentacja cyklu opisanego w przykładzie.}
+  \label{img:lang-spec-example}
+\end{figure}
 
 \begin{lstlisting}[caption=Przykład kompletnej specyfikacji.]
 constants
    RED-AMBER: 1
    AMBER:     3
    RED-CLEAR: 4
-   NS-INT:
+   NS-INT: // \com{Interwały dla fazy NS}
      green:
        min_green: 6
        gap: 2      
      red_amber: RED-AMBER
      amber:     AMBER
      red_clear: RED-CLEAR
-   EW-INT:
+   EW-INT: // \com{Interwały dla fazy EW}
      green:
        min_green: 12
        gap:       3     
@@ -1093,23 +1098,23 @@ constants
      amber:     AMBER
      red_clear: RED-CLEAR
 
-movement
+movement    // \com{Potok N}
    id: 0    
    user:   VEHICLE
    intervals: NS-INT
-movement
+movement    // \com{Potok S}
    id: 1    
    user:   VEHICLE
    intervals: NS-INT
-movement
+movement    // \com{Potok E}
    id: 2   
    user:   VEHICLE
    intervals: EW-INT
 movement
-   id: 3    
+   id: 3   // \com{Potok W}
    user:   VEHICLE
    intervals: EW-INT
-movement
+movement   // \com{Potok pieszy EW}
    id: 4    
    user:   PEDESTRIAN
    intervals:
@@ -1117,13 +1122,13 @@ movement
       flashing : 3
       red_clear: 5
 
-phase:
+phase: // \com{Faza NS}
    id: 0
    movements: [0, 1]
    max_time : 12
    hold: [0, 1]
    late: [0, 1]
-phase:
+phase: // \com{Faza EW}
    id: 1
    movements: [2, 3, 4]
    max_time : 20
@@ -1212,17 +1217,22 @@ Do pierwszej grupy należą czujniki i~sygnalizatory, do drugiej zaś --
 kontrolery. Dla każdego poziomu opisu systemu, tj. potoku, fazy oraz
 cyklu, przewidziano jeden zarządzający nim kontroler.
 
+Sekcja \ref{ss:models:models:summary} prezentuje ogólne informacje
+o~pracy komponentów, natomiast sekcje
+\ref{ss:models:models:dets}-\ref{ss:models:models:ring} szczegółowo
+opisują ich strukturę i~sposób funkcjonowania. Nacisk położony jest w
+nich na najbardziej złożone wersje komponentów -- sterujące
+sygnalizacją wzbudzaną dla pojazdów; informacje o pozostałych znajdują
+się w dodatku \ref{app:other-models}.
+
+
+\subsection{Ogólny zarys pracy komponentów}
+\label{ss:models:models:summary}
 Komponenty tworzą strukturę warstwową (patrz \imgr{img:hierarchy}). Do
 komunikacji dochodzi w~zasadzie tylko pomiędzy sąsiadującymi
 warstwami. Co więcej, jest to struktura hierarchiczna: komponent
 wysyła polecenia jednemu bądź większej liczbie swoich komponentów
 podrzędnych oraz otrzymuje je od swojego komponentu nadrzędnego.
-
-Sekcja \ref{ss:models:models:summary} prezentuje ogólne informacje
-o~pracy komponentów, natomiast sekcje
-\ref{ss:models:models:dets}-\ref{ss:models:models:ring} szczegółowo
-opisują ich strukturę i~sposób funkcjonowania.
-
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.9\textwidth]{img/models-hierarchy}
@@ -1230,14 +1240,11 @@ opisują ich strukturę i~sposób funkcjonowania.
   \label{img:hierarchy}
 \end{figure}
 
-\subsection{Ogólny zarys pracy komponentów}
-\label{ss:models:models:summary}
-
 Tabela \ref{tab:models:channels} podsumowuje najważniejsze kanały
 komunikacyjne modelu, natomiast \imgr{img:models:msc} przedstawia
 podstawowy schemat komunikacji.
 
-\renewcommand{\arraystretch}{1.4}
+\renewcommand{\arraystretch}{1.3}
 \begin{table}
   \centering
   \begin{tabular}{>{\scshape}r|p{0.35\textwidth}|>{\ttfamily}p{0.25\textwidth}}
@@ -1298,7 +1305,7 @@ kontrolerów potoku (patrz \imgr{img:lights}).
 Czujniki zgłaszają zapotrzebowanie kontrolerom potoku poprzez
 komunikat \url{act}. Czujniki dla pojazdów są w~zasadzie automatami
 jednostanowymi: w~stanie \url{Actuated} nie upływa czas. Rolę
-zegara \url{zeno_t} omówiono w~\ref{s:models:assumptions}, natomiast
+zegara \url{zeno_t} omówiono w~podrozdziale~\ref{s:models:assumptions}, natomiast
 zmiennej \url{service[id]} w~\ref{s:models:opt}. Czujnik dla pieszych
 ma natomiast dwa istotne stany, co modeluje zachowanie typowego
 przycisku. Zwróćmy uwagę na fakt, że jest on jawnie resetowany
@@ -1422,7 +1429,7 @@ stanów jest oznaczonych jako uprzywilejowane; do pozostałych należą:
   \item \url{GoingOff} -- oczekiwanie na potwierdzenia zakończenia
   pracy przez potoki.
 \end{itemize}
-W~skład stanu kontrolera fazy wchodzą także następujące zmienne:
+W~skład konfiguracji kontrolera fazy wchodzą także następujące zmienne:
 \begin{itemize}
   \item \url{mvmts_on : int} -- liczba aktywnych potoków,
   \item \url{mvmts_not_out : int} -- liczba potoków, w~których nie wykryto luki,
@@ -1487,7 +1494,7 @@ parametrem jest \url{rest_ph} -- identyfikator fazy spoczynkowej.
 Kontroler cyklu uruchamia pierwszą kolejności fazę, na którą
 jest zapotrzebowanie (\url{start!}), następnie zaś czeka na
 potwierdzenie zakończenia jej aktywności (\url{finished?}). Gdy nie ma
-zapotrzebowania na żadną fazę kontroler przechodzi w~stan spoczynku
+zapotrzebowania na żadną fazę, kontroler przechodzi w~stan spoczynku
 bądź uruchamia fazę spoczynkową.
 
 \begin{figure}
@@ -1533,7 +1540,10 @@ oznaczaniu stanów jako uprzywilejowane.
 
 Celem optymalizacji modelu jest redukcja zasobów, tj. pamięci
 operacyjnej i~czasu procesora, potrzebnych do zweryfikowania pewnych
-jego własności. Poniżej przedstawiono najważniejsze z~zastosowanych metod.
+jego własności. Kompendium informacji na temat optymalizacji modeli w
+\upp-u można odnaleźć w \cite{tutorial04}.
+
+Poniżej przedstawiono najważniejsze z~zastosowanych metod.
 
 \paragraph{Minimalizacja liczby przeplotów} Podstawowym środkiem
 służącym optymalizacji modelu jest minimalizacja liczby możliwych
@@ -1553,7 +1563,7 @@ wprowadzono zmienną boolowską \url{service}. Kontroler ustawia
 jej wartość na prawdziwą, gdy wzbudzenia czujnika są istotne oraz
 fałszywą -- w~przeciwnym przypadku. W~automacie reprezentującym
 czujnik dodano ograniczenie na krawędź, pozwalające mu przejść w~stan
-wzbudzenia wyłącznie, gdy \url{service} ma wartość prawdziwą.
+wzbudzenia wyłącznie wtedy, gdy \url{service} ma wartość prawdziwą.
 
 \paragraph{Redukcja zmiennych aktywnych} Kolejną ważną metodą
 optymalizacji modeli jest \emph{redukcja zmiennych aktywnych}.
@@ -1614,12 +1624,12 @@ Możliwość automatycznej weryfikacji pożądanych własności
 projektowanego systemu jest główną przyczyną, dla której korzysta się
 z metod formalnych. Niniejszy rozdział omawia najważniejsze kwestie
 związane z weryfikacją przedstawionych wcześniej modeli sygnalizacji
-świetlnej. Jego celem jest z jednej strony wykazanie, że są one
-zaprojektowane prawidłowo; z drugiej zaś zaprezentowanie sposobu, w
-jaki korzystać z nich może użytkownik.
+świetlnej. Jego celem jest z~jednej strony wykazanie, że są one
+zaprojektowane prawidłowo; z~drugiej zaś zaprezentowanie sposobu,
+w~jaki korzystać z nich może użytkownik.
 
-Podrozdział \ref{s:ver:properties} prezentuje najważniejsze z
-weryfikowanych własności, natomiast podrozdział \ref{s:ver:results}
+Podrozdział \ref{s:ver:properties} prezentuje najważniejsze
+z~weryfikowanych własności, natomiast podrozdział \ref{s:ver:results}
 omawia wyniki weryfikacji.
 
 \section{Weryfikowane własności}
@@ -1628,7 +1638,7 @@ omawia wyniki weryfikacji.
 Pożądane własności systemu można podzielić na dwie grupy. Do pierwszej
 należą własności bezpieczeństwa, tj. te, które stwierdzają, że
 wszystkie osiągalne konfiguracje są prawidłowe. Do drugiej zaś
-własności żywotności -- mówiące o zrealizowaniu każdego żądania.
+własności żywotności -- mówiące o realizacji każdego żądania.
 
 \subsection{Podstawowe własności bezpieczeństwa}
 \label{s:ver:properties:safety}
@@ -1675,27 +1685,33 @@ możemy uzyskać weryfikując m.in. następujące formuły:
 
 \paragraph{Bezpieczeństwo pracy sygnalizacji}
 Funkcjonowanie systemu sygnalizacji świetlnej jest bezpieczne, gdy
-kolidujące potoki ruchu są segregowane w~czasie tj. nie otrzymują
-jednocześnie sygnału zielonego. Pierwszym pomysłem na wyrażenie tej
-własności w naszych modelach jest formuła typu:
-\tttform{A[] Light00.Green + Light10.Green <= 1}
+kolidujące potoki ruchu są segregowane w~czasie tj. nie są aktywne w
+tym samym czasie. Pierwszym pomysłem na wyrażenie tej własności w
+naszych modelach są formuły typu:
+\begin{center}
+\ttt{A[] Light00.Green imply Light10.Red}\\
+\ttt{A[] Light00.Amber imply Light10.Red}\\
+\ttt{...}
+\end{center}
 gdzie \ttt{Light00} i \ttt{Light10} są modelami reprezentującymi
-sygnalizatory kolidujących potoków.\todo{Maciek}
-Biorąc pod uwagę fakt, że na mocy wcześniej wymienionych
-własności, nieaktywność fazy oznacza wyświetlanie sygnału czerwonego
-dla wszystkich jej potoków, aby dowieść bezpieczeństwa systemu,
-wystarczy wykazać, że w~danym momencie aktywna jest co najwyżej jedna
-faza. Taką własność dla systemu dwufazowego opisuje poniższa formuła:
+sygnalizatory kolidujących potoków. Wykorzystując fakt, że kolidujące
+potoki należą do różnych faz możemy wyrazić tę własność zwięźlej,
+mówiąc, że w danym momencie aktywna jest co najwyżej jedna faza. Dla
+systemu dwufazowego opisuje to poniższa formuła:
 \begin{center}
   \url{A[] PC0.Active + PC1.Active <= 1}
 \end{center}
+Biorąc pod uwagę fakt, że na mocy wcześniej wymienionych własności,
+nieaktywność fazy oznacza wyświetlanie sygnału czerwonego dla
+wszystkich jej potoków, powyższa formuła daje nam pożądaną własność
+bezpieczeństwa.
 
-W~mocniejszym wariancie bezpieczeństwa, można wymagać nie tylko, aby
-kolidujące potoki nie otrzymywały jednocześnie sygnału zielonego, ale
-by ich zielone interwały były oddzielone dostatecznie długimi
-interwałami przejściowymi. Weryfikacja takiej własności wymaga
-rozszerzenia modelu o~zmienną \url{finished} ustawianą na true dodatkowy zegar \url{safe_t} resetowany
-w~momencie kończenia \todo{Maciek}.
+% W~silniejszym wariancie bezpieczeństwa, można wymagać nie tylko, aby
+% kolidujące potoki nie otrzymywały jednocześnie sygnału zielonego, ale
+% by ich zielone interwały były oddzielone dostatecznie długimi
+% interwałami przejściowymi. Weryfikacja takiej własności wymaga
+% rozszerzenia modelu o~zmienną \url{finished} ustawianą na true dodatkowy zegar \url{safe_t} resetowany
+% w~momencie kończenia...
 
 \subsection{Żywotność}
 \label{s:properties:liveness}
@@ -1732,12 +1748,12 @@ $b$, gdy tylko zajdzie predykat $\psi$. Zmienna $b$ przechowuje zatem
 informację, o~tym czy mamy do czynienia z~aktywnym żądaniem spełnienia
 $\psi$.
 
-Rolę zmiennej $b$ w modelu pełni zmienna \ttt{demand} będąca składową
-kontrolera potoku, a zegara $z$ -- \ttt{wait_t}. Wartość \ttt{demand}
+Rolę zmiennej $b$ w modelu pełni zmienna \ttt{v_demand} będąca składową
+kontrolera potoku, a zegara $z$ -- \ttt{wait_t}. Wartość \ttt{v_demand}
 jest ustawiana na $true$ w momencie otrzymania zgłoszenia, a na
 $false$ -- w momencie włączenia sygnału zielonego. Końcowa wersja
 formuły wygląda następująco:
-\tttform{A[] MvmtCtrl.demand --> MvmtCtrl.wait_t <= MAX_WAIT}
+\tttform{A[] MvmtCtrl.v_demand imply MvmtCtrl.wait_t <= MAX_WAIT}
 Aby otrzymać ostre ograniczenie górne na długość oczekiwania należy
 znaleźć taki parametr \ttt{MAX_WAIT}, dla którego powyższa formuła
 jest prawdziwa, natomiast jej wersja z~ostrą nierównością -- nie jest.
@@ -1745,46 +1761,82 @@ jest prawdziwa, natomiast jej wersja z~ostrą nierównością -- nie jest.
 \section{Wyniki weryfikacji}
 \label{s:ver:results}
 \subsection{Parametry sprzętowe i oprogramowanie}
-Eksperymenty przeprowadzono
+Eksperymenty przeprowadzono na komputerze o następującej konfiguracji
+sprzętowej i programowej:
+\begin{itemize}
+  \item procesor: Intel Core i3, 2,93GHz;
+  \item pamięć operacyjna: 4GB;
+  \item system operacyjny: Ubuntu Linux 64-bit, wersja jądra 2.6.38. 
+\end{itemize}
+Wykorzystany został \upp\ w wersji 4.1.3 (4577).
 
 \subsection{Weryfikacja podstawowych własności.}
+Niniejszy rozdział prezentuje wyniki weryfikacji poniższych formuł:
 \begin{enumerate}
   \item \ttt{A[] PC0.Inactive imply (MvC00.RedNoDemand||MvC00.RedGotCall)}
   \item \ttt{A[]
   (MvC00.InitGreen||MvC00.ExtGreen||MvC00.GappedOut||MvC00.Rest) imply
   L00.Green}
-  \item \ttt{A[] (PC0.Active + PC1.Active + PC2.Active <= 1)}
-  \item \ttt{A[] (MvC00.v_dem imply MvC00.wait_t <= MAX_WAIT)}
-  \item \ttt{A[] (MvC00.v_dem imply MvC00.wait_t < MAX_WAIT)}
+  \item Dla modelu A: \ttt{A[] (PC0.Active + PC1.Active + PC2.Active
+    <= 1)}\\
+  Dla modelu B: \ttt{A[] (PC0.Active + PC1.Active + PC2.Active +
+    PC3.Active <= 1)}
+  \item \ttt{A[] (MvC00.v_demand imply MvC00.wait_t <= MAX_WAIT)}
+  \item \ttt{A[] (MvC00.v_demand imply MvC00.wait_t < MAX_WAIT)}
   \item \ttt{A[] not deadlock}
-  \item \ttt{Det00.Actuated --> L00.Green}
+  \item \ttt{Detector00.Actuated --> Light00.Green}
 \end{enumerate}
 
-Formalne opisy weryfikowanych modeli można odnaleźć w dodatku
-\ref{app:descriptions}.
+W eksperymentach zastosowano dwa z dostępnych w \upp-u trybów
+reprezentacji przestrzeni konfiguracji:
+\begin{itemize}
+  \item zwarta struktura danych \ang{compact data structure} -- ustawienie domyślne,
+  \item nadaproksymacja -- przybliżenie konfiguracji z góry, polegające na
+  znajdowaniu otoczki wypukłej stref.
+\end{itemize}
+Druga z wymienionych opcji jest bardzo cenna w weryfikacji własności
+bezpieczeństwa, jako że powoduje istotne zmniejszenie przeszukiwanej
+przestrzeni konfiguracji. Ustawienie jej sprawia jednak, że
+weryfikator może nie być w stanie udzielić pełnej -- twierdzącej bądź
+przeczącej -- odpowiedzi dla niektórych formuł, np. braku zakleszczenia.
+
+Eksperymenty przeprowadzono dla dwóch modeli sygnalizacji dla prostych
+skrzyżowań. Składają się one wyłącznie z potoków dla pojazdów o
+identycznych parametrach. Formalne opisy weryfikowanych modeli można
+odnaleźć w dodatku \ref{app:descriptions}.
 
 \paragraph{Model A} Model A reprezentuje sygnalizację dla skrzyżowania
 4-odnogowego, na którym pojazdy nadjeżdżające z północy oraz południa
 mają zapewniony bezkolizyjny przejazd. Cykl pracy systemu składa się z
 trzech faz zaprezentowanych na \imgr{img:ver-phases-a}.
-\begin{table}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{img/ver-a-cycle}
+  \caption{Fazy modelu A}
+  \label{img:ver-phases-a}
+\end{figure}
+\begin{table}[ht]
   \centering
   \begin{tabular}{|r||r|r|r||r|r|r||}
     \hline
     & \multicolumn{3}{c||}{\bf Standard} & \multicolumn{3}{c||}{\bf
       Otoczka wypukła} \\ \hline
-    Nr   & Wynik & Czas [min:s] & Liczba stanów [tys.] & Wynik & Czas [min:s] &
-    Liczba stanów [tys.] \\ \hline
+    Nr   & Wynik & Czas [min:s] & Liczba stanów & Wynik & Czas [min:s] &
+    Liczba stanów \\ \hline
     1. & TAK & 0:23   &  325~708 & TAK & 0:09 & 223~909 \\
     2. & TAK & 0:23   &  325~708 & TAK & 0:09 & 223~909 \\
     3. & TAK & 0:31   &  325~708 & TAK & 0:09 & 223~909 \\
     4. & TAK & 4:08   & 1~578~972 & TAK & 0:43 & 939~842 \\
     5. & NIE & 3:02   & 1~190~193 & ?   & 0:34 & 752~817 \\
     6. & TAK & 102:40 & 3~067~518 & ?   & 0:12 & 166~794 \\
-    7. & TAK & 941:16 & 3~067~438 & ?   & <0:01   &     --  
+    7. & TAK & 941:16 & 3~067~438 & ?   & $<$0:01   &     b/d  
     \\\hline
   \end{tabular}
   \caption{Statystyki z weryfikacji dla modelu A.}
+  \caption*{Znaki zapytania oznaczają odpowiedź: \emph{Własność może
+      nie być prawdziwa}. Zwróćmy uwagę na bardzo długi czas potrzebny
+  do zweryfikowania pełnej żywotności.}
   \label{tab:ver-stats-a}
 \end{table}
 
@@ -1793,31 +1845,65 @@ skrzyżowania, na którym wszystkie pojazdy mają zapewniony bezkolizyjny
 przejazd. Cykl pracy systemu składa się z czterech faz
 zaprezentowanych na \imgr{img:ver-phases-b}.
 
-\begin{table}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{img/ver-b-cycle}
+  \caption{Fazy modelu B}
+  \label{img:ver-phases-b}
+\end{figure}
+\begin{table}[ht]
   \centering
   \begin{tabular}{|r||r|r|r||r|r|r||}
     \hline
     & \multicolumn{3}{c||}{\bf Standard} & \multicolumn{3}{c||}{\bf
       Otoczka wypukła} \\ \hline
-    Nr   & Wynik & Czas [min:s] & Liczba stanów [tys.] & Wynik & Czas [min:s] &
-    Liczba stanów [tys.] \\ \hline
-    1. & TAK &  &  & TAK  & 2:09  &  1~929~817 \\
-    2. & TAK &  &  & TAK  & 2:08  &  1~929~817 \\
-    3. & TAK &  &  & TAK  & 2:03  &  1~929~817 \\
-    4. & TAK &  &  & TAK  & 10:03 & 10~043~278 \\
-    5. & NIE &  &  & ?    & 7:31  &  8~631~811 \\
-    6. & TAK &  &  & ?    & 2:20  &  1~549~044 \\
-    7. & TAK &  &  & ?    & 0:01  &       -- 
+    Nr   & Wynik & Czas [min:s] & Liczba stanów & Wynik & Czas [min:s] &
+    Liczba stanów\\ \hline
+    1. & TAK &  7:58 & 3~017~585  & TAK  & 2:09  &  1~929~817 \\
+    2. & TAK &  8:44 & 3~017~585  & TAK  & 2:08  &  1~929~817 \\
+    3. & TAK & 10:16 & 3~017~585  & TAK  & 2:03  &  1~929~817 \\
+    4. & TAK & 59:44 & 16~664~531 & TAK  & 10:03 & 10~043~278 \\
+    5. & NIE & 43:54 & 13~757~176 & ?    & 7:31  &  8~631~811 \\
+    6. & --  & 6000:00 & b/d            & ?    & 2:20  &  1~549~044 \\
+    7. & --  & 6000:00 & b/d         & ?    & 0:01  &       b/d 
     \\\hline
   \end{tabular}
   \caption{Statystyki z weryfikacji dla modelu B.}
+  \caption*{Znaki zapytania oznaczają odpowiedź: \emph{Własność może
+      nie być prawdziwa}. Kreski oznaczają, że danej formuły nie udało
+  się zweryfikować w podanym czasie.}
   \label{tab:ver-stats-b}
 \end{table}
-
 \subsection{Parametry modelu a~zasoby potrzebne do weryfikacji jego
   własności}
-Kluczową cechą modelu 
+Statystyki przedstawione w poprzednim podrozdziale wyraźnie pokazują,
+że kluczowym czynnikiem mającym wpływ na zasoby potrzebne do
+weryfikacji jest rozmiar modelu rozumiany jako liczba faz i
+potoków. Rolę odgrywają jednak także pozostałe parametry takie jak
+np. maksymalny zielony.  Wpływ tego parametru na czas weryfikacji i
+liczbę przejrzanych stanów prezentuje \imgr{img:max-time-chart}. W
+eksperymencie wykorzystano model A, zmieniając tylko odpowiednio
+pararametr maksymalny zielony (dla wszystkich faz). Weryfikowano
+własność \ttt{A[] not deadlock}.
+\begin{figure}
+  \centering
+  \subfloat[Czas weryfikacji.]{
+    \includegraphics[width=0.6\textwidth]{img/ver-max-time-chart}
+  }\\
+  \subfloat[Liczba przejrzanych konfiguracji.]{
+    \includegraphics[width=0.6\textwidth]{img/ver-max-states-chart}
+  }
+  \caption{Zależność zasobów potrzebnych do weryfikacji od parametru maksymalny zielony.}
+  \label{img:max-time-chart}
+\end{figure}
 
+Wzrost rozmiaru przestrzeni konfiguracji wraz ze wzrostem czasu
+maksymalnego nie stoi w sprzeczności z uwagą z rozdziału
+\ref{ss:ta:theory:verification} o niezależności stref od
+konkretnych wartości stałych w ograniczeniach. Zauważmy bowiem, że
+zwiększenie omawianego parametru powoduje istotny wzrost liczby
+możliwych scenariuszy -- w każdym odcinku aktywności fazy czujniki
+mogą być wzbudzone więcej razy.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Koniec zasadniczej części pracy
@@ -1829,7 +1915,8 @@ Kluczową cechą modelu
 \label{app:descriptions}
 \section{Model A}
 \section{Model B}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % Bibliografia
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{chapter}{Bibliografia}
@@ -1850,4 +1937,4 @@ Kluczową cechą modelu
 % LocalWords:  wielopotokowych stałoczasowego jednostanowymi zenonowskie
 % LocalWords:  niezenonowski Zenonowskość zenonowskimi wysokopoziomowość
 % LocalWords:  wyspecyfikować niskopoziomowości rozgłoszeniowy zenonowski
-% LocalWords:  wielopotokowego podsłowniki
+% LocalWords:  wielopotokowego podsłowniki nadaproksymacja odnogowego
