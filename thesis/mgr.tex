@@ -42,14 +42,15 @@
   D.2.4. Software/Program verification}
 
 % Słowa kluczowe:
-\keywords{sygnalizacja świetlna, systemy czasu rzeczywistego, automaty
-czasowe, Uppaal}
+\keywords{sygnalizacja świetlna, system czasu rzeczywistego,
+  modelowanie formalne, automaty czasowe, Uppaal}
 
 %--------------------------------------------------------------------------
 % My macros
 %--------------------------------------------------------------------------
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
 \newcommand{\todocite}{\todo{[source]}}
+\newcommand{\comments}[1]{}
 
 \newcommand{\ang}[1]{(ang.~\emph{#1})}
 \newcommand{\imgr}[1]{rys.~\ref{#1}}
@@ -100,15 +101,91 @@ czasowe, Uppaal}
 \maketitle
 
 \begin{abstract}
-  \todo{Napisać streszczenie.}
+  Praca przedstawia zastosowanie metod formalnego modelowania w
+  projektowaniu sygnalizacji świetlnej. Modele zostały stworzone w
+  oparciu formalizm automatów czasowych i zweryfikowane przy pomocy
+  narzędzia \upp.
+
+  W pracy zaproponowano prosty język modelowania przeznaczony
+  specjalnie do specyfikacji systemów sygnalizacji
+  świetlnej. Stworzone w nim opisy można automatycznie przełożyć na
+  modele w języku automatów czasowych, co znacząco upraszcza proces
+  modelowania przy zachowaniu płynących z niego korzyści.
 \end{abstract}
 
 \tableofcontents
+\addcontentsline{toc}{chapter}{Wprowadzenie}
+\chapter*{Wprowadzenie}
 
-\chapter*{Wprowadzenie} \addcontentsline{toc}{chapter}{Wprowadzenie}
+Weryfikacja modelowa \ang{model-checking}, wprowadzona poprzez
+Clarke'a i Emersona w~1980 \cite{clarke-emerson-mc}, jest jedną z
+najważniejszych metod formalnych wykorzystywanych w~dowodzeniu
+poprawności programów komputerowych. W~celu jej zastosowania należy
+przekształcić program w opisujący go model (np.~automat skończony),
+a~pożądaną własność wyrazić jako formułę pewnej logiki
+temporalnej. \emph{Model-checker} przeszukuje przestrzeń stanów
+modelu, aby zweryfikować prawdziwość zadanej formuły; w~przypadku, gdy
+jest ona fałszywa, dostarcza ścieżkę, stanowiącą
+kontrprzykład.
+
+Najpoważniejszym problemem związanym z weryfikacją
+modelową jest tzw.~\emph{eksplozja stanów}, czyli bardzo szybki wzrost
+rozmiaru przestrzeni stanów modelu przy wzroście złożoności
+programu. Jednym ze sposobów poradzenia sobie z nim jest
+\emph{model-checking symboliczny}, którego główną ideą jest
+zastąpienie wyliczania konkretnych stanów operowaniem na symbolicznych
+opisach ich zbiorów \cite{mcmillan-smc}. Technika ta znacząco redukuje
+zasoby potrzebne do weryfikacji danego modelu, co pozwala na
+korzystanie z \emph{model-checkingu} dla systemów przemysłowych
+(m.in.~\cite{smc-industry-1}, \cite{smc-industry-2}).
+
+Wśród systemów, dla których stosuje się weryfikację modelową, liczną
+grupę stanowią systemy czasu rzeczywistego. Opracowano dla nich
+specjalne języki modelowania (ich obszerny przegląd można odnaleźć w
+\cite{time-in-computing}) oraz narzędzia służące do weryfikacji
+(m.in.~\cite{lpw:fct95}, \cite{kronos}). Jako że, już z samej swojej
+natury, systemy czasu rzeczywistego mają nieskończenie wiele stanów,
+wszystkie praktycznie stosowane metody należą do symbolicznych.
+
+\emph{Model-checking}, tak jak inne metody formalne, nie jest
+pozbawiony wad. Pomimo korzystania z weryfikacji symbolicznej oraz
+licznych innych technik, główną z nich pozostaje problem eksplozji
+stanów, często uniemożliwiający dowodzenie poprawności dużych
+systemów. Poza tym stosowanie weryfikacji modelowej jest czasochłonne
+i wymaga specjalistycznej wiedzy od członków zespołu. O ile
+złagodzenie kwestii eksplozji stanów wymaga w wielu przypadkach dość
+zaawansowanych metod, o tyle pozostałe z wymienionych problemów można
+przynajmniej częściowo rozwiązać, udoskonalając i uzupełniając
+dostępne narzędzia. Propozycją takiego podejścia jest przedstawiony w
+pracy język modelowania sygnalizacji świetlnej.
+
+Sygnalizacja świetlna należy do systemów czasu rzeczywistego, dla
+których używanie metod formalnych jest szczególnie wskazane. Z jednej
+strony całkowita poprawność jej funkcjonowania odgrywa kluczową
+rolę, jako że zależy od niej życie i zdrowie uczestników ruchu. Z
+drugiej zaś -- rosnąca złożoność systemów sygnalizacji świetlnej
+sprawia, że tradycyjne metody zapewnienia jakości, takie jak
+testowanie, mogą okazać się niewystarczające.
+
+W niniejszej pracy przedstawiono formalne modele systemów sygnalizacji
+świetlnej stworzone w formalizmie automatów czasowych oraz język
+modelowania, ułatwiający ich projektowanie.  Rozdziały \ref{c:signals}
+i \ref{c:ta} zawierają informacje wstępne konieczne do zrozumienia
+dalszej części pracy: pierwszy wprowadza podstawowe pojęcia związane z
+opisem systemów sygnalizacji, natomiast drugi omawia teorię automatów
+czasowych oraz narzędzie użyte do ich weryfikacji -- \upp.  Rozdział
+\ref{c:lang} przedstawia kluczowe koncepcje związane z proponowanym
+językiem modelowania sygnalizacji świetlnej. Prezentuje nie tylko jego
+składnię, ale także podstawowe założenia i potencjalne korzyści
+wynikające z jego stosowania. Strukturę i sposób funkcjonowania modeli
+generowanych na podstawie specyfikacji w tym języku przedstawia
+rozdział \ref{c:models} (sama faza przekształcania specyfikacji
+w~modele została w pracy pominięta jako czysto techniczna). Rozdział
+\ref{c:ver} omawia wyniki weryfikacji modeli reprezentujących
+kompletne systemy sygnalizacji.
 
 \chapter{Sygnalizacja świetlna}
-\label{c:sygnalizacja}
+\label{c:signals}
 
 Niniejszy rozdział zawiera informacje o~systemach sygnalizacji
 świetlnej niezbędne w~dalszej części pracy. Podrozdział
@@ -871,7 +948,7 @@ stanach na ścieżce, zaś \texttt{<>} -- w~co najmniej jednym.
 % Analogicznie, zapytanie \texttt{inf} podaje najmniejszą osiągalną wartość.
 
 \chapter{Język modelowania}
-
+\label{c:lang}
 Choć modelowanie systemów czasu rzeczywistego -- w~szczególności
 systemów sygnalizacji świetlnej -- przy pomocy automatów czasowych
 niesie ze sobą wiele korzyści, może być ono zadaniem skomplikowanym
@@ -934,7 +1011,7 @@ z~nim niezaznajomionym.
 
 Proponowany język formalnego modelowania pozwala na specyfikację
 dowolnego systemu sygnalizacji świetlnej mieszczącego się w ramach
-przedstawionych w rozdziale \ref{c:sygnalizacja}. Charakterystyka
+przedstawionych w rozdziale \ref{c:signals}. Charakterystyka
 systemu składa się z~opisów warstw tj. potoków, faz oraz
 cyklu. Podział parametrów pomiędzy poszczególne warstwy jest zgodny
 z~treścią podrozdziału \ref{ss:signals:actuated:summary}. W
@@ -1141,6 +1218,7 @@ cycle:
 \end{lstlisting}
 
 \chapter{Modele}
+\label{c:models}
 Kluczową kwestią niezbędną dla osiągnięcia pełni korzyści wymienionych
 w~\ref{ss:lang:req:benefits} jest wysoka jakość generowanych
 modeli. Niniejszy rozdział przedstawia najważniejsze kwestie związane
@@ -1400,6 +1478,7 @@ kontrolera potoku wzbudzanego przebiega następująco:
 \end{sidewaysfigure}
 
 \subsection{Kontroler fazy}
+\label{ss:models:models:phase-ctrl}
 Kontroler fazy zarządza funkcjonowaniem zależnych od siebie
 kontrolerów potoków, wyznaczając początek i~maksymalny czas ich pracy.
 
@@ -1911,10 +1990,188 @@ mogą być wzbudzone więcej razy.
 \appendix
 \chapter{Modele pozostałych komponentów}
 \label{app:other-models}
+
+\section{Kontroler potoku}
+\paragraph{Model kontrolera potoku dla pieszych} Struktura i schemat
+funkcjonowania kontrolera potoku dla pieszych są podobne do tych dla
+jego odpowiednika dla potoku pojazdów. Uproszczenia wynikają z
+mniejszej liczby nadawanych sygnałów oraz z faktu, że sygnał zielony
+ma stałą długość (stąd tylko jeden ,,zielony'' stan). Patrz
+\imgr{img:models-extra:pedctrl}.
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{img/models-pedctrl}
+  \caption{Automat reprezentujący kontroler potoku dla pieszych.}
+  \label{img:models-extra:pedctrl}
+\end{figure}
+\clearpage{}
+
+\section{Kontrolery fazy}
+\paragraph{Model jednopotokowego kontrolera fazy (potok o stałej
+  długości sygnału zielonego)} Najprostszą wersją kontrolera fazy jest
+ten obsługujący jeden potok o stałej długości sygnału zielonego. Jego
+komunikacja z kontrolerem potoku ogranicza się do kanałów \ttt{call},
+\ttt{go}, \ttt{gone_off}. Patrz \imgr{img:models-extra:phasectrlf1}.
+\begin{figure}[h]
+  \includegraphics[width=\textwidth]{img/models-phasectrlf1}
+  \caption{Model jednopotokowego kontrolera fazy (potok o stałej
+  długości sygnału zielonego).}
+  \label{img:models-extra:phasectrlf1}
+\end{figure}
+
+
+\paragraph{Model jednopotokowego kontrolera fazy (potok o zmiennej
+  długości sygnału zielonego)} Jednopotokowy kontroler fazy dla potoku
+o zmiennej długości przypomina wielopotokowy kontroler fazy
+przedstawiony w rozdziale \ref{ss:models:models:phase-ctrl}. Mniejsza
+jest liczba stanów obsługujących okres aktywności, co wynika z
+braku funkcji związanych z koordynacją wielu potoków. Patrz \imgr{img:models-extra:phasectrl1}.
+\begin{sidewaysfigure}[ht]
+  \includegraphics[width=\textwidth]{img/models-phasectrl1}
+  \caption{Model jednopotokowego kontrolera fazy (potok o zmiennej
+  długości sygnału zielonego).}
+  \label{img:models-extra:phasectrl1}
+\end{sidewaysfigure}
+
+
+
+
 \chapter{Formalne opisy modeli}
 \label{app:descriptions}
-\section{Model A}
-\section{Model B}
+\paragraph{Stałe} Zestaw stałych jest wspólny dla obu modeli.
+\begin{lstlisting}
+constants
+   RED-AMBER:  1
+   AMBER:      3
+   RED-CLEAR:  3
+   MIN-GREEN:  7
+   GAP:        2
+   MAX:       12
+
+   INTERVALS:
+     green:
+       min_green: MIN-GREEN
+       gap: GAP
+     red_amber: RED-AMBER
+     amber:     AMBER
+     red_clear: RED-CLEAR
+\end{lstlisting}
+
+\paragraph{Model A} Specyfikacja modelu A:
+
+\begin{lstlisting}[caption=Specyfikacja modelu A.]
+movement    // \com{Potok "N prosto"}
+   id: 0    
+   user:   VEHICLE
+   intervals: INTERVALS
+movement    // \com{Potok "S prosto"}
+   id: 1    
+   user:   VEHICLE
+   intervals: INTERVALS
+movement    // \com{Potok "N w lewo"}
+   id: 2    
+   user:   VEHICLE
+   intervals: INTERVALS
+movement    // \com{Potok "S w lewo"}
+   id: 3    
+   user:   VEHICLE
+   intervals: INTERVALS
+movement    // \com{Potok E}
+   id: 4    
+   user:   VEHICLE
+   intervals: INTERVALS
+movement    // \com{Potok W}
+   id: 5    
+   user:   VEHICLE
+   intervals: INTERVALS
+
+
+phase: // \com{Faza "NS prosto"}
+   id: 0
+   movements: [0, 1]
+   max_time : MAX
+   hold: [0, 1]
+   late: []
+phase: // \com{Faza "NS w lewo"}
+   id: 1
+   movements: [2, 3]
+   max_time : MAX
+   hold: [2, 3]
+   late: []
+phase: // \com{Faza "EW"}
+   id: 2
+   movements: [4, 5]
+   max_time : MAX
+   hold: [4, 5]
+   late: []
+
+cycle:
+   phases: [0, 1, 2]
+   rest: REST-IN-RED
+\end{lstlisting}
+\paragraph {Model B} Specyfikacja modelu B:
+
+\begin{lstlisting}[caption=Specyfikacja modelu B.]
+movement    // \com{Potok "N prosto"}
+   id: 0    
+   user:   VEHICLE
+   intervals: INTERVALS
+movement    // \com{Potok "S prosto"}
+   id: 1    
+   user:   VEHICLE
+   intervals: INTERVALS
+movement    // \com{Potok "N w lewo"}
+   id: 2    
+   user:   VEHICLE
+   intervals: INTERVALS
+movement    // \com{Potok "S w lewo"}
+   id: 3    
+   user:   VEHICLE
+   intervals: INTERVALS
+movement    // \com{Potok "E prosto"}
+   id: 4    
+   user:   VEHICLE
+   intervals: INTERVALS
+movement    // \com{Potok "W prosto"}
+   id: 5    
+   user:   VEHICLE
+   intervals: INTERVALS
+movement    // \com{Potok "E w lewo"}
+   id: 6    
+   user:   VEHICLE
+   intervals: INTERVALS
+movement    // \com{Potok "W w lewo"}
+   id: 7    
+   user:   VEHICLE
+   intervals: INTERVALS
+
+phase: // \com{Faza "NS prosto"}
+   id: 0
+   movements: [0, 1]
+   max_time : MAX
+   hold: [0, 1]
+   late: []
+phase: // \com{Faza "NS w lewo"}
+   id: 1
+   movements: [2, 3]
+   max_time : MAX
+   hold: [2, 3]
+   late: []
+phase: // \com{Faza "EW prosto"}
+   id: 2
+   movements: [4, 5]
+   max_time : MAX
+   hold: [4, 5]
+   late: []
+phase: // \com{Faza "EW w lewo"}
+   id: 3
+   movements: [6, 7]
+   max_time : MAX
+   hold: [6, 7]
+   late: []
+cycle:
+   phases: [0, 1, 2, 3]
+   rest: REST-IN-RED
+\end{lstlisting}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % Bibliografia
