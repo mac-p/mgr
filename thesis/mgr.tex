@@ -161,7 +161,7 @@ sygnalizacji świetlnej.
 Sygnalizacja świetlna należy do systemów czasu rzeczywistego, dla
 których używanie metod formalnych jest szczególnie wskazane. Z~jednej
 strony całkowita poprawność jej funkcjonowania odgrywa kluczową rolę,
-jako że zależy od niej życie i zdrowie uczestników ruchu. Z~drugiej
+ponieważ zależy od niej życie i zdrowie uczestników ruchu. Z~drugiej
 zaś -- rosnąca złożoność systemów sygnalizacji świetlnej sprawia, że
 tradycyjne metody zapewnienia jakości, takie jak testowanie, mogą
 okazać się niewystarczające.
@@ -252,11 +252,12 @@ niektórych, mówimy o~sygnalizacji \emph{w pełni wzbudzanej}
 \ang{fully-actuated} lub \emph{częściowo wzbudzanej}
 \ang{semi-actuated}.
 
-W~systemach w~pełni wzbudzanych sygnalizacja dla każdego z~uczestników
-ruchu uzależniona jest od danych dostarczonych przez czujnik.
-W~szczególności oznacza to, że w~danym cyklu sygnał zielony otrzymują
-tylko te fazy, na które jest zapotrzebowanie. Także czas trwania
-poszczególnych sygnałów może być funkcją danych z~czujnika.
+W~systemach w~pełni wzbudzanych sposób funkcjonowania sygnalizacji dla
+każdego z~uczestników ruchu uzależniony jest od danych dostarczonych
+przez czujnik.  W~szczególności oznacza to, że w~danym cyklu sygnał
+zielony otrzymują tylko te fazy, na które jest zapotrzebowanie. Także
+czas trwania poszczególnych sygnałów może być funkcją danych
+z~czujnika.
 
 W~systemach częściowo wzbudzanych detekcja ruchu dotyczy tylko
 niektórych potoków ruchu, np.~pieszych bądź pojazdów nadjeżdżających
@@ -301,7 +302,7 @@ migającym zielonym. Opis systemu sprowadza się do pokazania sposobu
 wyznaczania długości interwałów odpowiadających tym sygnałom. Należy
 tu uczynić dodatkową uwagę dotyczącą interwału czerwonego. Choć w~zasadzie jego
 długość dla danego sygnalizatora wyznaczana jest przez długość cyklu
-pracy pozostałych, to, w~celu zapewnienia bezpieczeństwa ruchu, dla
+pracy pozostałych, to -- w~celu zapewnienia bezpieczeństwa ruchu -- dla
 każdego potoku wyznacza się minimalny odcinek czasu pomiędzy końcem
 jego aktywności a początkiem aktywności kolidującego potoku. W tym
 czasie wszystkie sygnalizatory nadają sygnał czerwony. Okres ten
@@ -380,7 +381,7 @@ pojazdami, sygnał zielony zostaje przerwany (patrz
 \imgr{img:gap-out}).
 
 \begin{figure}[h] \centering
-  \includegraphics[width=0.7\textwidth]{img/signals-gap-out}
+  \includegraphics[width=0.8\textwidth]{img/signals-gap-out}
   \caption{Zakończenie sygnału zielonego przez wykrycie luki.}
 \label{img:gap-out}
 \end{figure}
@@ -395,7 +396,7 @@ zielony w~obecności zgłoszenia przeciwnego (patrz
 zgłoszenia przeciwnego sygnał zielony będzie nadawany tak długo, aż
 nie nastąpi wykrycie luki.
 \begin{figure}[h] \centering
-  \includegraphics[width=0.7\textwidth]{img/signals-max-out}
+  \includegraphics[width=0.8\textwidth]{img/signals-max-out}
   \caption{Zakończenie sygnału zielonego przez wykorzystanie
 maksymalnego czasu.}
 \label{img:max-out}
@@ -955,7 +956,7 @@ Choć modelowanie systemów czasu rzeczywistego -- w~szczególności
 systemów sygnalizacji świetlnej -- przy pomocy automatów czasowych
 niesie ze sobą wiele korzyści, może być ono zadaniem skomplikowanym
 i~czasochłonnym. Wynika to ze swego rodzaju niskopoziomowości tego
-formalizmu. Rozwiązaniem tego problemu jest wprowadzenie
+języka. Rozwiązaniem tego problemu jest wprowadzenie
 sformalizowanego opisu stanowiącego warstwę pośrednią pomiędzy
 rzeczywistym systemem a~reprezentującym go modelem.  Niniejszy
 rozdział przedstawia koncepcję prostego języka, służącego do tworzenia
@@ -963,9 +964,8 @@ takich właśnie opisów.
 
 Podrozdział \ref{c:lang:req} przedstawia podstawowe wymagania, które
 powinien spełniać język formalnego modelowania oraz potencjalne
-korzyści wynikające z~jego stosowania, natomiast podrozdział
-\ref{c:lang:lang} zawiera opis proponowanej składni i semantyki
-takiego języka.
+korzyści wynikające z~jego stosowania. Podrozdział \ref{c:lang:lang}
+zawiera natomiast opis proponowanej składni i semantyki.
 
 \section{Wymagania i~korzyści}
 \label{c:lang:req}
@@ -977,12 +977,12 @@ modelowania jest możliwość jej automatycznego przekształcenia w~model
 w~języku automatów czasowych. Po pierwsze daje to jednoznaczną
 semantykę takiego opisu: wątpliwości można rozstrzygnąć, symulując
 działanie modelu w~wybranym scenariuszu. Po drugie zaś -- udostępnia
-korzyści wynikające z~włączenia do projektu formalnych modeli bez
+korzyści, wynikające z~włączenia do projektu formalnych modeli, bez
 potrzeby ich ręcznego konstruowania.
 
-Kolejnymi pożądanymi cechami omawianego języka modelowania są prostota
-i~wysokopoziomowość. W~celu ich zapewnienia należy zawęzić dziedzinę
-języka wyłącznie do systemów sygnalizacji świetlnej, dbając
+Kolejnymi pożądanymi cechami omawianego języka są prostota
+i~wysokopoziomowość. W~celu ich zapewnienia należy zawęzić jego dziedzinę
+wyłącznie do systemów sygnalizacji świetlnej, dbając
 jednocześnie o~to, aby był on dostatecznie elastyczny, by w~przyjętej
 formie można było wyspecyfikować jak najliczniejszy zbiór stosowanych
 rozwiązań. Aby ułatwić modelowanie, składnia języka powinna być oparta
@@ -1052,7 +1052,7 @@ W~celu skrócenia i~uporządkowania specyfikacji możemy zadeklarować słownik
 być to zarówno proste wartości jak i~całe podsłowniki danych.
 
 \noindent\begin{minipage}{1.0\linewidth}
-\begin{lstlisting}[caption=Słownik stałych.]
+\begin{lstlisting}[caption=Przykładowy słownik stałych.]
 constants
    M-TIME: 10
    S-TIME: 5
@@ -1812,7 +1812,7 @@ własność tę wyraża następująca formuła:
 \tttform{Detector.Actuated --> Light.Green}
 Zauważmy jednak, że w~analizie systemów czasu rzeczywistego przeważnie
 interesuje nas nie tylko sam fakt obsłużenia żądania, ale także
-długość odcinka czasu między żądaniem a~jego realizacją. Stosowna
+długość odcinka czasu między żądaniem a~jego realizacją. Stosowną
 własność nazywa się ograniczoną żywotnością \ang{bounded liveness}
 i~definiuje w~następujący sposób:
 
@@ -1831,7 +1831,7 @@ na sprowadzeniu żywotności ograniczonej do prostej własności
 bezpieczeństwa, została zaproponowana w~\cite{lpw:tacas98}. Aby ją
 zastosować należy, obok dodatkowego zegara, rozszerzyć model o~zmienną
 boolowską $b$, zainicjowaną na $false$.  W~momencie, gdy predykat
-$\varphi$ zaczyna być spełniony, $b$ jest ustawiana na $true$ a~zegar
+$\varphi$ zaczyna być spełniony, $b$ jest ustawiana na $true$, a~zegar
 $z$ jest resetowany; wartość $false$ jest przypisywana z~powrotem na
 $b$, gdy tylko zajdzie predykat $\psi$. Zmienna $b$ przechowuje zatem
 informację, o~tym czy mamy do czynienia z~aktywnym żądaniem spełnienia
@@ -1861,6 +1861,10 @@ Wykorzystany został \upp\ w wersji 4.1.3 (4577).
 
 \subsection{Weryfikacja podstawowych własności.}
 Niniejszy rozdział prezentuje wyniki weryfikacji poniższych formuł:
+\footnote{Przedstawiono wyniki weryfikacji dotyczące pierwszego potoku
+  \ttt{MvC00} należącego do pierwszej fazy \ttt{PC0}. Wyniki
+  weryfikacji dla pozostałych potoków są identyczne, natomiast
+  potrzebne zasoby zbliżone do tych przedstawionych.}
 \begin{enumerate}
   \item \ttt{A[] PC0.Inactive imply (MvC00.RedNoDemand||MvC00.RedGotCall)}
   \item \ttt{A[]
@@ -1927,9 +1931,9 @@ trzech faz zaprezentowanych na \imgr{img:ver-phases-a}.
   \end{tabular}
   \caption{Statystyki z weryfikacji dla modelu A.}
   \caption*{\footnotesize ? -- odpowiedź: \emph{Własność może nie być
-      prawdziwa} (opcja nadaproksymacji)\\
-    b/d -- brak danych (\upp\ nie podaje liczby stanów dla
-    własności pełnej żywotności.)
+      prawdziwa} (opcja nadaproksymacji).\\
+    b/d -- brak danych: \upp\ nie podaje liczby stanów dla
+    własności pełnej żywotności.
   }
   \label{tab:ver-stats-a}
 \end{table}
@@ -1964,12 +1968,12 @@ zaprezentowanych na \imgr{img:ver-phases-b}.
   \end{tabular}
   \caption{Statystyki z weryfikacji dla modelu B.}
   \caption*{\footnotesize ? -- odpowiedź: \emph{Własność może nie być
-      prawdziwa} (opcja nadaproksymacji)\\
-            X -- nie udało się zweryfikować danej własności\\
-    b/d$^1$ -- brak danych (Informacja o przejrzanych stanach jest
-    dostępna tylko dla zakończonych weryfikacji.)\\
-    b/d$^2$ -- brak danych (\upp\ nie podaje liczby stanów dla
-    własności pełnej żywotności.)
+      prawdziwa} (opcja nadaproksymacji).\\
+            X -- nie udało się zweryfikować danej własności.\\
+    b/d$^1$ -- brak danych: Informacja o przejrzanych stanach jest
+    dostępna tylko dla zakończonych weryfikacji.\\
+    b/d$^2$ -- brak danych: \upp\ nie podaje liczby stanów dla
+    własności pełnej żywotności.
   }
   \label{tab:ver-stats-b}
 \end{table}
@@ -1986,7 +1990,7 @@ choć tylko dla pierwszej z~nich możemy użyć nadaproksymacji.
 Znacznie większych zasobów wymaga weryfikacja braku zakleszczenia (6):
 jak widać w~tabeli \ref{tab:ver-stats-b}, nie udało się go dowieść dla
 modelu~B. O~jego poprawności w tym względzie można by wnioskować
-jedynie powołując się na poprawność pracy poszczególnych komponentów
+jedynie, powołując się na poprawność pracy poszczególnych komponentów
 w~mniejszych modelach.
 
 Jeszcze dłuższego czasu wymaga weryfikacja pełnej żywotności
@@ -2045,10 +2049,10 @@ modelowania, dzięki któremu można szybko generować modele,
 reprezentujące systemy o zadanej konfiguracji.
 
 Pomimo swojej prostoty, język automatów czasowych ma wystarczającą
-siłę wyrazu do modelowania systemów sygnalizacji
-świetlnej. Bardzo cenne są przy tym rozszerzenia wprowadzone w \upp-u,
-znacznie ułatwiające projektowanie złożonych systemów. Dostępny w
-narzędziu weryfikator umożliwia dowodzenie praktycznie wszystkich
+siłę wyrazu do modelowania systemów sygnalizacji świetlnej. Bardzo
+cenne są przy tym rozszerzenia wprowadzone w \upp-u, znacznie
+ułatwiające projektowanie złożonych systemów. Dostępny w narzędziu
+weryfikator umożliwia dowodzenie praktycznie wszystkich niezbędnych
 własności jakościowych oraz podstawowych własności ilościowych.
 
 
@@ -2060,8 +2064,8 @@ własności jakościowych oraz podstawowych własności ilościowych.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliografia
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\addcontentsline{toc}{chapter}{Bibliografia}
 \bibliography{bib.bib}{}
+\addcontentsline{toc}{chapter}{Bibliografia}
 \bibliographystyle{plalpha}
 
 

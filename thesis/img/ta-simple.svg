@@ -1,219 +1,354 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
-  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg-20010904.dtd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   x="0px"
+   y="0px"
+   width="240.56541"
+   height="234.58887"
+   viewBox="0 0 240.56541 234.58887"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.1 r9760"
+   sodipodi:docname="ta-simple.svg"
+   style="fill:none;stroke:#333333;stroke-width:1;stroke-linecap:square;stroke-opacity:1">
+  <metadata
+     id="metadata205">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="691"
+     id="namedview203"
+     showgrid="false"
+     fit-margin-left="15"
+     fit-margin-top="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.3168724"
+     inkscape:cx="11.300582"
+     inkscape:cy="126.19042"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <title
+     id="title4" />
+  <desc
+     id="desc6">
+    <Title
+       id="Title8" />
+    <Creator
+       id="Creator10">FreeHEP Graphics2D Driver</Creator>
+    <Producer
+       id="Producer12">org.freehep.graphicsio.svg.SVGGraphics2D Revision: 1.16 </Producer>
+    <Source
+       id="Source14" />
+    <Date
+       id="Date16">poniedziałek, 11 lipiec 2011 11:39:07 CEST</Date>
+  </desc>
+  <defs
+     id="defs18">
+    <!-- Symbols for use with SVGGraphics (generic format) -->
+    <!-- Author: Mark Donszelmann -->
+    <!-- Version: $Id: SVGDefs.txt,v 1.1 2002/07/30 19:11:30 duns Exp $ -->
+    <!-- sqrt(2)*s -->
+    <!-- 1/sqrt(3) and sqrt(3)/2 - 1/sqrt(3) -->
+    <!-- Symbols for use with SVGGraphics (stylable format) -->
+    <!-- Author: Mark Donszelmann -->
+    <!-- Version: $Id: SVGDefs-stylable.txt,v 1.1 2002/07/30 19:11:30 duns Exp $ -->
+  </defs>
+  <rect
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:sans-serif"
+     id="rect85"
+     height="0"
+     width="0"
+     y="-3.609375"
+     x="-9.3978548" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#ffa500;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path91"
+     d="m 76.602145,109.39063 c 0,6.62742 -5.372583,12 -12,12 -6.627417,0 -12,-5.37258 -12,-12 0,-6.62742 5.372583,-12.000005 12,-12.000005 6.627417,0 12,5.372585 12,12.000005 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#ffff00;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path95"
+     d="m 76.602145,109.39063 c 0,6.62742 -5.372583,12 -12,12 -6.627417,0 -12,-5.37258 -12,-12 0,-6.62742 5.372583,-12.000005 12,-12.000005 6.627417,0 12,5.372585 12,12.000005 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#00ff00;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path99"
+     d="m 180.60215,205.39062 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.62742 5.37258,-12 12,-12 6.62742,0 12,5.37258 12,12 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path103"
+     d="m 180.60215,205.39062 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.62742 5.37258,-12 12,-12 6.62742,0 12,5.37258 12,12 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path107"
+     d="m 180.60215,29.390625 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.62742 5.37258,-12 12,-12 6.62742,0 12,5.37258 12,12 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path111"
+     d="m 180.60215,29.390625 c 0,6.62742 -5.37258,12 -12,12 -6.62742,0 -12,-5.37258 -12,-12 0,-6.62742 5.37258,-12 12,-12 6.62742,0 12,5.37258 12,12 z" />
+  <path
+     style="font-size:12px;font-style:normal;font-weight:normal;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     inkscape:connector-curvature="0"
+     id="path115"
+     d="m 176.60215,29.390625 c 0,4.41828 -3.58172,8 -8,8 -4.41828,0 -8,-3.58172 -8,-8 0,-4.41828 3.58172,-8 8,-8 4.41828,0 8,3.58172 8,8 z" />
+  <text
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#a742a8;fill-opacity:1;stroke:none;font-family:sans-serif"
+     id="text119"
+     y="137.17188"
+     x="14.62402">t &lt;= 3</text>
+  <text
+     x="144.60214"
+     y="234.39062"
+     id="text123"
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#a742a8;fill-opacity:1;stroke:none;font-family:sans-serif">t &lt;= 10</text>
+  <text
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#a742a8;fill-opacity:1;stroke:none;font-family:sans-serif"
+     id="text127"
+     y="10.390625"
+     x="136.60214">t &lt;= 10</text>
+  <text
+     x="80.60215"
+     y="50.390625"
+     id="text131"
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#42a848;fill-opacity:1;stroke:none;font-family:sans-serif">t == 3</text>
+  <text
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#42a848;fill-opacity:1;stroke:none;font-family:sans-serif"
+     id="text135"
+     y="170.39062"
+     x="72.60215">t &gt; 5</text>
+  <g
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:none;stroke:#333333;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;font-family:sans-serif"
+     id="g137"
+     font-size="14"
+     font-style="normal"
+     font-weight="normal"
+     transform="translate(152.60215,173.39062)">
+    <text
+       style="fill:#42a848;fill-opacity:1;stroke:none"
+       id="text139"
+       y="-59"
+       x="24">t = 10</text>
+    <g
+       style="font-size:14px;font-style:normal;font-weight:normal;font-family:sans-serif"
+       id="g141"
+       font-size="14"
+       font-style="normal"
+       font-weight="normal">
+      <text
+         style="fill:#4242a8;fill-opacity:1;stroke:none"
+         id="text143"
+         y="-107"
+         x="-72">t = 0</text>
+      <g
+         style="font-size:14px;font-style:normal;font-weight:normal;font-family:sans-serif"
+         id="g145"
+         font-size="14"
+         font-style="normal"
+         font-weight="normal">
+        <text
+           style="fill:#4242a8;fill-opacity:1;stroke:none"
+           id="text147"
+           y="13"
+           x="-72">t = 0</text>
+        <g
+           style="font-size:14px;font-style:normal;font-weight:normal;font-family:sans-serif"
+           id="g149"
+           font-size="14"
+           font-style="normal"
+           font-weight="normal">
+          <text
+             style="fill:#4242a8;fill-opacity:1;stroke:none"
+             id="text151"
+             y="-43"
+             x="24">t = 0</text>
+          <g
+             style="stroke-linecap:round"
+             id="g153">
+            <g
+               style="stroke-linejoin:bevel"
+               id="g155">
+              <g
+                 style="fill:none;stroke:#000000;stroke-opacity:1"
+                 id="g157">
+                <path
+                   inkscape:connector-curvature="0"
+                   id="path159"
+                   d="M -77.695885,-71.926239 5.695888,-136.07376" />
+              </g>
+              <!-- draw -->
+              <g
+                 style="fill:none;stroke:#000000;stroke-opacity:1"
+                 id="g161">
+                <path
+                   inkscape:connector-curvature="0"
+                   id="path163"
+                   d="m -0.382224,-128.13295 6.078112,-7.94081 -9.234207,3.83789" />
+              </g>
+              <!-- draw -->
+              <g
+                 style="stroke-linecap:square"
+                 id="g165">
+                <g
+                   style="stroke-linejoin:miter"
+                   id="g167">
+                  <g
+                     style="stroke-linecap:round"
+                     id="g169">
+                    <g
+                       style="stroke-linejoin:bevel"
+                       id="g171">
+                      <g
+                         style="fill:none;stroke:#000000;stroke-opacity:1"
+                         id="g173">
+                        <path
+                           inkscape:connector-curvature="0"
+                           id="path175"
+                           d="M 6.447555,23.182358 -78.447556,-55.182358" />
+                      </g>
+                      <!-- draw -->
+                      <g
+                         style="fill:none;stroke:#000000;stroke-opacity:1"
+                         id="g177">
+                        <path
+                           inkscape:connector-curvature="0"
+                           id="path179"
+                           d="m -69.594383,-50.532486 -8.853173,-4.649872 5.342141,8.453491" />
+                      </g>
+                      <!-- draw -->
+                      <g
+                         style="stroke-linecap:square"
+                         id="g181">
+                        <g
+                           style="stroke-linejoin:miter"
+                           id="g183">
+                          <g
+                             style="stroke-linecap:round"
+                             id="g185">
+                            <g
+                               style="stroke-linejoin:bevel"
+                               id="g187">
+                              <g
+                                 style="fill:none;stroke:#000000;stroke-opacity:1"
+                                 id="g189">
+                                <path
+                                   inkscape:connector-curvature="0"
+                                   id="path191"
+                                   d="M 16,-131 16,19" />
+                              </g>
+                              <!-- draw -->
+                              <g
+                                 style="fill:none;stroke:#000000;stroke-opacity:1"
+                                 id="g193">
+                                <path
+                                   inkscape:connector-curvature="0"
+                                   id="path195"
+                                   d="M 13.41181,9.340742 16,19 18.58819,9.340742" />
+                              </g>
+                              <!-- draw -->
+                              <g
+                                 style="stroke-linecap:square"
+                                 id="g197">
+                                <g
+                                   style="stroke-linejoin:miter"
+                                   id="g199">
+                                <g
+                                   id="g201"
+                                   transform="translate(-162,-177)" />
+                                <!-- transform -->
+                                </g>
+                                <!-- stroke join -->
+                              </g>
+                              <!-- stroke cap -->
+                            </g>
+                            <!-- stroke join -->
+                          </g>
+                          <!-- stroke cap -->
+                        </g>
+                        <!-- stroke join -->
+                      </g>
+                      <!-- stroke cap -->
+                    </g>
+                    <!-- stroke join -->
+                  </g>
+                  <!-- stroke cap -->
+                </g>
+                <!-- stroke join -->
+              </g>
+              <!-- stroke cap -->
+            </g>
+            <!-- stroke join -->
+          </g>
+          <!-- stroke cap -->
+        </g>
+        <!-- font -->
+      </g>
+      <!-- font -->
+    </g>
+    <!-- font -->
+  </g>
+  <!-- font -->
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="187.28026"
+     y="32.496094"
+     id="text4003"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4005"
+       x="187.28026"
+       y="32.496094">Czerwony</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="186.91698"
+     y="208.42285"
+     id="text4003-3"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4005-2"
+       x="186.91698"
+       y="208.42285">Zielony</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+     x="18.106638"
+     y="113.34277"
+     id="text4003-3-8"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4005-2-9"
+       x="18.106638"
+       y="113.34277">Żółty</tspan></text>
+</svg>
+<!-- bounding box -->
 
-<svg x="0px" y="0px" width="232px" height="243px" viewBox="0 0 232 243" stroke="#333333" stroke-opacity="1.0" fill="none" stroke-width="1" stroke-linecap="square" >
-<title>
-
-</title>
-<desc>
-<Title></Title>
-<Creator>FreeHEP Graphics2D Driver</Creator>
-<Producer>org.freehep.graphicsio.svg.SVGGraphics2D Revision: 1.16 </Producer>
-<Source></Source>
-<Date>poniedziałek, 11 lipiec 2011 11:39:07 CEST</Date>
-</desc>
-<defs>
-<!-- Symbols for use with SVGGraphics (generic format) -->
-<!-- Author: Mark Donszelmann -->
-<!-- Version: $Id: SVGDefs.txt,v 1.1 2002/07/30 19:11:30 duns Exp $ -->
-
-<symbol id="hline" viewBox="-50 -50 100 100">
-  <path d="M -50 0 H 50"/>
-</symbol>
-
-<symbol id="vline" viewBox="-50 -50 100 100">
-  <path d="M 0 -50 V 50"/>
-</symbol>
-
-<symbol id="plus" viewBox="-50 -50 100 100">
-  <path d="M -50 0 H 50 M 0 -50 V 50"/>
-</symbol>
-
-<symbol id="cross" viewBox="-50 -50 100 100">
-  <use xlink:href="#plus" transform="rotate(45)translate(-51,-51)"/>
-</symbol>
-
-<symbol id="star" viewBox="-50 -50 100 100">
-  <use xlink:href="#plus" transform="translate(-50,-50)"/>
-  <use xlink:href="#cross" transform="translate(-52,-51)"/>
-</symbol>
-
-<symbol id="dot" viewBox="-50 -50 100 100">
-  <circle cx="0" cy="0" r="50"/>
-</symbol>
-
-<!-- sqrt(2)*s -->
-<symbol id="box" viewBox="-50 -50 100 100">
-  <rect x="-35.5" y="-35.5" width="71" height="71"/>
-</symbol>
-
-<!-- 1/sqrt(3) and sqrt(3)/2 - 1/sqrt(3) -->
-<symbol id="triup" viewBox="-50 -50 100 100">
-  <path d="M -50 36 L 0 -50 L 50 36 z"/> 
-</symbol>
-
-<symbol id="tridn" viewBox="-50 -50 100 100">
-  <use xlink:href="#triup" transform="rotate(180)translate(-50,-50)"/>
-</symbol>
-
-<symbol id="diamond" viewBox="-50 -50 100 100">
-  <use xlink:href="#box" transform="rotate(45)translate(-50,-50)"/>
-</symbol>
-<!-- Symbols for use with SVGGraphics (stylable format) -->
-<!-- Author: Mark Donszelmann -->
-<!-- Version: $Id: SVGDefs-stylable.txt,v 1.1 2002/07/30 19:11:30 duns Exp $ -->
-
-<symbol id="fdot">
-  <use xlink:href="#dot" style="stroke:none;fill:currentColor"/>
-</symbol>
-
-<symbol id="fbox">
-  <use xlink:href="#box" style="stroke:none;fill:currentColor"/>
-</symbol>
-
-<symbol id="ftriup">
-  <use xlink:href="#triup" style="stroke:none;fill:currentColor"/>
-</symbol>
-
-<symbol id="ftridn">
-  <use xlink:href="#tridn" style="stroke:none;fill:currentColor"/>
-</symbol>
-
-<symbol id="fdiamond">
-  <use xlink:href="#diamond" style="stroke:none;fill:currentColor"/>
-</symbol>
-</defs>
-
-<g stroke="#333333" stroke-opacity="1.0" fill="none" stroke-width="1" stroke-linecap="square" >
-<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="12" >
-<g transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)">
-<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="12" >
-<g stroke-width="1.0" >
-<g stroke-linecap="square" >
-<g stroke-linejoin="miter" >
-<g stroke-miterlimit="10.0" >
-<g stroke-dasharray="none" stroke-dashoffset="0.0" >
-<rect stroke="none" fill="#ffffff" fill-opacity="1.0"  x="0.0" y="0.0" width="0.0" height="0.0"/>
-<g transform="matrix(1.0,0.0,0.0,1.0,162.0,177.0)">
-<g stroke="none" fill="#ffa500" fill-opacity="1.0" fill-rule="nonzero" >
-<path d="M -76.0 -64.0 C -76.0 -57.372583 -81.372583 -52.0 -88.0 -52.0 C -94.627417 -52.0 -100.0 -57.372583 -100.0 -64.0 C -100.0 -70.627417 -94.627417 -76.0 -88.0 -76.0 C -81.372583 -76.0 -76.0 -70.627417 -76.0 -64.0 z "/>
-</g> <!-- fill -->
-<g stroke="#000000" stroke-opacity="1.0" fill="none" >
-<path d="M -76.0 -64.0 C -76.0 -57.372583 -81.372583 -52.0 -88.0 -52.0 C -94.627417 -52.0 -100.0 -57.372583 -100.0 -64.0 C -100.0 -70.627417 -94.627417 -76.0 -88.0 -76.0 C -81.372583 -76.0 -76.0 -70.627417 -76.0 -64.0 z "/>
-</g> <!-- draw -->
-<g stroke="none" fill="#00ff00" fill-opacity="1.0" fill-rule="nonzero" >
-<path d="M 28.0 32.0 C 28.0 38.627417 22.627417 44.0 16.0 44.0 C 9.372583 44.0 4.0 38.627417 4.0 32.0 C 4.0 25.372583 9.372583 20.0 16.0 20.0 C 22.627417 20.0 28.0 25.372583 28.0 32.0 z "/>
-</g> <!-- fill -->
-<g stroke="#000000" stroke-opacity="1.0" fill="none" >
-<path d="M 28.0 32.0 C 28.0 38.627417 22.627417 44.0 16.0 44.0 C 9.372583 44.0 4.0 38.627417 4.0 32.0 C 4.0 25.372583 9.372583 20.0 16.0 20.0 C 22.627417 20.0 28.0 25.372583 28.0 32.0 z "/>
-</g> <!-- draw -->
-<g stroke="none" fill="#ff0000" fill-opacity="1.0" fill-rule="nonzero" >
-<path d="M 28.0 -144.0 C 28.0 -137.372583 22.627417 -132.0 16.0 -132.0 C 9.372583 -132.0 4.0 -137.372583 4.0 -144.0 C 4.0 -150.627417 9.372583 -156.0 16.0 -156.0 C 22.627417 -156.0 28.0 -150.627417 28.0 -144.0 z "/>
-</g> <!-- fill -->
-<g stroke="#000000" stroke-opacity="1.0" fill="none" >
-<path d="M 28.0 -144.0 C 28.0 -137.372583 22.627417 -132.0 16.0 -132.0 C 9.372583 -132.0 4.0 -137.372583 4.0 -144.0 C 4.0 -150.627417 9.372583 -156.0 16.0 -156.0 C 22.627417 -156.0 28.0 -150.627417 28.0 -144.0 z "/>
-</g> <!-- draw -->
-<g stroke="#000000" stroke-opacity="1.0" fill="none" >
-<path d="M 24.0 -144.0 C 24.0 -139.581722 20.418278 -136.0 16.0 -136.0 C 11.581722 -136.0 8.0 -139.581722 8.0 -144.0 C 8.0 -148.418278 11.581722 -152.0 16.0 -152.0 C 20.418278 -152.0 24.0 -148.418278 24.0 -144.0 z "/>
-</g> <!-- draw -->
-<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
-<text stroke="none" fill="#a742a8" fill-opacity="1.0"  x="-160.0" y="-59.0">
-t &lt;= 3
-</text>
-<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
-<text stroke="none" fill="#a742a8" fill-opacity="1.0"  x="-8.0" y="61.0">
-t &lt;= 10
-</text>
-<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
-<text stroke="none" fill="#a742a8" fill-opacity="1.0"  x="-16.0" y="-163.0">
-t &lt;= 10
-</text>
-<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
-<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-72.0" y="-123.0">
-t == 3
-</text>
-<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
-<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="-80.0" y="-3.0">
-t &gt; 5
-</text>
-<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
-<text stroke="none" fill="#42a848" fill-opacity="1.0"  x="24.0" y="-59.0">
-t = 10
-</text>
-<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
-<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-72.0" y="-107.0">
-t = 0
-</text>
-<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
-<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="-72.0" y="13.0">
-t = 0
-</text>
-<g font-family="sans-serif" font-weight="normal" font-style="normal" font-size="14" >
-<text stroke="none" fill="#4242a8" fill-opacity="1.0"  x="24.0" y="-43.0">
-t = 0
-</text>
-<g stroke-linecap="round" >
-<g stroke-linejoin="bevel" >
-<g stroke="#000000" stroke-opacity="1.0" fill="none" >
-<path d="M -77.695885 -71.926239 L 5.695888 -136.073761 "/>
-</g> <!-- draw -->
-<g stroke="#000000" stroke-opacity="1.0" fill="none" >
-<path d="M -0.382224 -128.13295 L 5.695888 -136.073761 L -3.538319 -132.23587 "/>
-</g> <!-- draw -->
-<g stroke-linecap="square" >
-<g stroke-linejoin="miter" >
-<g stroke-linecap="round" >
-<g stroke-linejoin="bevel" >
-<g stroke="#000000" stroke-opacity="1.0" fill="none" >
-<path d="M 6.447555 23.182358 L -78.447556 -55.182358 "/>
-</g> <!-- draw -->
-<g stroke="#000000" stroke-opacity="1.0" fill="none" >
-<path d="M -69.594383 -50.532486 L -78.447556 -55.182358 L -73.105415 -46.728867 "/>
-</g> <!-- draw -->
-<g stroke-linecap="square" >
-<g stroke-linejoin="miter" >
-<g stroke-linecap="round" >
-<g stroke-linejoin="bevel" >
-<g stroke="#000000" stroke-opacity="1.0" fill="none" >
-<path d="M 16.0 -131.0 L 16.0 19.0 "/>
-</g> <!-- draw -->
-<g stroke="#000000" stroke-opacity="1.0" fill="none" >
-<path d="M 13.41181 9.340742 L 16.0 19.0 L 18.58819 9.340742 "/>
-</g> <!-- draw -->
-<g stroke-linecap="square" >
-<g stroke-linejoin="miter" >
-<g transform="matrix(1.0,0.0,0.0,1.0,-162.0,-177.0)">
-</g> <!-- transform -->
-</g> <!-- stroke join -->
-</g> <!-- stroke cap -->
-</g> <!-- stroke join -->
-</g> <!-- stroke cap -->
-</g> <!-- stroke join -->
-</g> <!-- stroke cap -->
-</g> <!-- stroke join -->
-</g> <!-- stroke cap -->
-</g> <!-- stroke join -->
-</g> <!-- stroke cap -->
-</g> <!-- stroke join -->
-</g> <!-- stroke cap -->
-</g> <!-- font -->
-</g> <!-- font -->
-</g> <!-- font -->
-</g> <!-- font -->
-</g> <!-- font -->
-</g> <!-- font -->
-</g> <!-- font -->
-</g> <!-- font -->
-</g> <!-- font -->
-</g> <!-- transform -->
-</g> <!-- stroke dash -->
-</g> <!-- stroke limit -->
-</g> <!-- stroke join -->
-</g> <!-- stroke cap -->
-</g> <!-- stroke width -->
-</g> <!-- font -->
-</g> <!-- transform -->
-</g> <!-- top-level -->
-</g> <!-- font -->
-</svg> <!-- bounding box -->

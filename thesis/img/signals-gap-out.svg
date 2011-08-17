@@ -23,7 +23,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="320.20257"
+     inkscape:cx="535.85511"
      inkscape:cy="190.35225"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -1007,18 +1007,20 @@
          style="font-size:16px">zgłoszenia</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:11px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#008080;fill-opacity:1;stroke:none;font-family:Sans"
-       x="463.23413"
-       y="418.39487"
+       style="font-size:11px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#141466;fill-opacity:1;stroke:none;font-family:Sans"
+       x="457.17322"
+       y="410.31366"
        id="text6330"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan6332"
-         x="463.23413"
-         y="418.39487">Została wykryta luka,</tspan><tspan
+         x="457.17322"
+         y="410.31366"
+         style="font-size:12px;fill:#141466;fill-opacity:1">Została wykryta luka,</tspan><tspan
          sodipodi:role="line"
-         x="463.23413"
-         y="432.14487"
-         id="tspan6334">interwał zielony kończy się.</tspan></text>
+         x="457.17322"
+         y="425.31366"
+         id="tspan6334"
+         style="font-size:12px;fill:#141466;fill-opacity:1">interwał zielony kończy się.</tspan></text>
   </g>
 </svg>

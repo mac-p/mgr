@@ -9,7 +9,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="758.85608"
+   width="774.73108"
    height="301.08673"
    id="svg2"
    version="1.1"
@@ -23,8 +23,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="471.93599"
-     inkscape:cy="76.103441"
+     inkscape:cx="509.38336"
+     inkscape:cy="76.103455"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -41,99 +41,99 @@
      fit-margin-bottom="0">
     <sodipodi:guide
        orientation="0,1"
-       position="84.019436,395.08676"
+       position="84.019438,395.08677"
        id="guide3004" />
     <sodipodi:guide
        orientation="0,1"
-       position="85.448007,395.08676"
+       position="85.448009,395.08677"
        id="guide3006" />
     <sodipodi:guide
        orientation="0,1"
-       position="-35.980566,359.37248"
+       position="-35.980564,359.37249"
        id="guide3008" />
     <sodipodi:guide
        orientation="0,1"
-       position="75.448007,312.22962"
+       position="75.448009,312.22963"
        id="guide3010" />
     <sodipodi:guide
        orientation="0,1"
-       position="58.769796,78.178311"
+       position="58.769798,78.178325"
        id="guide3012" />
     <sodipodi:guide
        orientation="0,1"
-       position="151.70383,54.439726"
+       position="151.70383,54.43974"
        id="guide3014" />
     <sodipodi:guide
        orientation="0,1"
-       position="175.94749,28.17576"
+       position="175.94749,28.175774"
        id="guide3016" />
     <sodipodi:guide
        orientation="1,0"
-       position="72.590864,237.9439"
+       position="72.590866,237.94391"
        id="guide2989" />
     <sodipodi:guide
        orientation="1,0"
-       position="732.59086,276.51533"
+       position="732.59086,276.51534"
        id="guide2991" />
     <sodipodi:guide
        orientation="1,0"
-       position="286.87658,430.80105"
+       position="286.87658,430.80106"
        id="guide3846" />
     <sodipodi:guide
        orientation="1,0"
-       position="110.12657,312.22962"
+       position="110.12657,312.22963"
        id="guide3848" />
     <sodipodi:guide
        orientation="1,0"
-       position="579.50343,370.1124"
+       position="579.50343,370.11241"
        id="guide3852" />
     <sodipodi:guide
        orientation="1,0"
-       position="663.85117,410.51851"
+       position="663.85117,410.51852"
        id="guide3854" />
     <sodipodi:guide
        orientation="1,0"
-       position="150.12657,124.05104"
+       position="150.12657,124.05105"
        id="guide5430" />
     <sodipodi:guide
        orientation="1,0"
-       position="167.26943,242.62248"
+       position="167.26943,242.62249"
        id="guide5553" />
     <sodipodi:guide
        orientation="1,0"
-       position="199.05515,100.47962"
+       position="199.05515,100.47963"
        id="guide5555" />
     <sodipodi:guide
        orientation="1,0"
-       position="367.26943,79.372469"
+       position="367.26943,79.372483"
        id="guide5557" />
     <sodipodi:guide
        orientation="1,0"
-       position="424.76943,87.622472"
+       position="424.76943,87.622486"
        id="guide5559" />
     <sodipodi:guide
        orientation="1,0"
-       position="536.51573,131.86918"
+       position="536.51573,131.86919"
        id="guide5561" />
     <sodipodi:guide
        orientation="1,0"
-       position="498.63501,160.65852"
+       position="498.63501,160.65853"
        id="guide5563" />
     <sodipodi:guide
-       position="567.30348,187.44004"
+       position="567.30348,187.44005"
        orientation="0.76375143,0.64551045"
        id="guide5608" />
     <sodipodi:guide
        orientation="1,0"
-       position="270.12657,223.33677"
+       position="270.12657,223.33678"
        id="guide5626" />
     <sodipodi:guide
        orientation="1,0"
-       position="236.94633,135.11861"
+       position="236.94633,135.11862"
        id="guide5690" />
     <sodipodi:guide
        orientation="0,1"
-       position="72.590864,223.13521"
+       position="72.590866,223.13522"
        id="guide5924" />
   </sodipodi:namedview>
   <defs
@@ -1288,7 +1288,7 @@
     <path
        inkscape:connector-curvature="0"
        id="path6940"
-       d="m 468.34115,353.01502 33.37497,39.48841"
+       d="m 468.34115,353.01502 21.56668,25.66787"
        style="color:#000000;fill:none;stroke:#00005a;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.00000003, 5.00000003;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     <path
        style="color:#000000;fill:none;stroke:#00005a;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
@@ -1307,7 +1307,7 @@
        inkscape:connector-curvature="0"
        id="path3184"
        d="m 125.78404,440.33035 342.5571,-1.42857"
-       style="fill:none;stroke:#c83737;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#SquareMk);marker-end:url(#Arrow2Mend-41-4G)" />
+       style="fill:#800000;stroke:#c83737;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#SquareMk);marker-end:url(#Arrow2Mend-41-4G)" />
     <text
        xml:space="preserve"
        style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#c83737;font-family:Sans"
@@ -1322,7 +1322,7 @@
          style="fill:#000000;stroke:#000000" /></text>
     <text
        xml:space="preserve"
-       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#c83737;fill-opacity:1;stroke:none;font-family:Sans"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#800000;fill-opacity:1;stroke:none;font-family:Sans"
        x="235.74892"
        y="434.92661"
        id="text4707-7-4"
@@ -1333,26 +1333,30 @@
          y="434.92661">maksymalny zielony</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:11px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#008080;fill-opacity:1;stroke:none;font-family:Sans"
-       x="473.06882"
-       y="402.21576"
+       style="font-size:11px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#141466;fill-opacity:1;stroke:none;font-family:Sans"
+       x="473.08911"
+       y="396.23605"
        id="text5934"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="473.06882"
-         y="402.21576"
-         id="tspan5938">Został osiągnięty maksymalny</tspan><tspan
+         x="473.08911"
+         y="396.23605"
+         id="tspan5938"
+         style="font-size:12px;fill:#141466;fill-opacity:1">Został osiągnięty maksymalny</tspan><tspan
          sodipodi:role="line"
-         x="473.06882"
-         y="415.96576"
-         id="tspan5942">czas zielony, interwał zielony</tspan><tspan
+         x="473.08911"
+         y="411.23605"
+         id="tspan5942"
+         style="font-size:12px;fill:#141466;fill-opacity:1">czas zielony, interwał zielony</tspan><tspan
          sodipodi:role="line"
-         x="473.06882"
-         y="429.71576"
-         id="tspan5950">kończy się pomimo niewykrycia </tspan><tspan
+         x="473.08911"
+         y="426.23605"
+         id="tspan5950"
+         style="font-size:12px;fill:#141466;fill-opacity:1">kończy się pomimo niewykrycia </tspan><tspan
          sodipodi:role="line"
-         x="473.06882"
-         y="443.46576"
-         id="tspan5954">luki.</tspan></text>
+         x="473.08911"
+         y="441.23605"
+         id="tspan5954"
+         style="font-size:12px;fill:#141466;fill-opacity:1">luki.</tspan></text>
   </g>
 </svg>
